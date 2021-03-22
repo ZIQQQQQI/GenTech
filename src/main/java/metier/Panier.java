@@ -8,12 +8,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Panier {
+public class Panier implements Serializable {
     @Id
     private String emailClient;
+    @Id
     private Integer codeProduit;
     private Long quantite;
 

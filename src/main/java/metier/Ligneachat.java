@@ -8,12 +8,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Ligneachat {
+public class Ligneachat implements Serializable {
     @Id
     private String idCdeAchat;
+    @Id
     private Integer idProduit;
     private Long qteAchat;
     private Long qteReste;

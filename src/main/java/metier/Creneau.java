@@ -8,10 +8,11 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Creneau {
+public class Creneau implements Serializable {
     @Id
     private String heureRetrait;
     private String description;

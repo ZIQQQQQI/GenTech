@@ -8,12 +8,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Lignecommande {
+public class Lignecommande implements Serializable {
     @Id
     private String idCdeCli;
+    @Id
     private Integer codeProduit;
     private Integer quantite;
 
@@ -48,6 +50,15 @@ public class Lignecommande {
     }
 
     @Override
+    public String toString() {
+        return "Lignecommande{" +
+                "idCdeCli='" + idCdeCli + '\'' +
+                ", codeProduit=" + codeProduit +
+                ", quantite=" + quantite +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -56,6 +67,8 @@ public class Lignecommande {
                 Objects.equals(codeProduit, that.codeProduit) &&
                 Objects.equals(quantite, that.quantite);
     }
+
+
 
     @Override
     public int hashCode() {

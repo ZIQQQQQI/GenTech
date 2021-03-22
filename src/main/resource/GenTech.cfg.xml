@@ -24,9 +24,10 @@
     <mapping class="metier.Preference"/>
     <mapping class="metier.Produit"/>
     <mapping class="metier.Rayon"/>
+    <mapping class="metier.Commande"/>
 
 
-    <!-- DB schema will be updated if needed -->
+      <!-- DB schema will be updated if needed -->
     <!-- <property name="hibernate.hbm2ddl.auto">update</property> -->
   </session-factory>
 </hibernate-configuration>
