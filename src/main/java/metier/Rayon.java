@@ -4,14 +4,12 @@ package metier;/*
  *@date 2021/3/22
  */
 
-import javax.persistence.Basic;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Rayon {
+public class Rayon implements Serializable {
     @Id
     private Integer numCate;
     private String nomCate;
@@ -38,7 +36,7 @@ public class Rayon {
         this.nomCate = nomCate;
     }
 
-    @Basic
+
     @Column(name = "idParant", nullable = true)
     public Integer getIdParant() {
         return idParant;
@@ -67,6 +65,16 @@ public class Rayon {
                 Objects.equals(nomCate, rayon.nomCate) &&
                 Objects.equals(idParant, rayon.idParant) &&
                 Objects.equals(degre, rayon.degre);
+    }
+
+    @Override
+    public String toString() {
+        return "Rayon{" +
+                "numCate=" + numCate +
+                ", nomCate='" + nomCate + '\'' +
+                ", idParant=" + idParant +
+                ", degre=" + degre +
+                '}';
     }
 
     @Override

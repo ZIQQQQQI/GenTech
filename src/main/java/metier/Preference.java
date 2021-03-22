@@ -8,12 +8,14 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import java.io.Serializable;
 import java.util.Objects;
 
 @Entity
-public class Preference {
+public class Preference implements Serializable {
     @Id
     private String emailClient;
+    @Id
     private Integer codeProduit;
 
     @Basic
