@@ -68,8 +68,6 @@ public class Lignecommande implements Serializable {
                 Objects.equals(quantite, that.quantite);
     }
 
-
-
     @Override
     public int hashCode() {
         return Objects.hash(idCdeCli, codeProduit, quantite);

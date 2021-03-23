@@ -15,9 +15,6 @@ public class UnitTest {
         Transaction transaction=session.beginTransaction();
 
         String sql="select l.* from commande c,lignecommande l where l.idCdeCli=c.idCdeCli and c.idCdeCli=? ";
-
-
-
         List<Lignecommande> list=session.createSQLQuery(sql).addEntity(Lignecommande.class).setParameter(1,"affd2356").list();
         for (Lignecommande l:list
              ) {
