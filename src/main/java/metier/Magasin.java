@@ -71,6 +71,17 @@ public class Magasin implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "Magasin{" +
+                "idMagasin='" + idMagasin + '\'' +
+                ", libelleMagasin='" + libelleMagasin + '\'' +
+                ", adresseMagasin='" + adresseMagasin + '\'' +
+                ", cpMagasin='" + cpMagasin + '\'' +
+                ", villeMagasin='" + villeMagasin + '\'' +
+                '}';
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
