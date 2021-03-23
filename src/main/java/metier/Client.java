@@ -84,6 +84,17 @@ public class Client implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "Client{" +
+                "emailClient='" + emailClient + '\'' +
+                ", nomClient='" + nomClient + '\'' +
+                ", prenomClient='" + prenomClient + '\'' +
+                ", mdpClient='" + mdpClient + '\'' +
+                ", telClient='" + telClient + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(emailClient, nomClient, prenomClient, mdpClient, telClient);
     }

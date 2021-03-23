@@ -36,7 +36,6 @@ public class Rayon implements Serializable {
         this.nomCate = nomCate;
     }
 
-
     @Column(name = "idParant", nullable = true)
     public Integer getIdParant() {
         return idParant;
