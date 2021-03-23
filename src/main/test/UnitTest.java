@@ -13,6 +13,17 @@ import org.junit.Test;
 public class UnitTest {
     @Test
     public void test(){
+
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction transaction=session.beginTransaction();
+
+        String sql="select l.* from commande c,lignecommande l where l.idCdeCli=c.idCdeCli and c.idCdeCli=? ";
+        List<Lignecommande> list=session.createSQLQuery(sql).addEntity(Lignecommande.class).setParameter(1,"affd2356").list();
+        for (Lignecommande l:list
+             ) {
+            System.out.println(l);
+        }
+
         //test
         DaoMagasin m=new DaoMagasin();
         for (Magasin mm:m.listeMagasin()
@@ -45,6 +56,7 @@ public class UnitTest {
 //             ) {
 //            System.out.println(l);
 //        }
+
         //add un magasin test
 //        Magasin magasin=new Magasin();
 //        magasin.setIdMagasin("2");
