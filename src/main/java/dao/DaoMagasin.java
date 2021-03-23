@@ -4,13 +4,14 @@ package dao;/*
  *@date 2021/3/23
  */
 
-import metier.Client;
-import metier.Commande;
+import Outil.HibernateConn;
 import metier.Magasin;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 
-public class DaoMagasin implements DaoBasic{
+public class DaoMagasin {
     /*
      * @param
      * @return java.util.ArrayList<metier.Magasin>
@@ -20,7 +21,10 @@ public class DaoMagasin implements DaoBasic{
      * @description trouves tous les magasin
      */
     public ArrayList<Magasin> listeMagasin(){
-        session.beginTransaction();
+
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t= session.beginTransaction();
+
         String sql="select m.* from magasin m";
         ArrayList<Magasin> m=null;
         try {
@@ -28,9 +32,10 @@ public class DaoMagasin implements DaoBasic{
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("----------------------------");
-            System.out.println("DaoClient unclient not ok");
+            System.out.println("DaoMagasinnot liste magasin not ok");
             System.out.println("----------------------------");
         }
+        t.commit();
         return m;
     }
 }

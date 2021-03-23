@@ -4,13 +4,13 @@ package dao;/*
  *@date 2021/3/23
  */
 
+import Outil.HibernateConn;
 import metier.Client;
 import metier.Commande;
-import org.hibernate.hql.internal.classic.ClassicQueryTranslatorFactory;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
-import java.util.ArrayList;
-
-public class DaoClient implements DaoBasic{
+public class DaoClient {
     /*
      * @param [emailClient]
      * @return metier.Client
@@ -20,7 +20,8 @@ public class DaoClient implements DaoBasic{
      * @description trouver un client selon email
      */
     public Client unClient(String emailClient){
-        session.beginTransaction();
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+       Transaction t= session.beginTransaction();
         Client c=null;
         try {
             c=session.get(Client.class,emailClient);
@@ -30,7 +31,7 @@ public class DaoClient implements DaoBasic{
             System.out.println("DaoClient unclient not ok");
             System.out.println("----------------------------");
         }
-
+        t.commit();
         return c;
     }
 }

@@ -1,29 +1,24 @@
-import Outil.HibernateConn;
-import dao.DaoBasic;
+
 import dao.DaoClient;
-import dao.DaoClientCommande;
+
 import dao.DaoMagasin;
 import metier.Client;
-import metier.Commande;
-import metier.Lignecommande;
+
 import metier.Magasin;
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.Transaction;
+
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class UnitTest {
     @Test
     public void test(){
         //test
-//        DaoMagasin m=new DaoMagasin();
-//        for (Magasin mm:m.listeMagasin()
-//             ) {
-//            System.out.println(mm);
-//        }
+        DaoMagasin m=new DaoMagasin();
+        for (Magasin mm:m.listeMagasin()
+             ) {
+            System.out.println(mm);
+        }
 
         //test
         Client client=new DaoClient().unClient("bugubugu@gamil.com");
