@@ -24,6 +24,21 @@ public class Produit implements Serializable {
     private String marque;
     private Integer nbVente;
 
+    @Override
+    public String toString() {
+        return "Produit{" +
+                "codeProduit=" + codeProduit +
+                ", libelleProduit='" + libelleProduit + '\'' +
+                ", prix=" + prix +
+                ", prixVente=" + prixVente +
+                ", bio=" + bio +
+                ", nutriScore='" + nutriScore + '\'' +
+                ", categorie=" + categorie +
+                ", marque='" + marque + '\'' +
+                ", nbVente=" + nbVente +
+                '}';
+    }
+
     @Basic
     @Column(name = "codeProduit", nullable = true)
     public Integer getCodeProduit() {
