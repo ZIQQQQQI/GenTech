@@ -4,15 +4,19 @@ package dao;/*
  *@date 23/03/2021
  */
 
+import Outil.HibernateConn;
 import metier.Produit;
 import metier.Rayon;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.util.ArrayList;
 
-public class DaoRayonProduit implements DaoBasic{
+public class DaoRayonProduit{
     public static ArrayList<Produit> listeRayonProduit(Integer numCate)
     {
-        session.beginTransaction();
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t = session.beginTransaction();
         String sql = "select p.* from produit p, rayon r where p.categorie = r.numCate and p.categorie=?";
         ArrayList<Produit> list = null;
         try{
@@ -24,6 +28,8 @@ public class DaoRayonProduit implements DaoBasic{
             System.out.println("----------------------");
 
         }
+        t.commit();
+        session.close();
         return list;
     }
 }

@@ -8,17 +8,21 @@ package dao;
  *@date 23/03/2021 12:04
 */
 
+import Outil.HibernateConn;
 import metier.Lignecommande;
 import metier.Rayon;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaoRayon implements DaoBasic{
+public class DaoRayon{
      public static ArrayList<Rayon> listeRayon()
      {
-         session.beginTransaction();
+         Session session= HibernateConn.getSessionFactory().getCurrentSession();
+         Transaction t = session.beginTransaction();
          String sql = "select rayon.* from rayon where degre = ?";
          ArrayList<Rayon> list = null;
          try{
@@ -29,6 +33,8 @@ public class DaoRayon implements DaoBasic{
              System.out.println("DaoRayon listeRayon");
              System.out.println("----------------------");
          }
+         t.commit();
+         session.close();
          return list;
      }
 }
