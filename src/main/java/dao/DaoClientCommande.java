@@ -36,6 +36,7 @@ public class DaoClientCommande {
             System.out.println("----------------------------");
         }
         t.commit();
+        session.close();
         return list;
     }
 
