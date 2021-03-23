@@ -20,6 +20,7 @@ public class Client implements Serializable {
     private String mdpClient;
     private String telClient;
 
+
     @Basic
     @Column(name = "emailClient", nullable = true, length = -1)
     public String getEmailClient() {
@@ -37,8 +38,8 @@ public class Client implements Serializable {
     }
 
     public void setNomClient(String nomClient) {
-        this.nomClient = nomClient;
-    }
+        this.nomClient = nomClient;}
+
 
     @Basic
     @Column(name = "prenomClient", nullable = true, length = -1)
@@ -80,6 +81,17 @@ public class Client implements Serializable {
                 Objects.equals(prenomClient, client.prenomClient) &&
                 Objects.equals(mdpClient, client.mdpClient) &&
                 Objects.equals(telClient, client.telClient);
+    }
+
+    @Override
+    public String toString() {
+        return "Client{" +
+                "emailClient='" + emailClient + '\'' +
+                ", nomClient='" + nomClient + '\'' +
+                ", prenomClient='" + prenomClient + '\'' +
+                ", mdpClient='" + mdpClient + '\'' +
+                ", telClient='" + telClient + '\'' +
+                '}';
     }
 
     @Override
