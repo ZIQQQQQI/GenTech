@@ -32,4 +32,27 @@ public class DaoRayonProduit{
         session.close();
         return list;
     }
+
+    public ArrayList<Produit> listRayonProOrdrePrix(String order){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction transaction=session.beginTransaction();
+        String sql="select * from produit p, rayon r where p.categorie = r.numCate and p.categorie=?";
+        if (order.equals("desc")){
+            sql=sql+"order by produit.prixVente DESC";
+        }else if (order.equals("asc")){
+            sql=sql+"order by produit.prixVente ASC";
+        }
+        ArrayList<Produit> listProduit = null;
+        try{
+            listProduit=(ArrayList<Produit>)session.createSQLQuery(sql).addEntity(Produit.class).list();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoRayonProduit listeRayonProduitOrderPrix");
+            System.out.println("----------------------------");
+        }
+        transaction.commit();
+        session.close();
+        return listProduit;
+    }
 }

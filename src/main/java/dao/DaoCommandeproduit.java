@@ -61,7 +61,7 @@ public class DaoCommandeproduit {
                 "where c.emailClient=? \n" +
                 "and c.idCdeCli = lc.idCdeCli \n" +
                 "and p.codeproduit = lc.codeproduit\n" +
-                "group by codeProduit order by count(*) desc limit 5";
+                "group by codeProduit order by count(*) desc";
 
         try {
             list = (ArrayList<Produit>) session.createSQLQuery(sql).addEntity(Produit.class).setParameter(1,email).list();
