@@ -1,28 +1,26 @@
 
+import Outil.HibernateConn;
 import dao.DaoClient;
 
 import dao.DaoMagasin;
 import metier.Client;
 
+import metier.Lignecommande;
 import metier.Magasin;
 
+import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.junit.Test;
 
+import java.util.List;
 
 
 public class UnitTest {
     @Test
     public void test(){
 
-        Session session= HibernateConn.getSessionFactory().getCurrentSession();
-        Transaction transaction=session.beginTransaction();
 
-        String sql="select l.* from commande c,lignecommande l where l.idCdeCli=c.idCdeCli and c.idCdeCli=? ";
-        List<Lignecommande> list=session.createSQLQuery(sql).addEntity(Lignecommande.class).setParameter(1,"affd2356").list();
-        for (Lignecommande l:list
-             ) {
-            System.out.println(l);
-        }
+
 
         //test
         DaoMagasin m=new DaoMagasin();
