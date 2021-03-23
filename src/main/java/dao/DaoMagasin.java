@@ -36,6 +36,7 @@ public class DaoMagasin {
             System.out.println("----------------------------");
         }
         t.commit();
+        session.close();
         return m;
     }
 }

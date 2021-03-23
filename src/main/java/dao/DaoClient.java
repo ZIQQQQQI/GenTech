@@ -32,6 +32,7 @@ public class DaoClient {
             System.out.println("----------------------------");
         }
         t.commit();
+        session.close();
         return c;
     }
 }
