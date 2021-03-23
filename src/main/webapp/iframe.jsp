@@ -1,4 +1,5 @@
-<%--
+<%@ page import="metier.Produit" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -6,6 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -212,10 +214,10 @@
         </div>
 
         <!--Afficher les produit-->
-        <div class="tab-content" style="height: 1000px">
-            <iframe src="./Front-End/afficherProduit.jsp" scrolling="Yes"frameborder="0" id="afficherProd"></iframe>
-            <!--<iframe src="./Front-End/pageProd.jsp" scrolling="yes" frameborder="0" id="Prod"></iframe> -->
+        <div class="tab-content" >
 
+            <!--<iframe src="./Front-End/pageProd.jsp" scrolling="yes" frameborder="0" id="Prod"></iframe> -->
+            <jsp:include page="./Front-End/afficherProduit.jsp"></jsp:include>
         </div>
     </div>
     <!-- /.content-wrapper -->

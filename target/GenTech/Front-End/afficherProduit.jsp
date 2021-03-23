@@ -1,4 +1,5 @@
-<%--
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="metier.Produit" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -6,6 +7,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  ArrayList<Produit> list=(ArrayList<Produit>)request.getAttribute("listProduit");
+
+%>
 <html>
 <head>
   <meta charset="utf-8">
@@ -25,79 +30,53 @@
     <a href="">
       <h2>Produit</h2>
     </a>
+    <%
+
+      Integer total=list.size()/3;
+      for(int i=0;i<total;i++){
+
+
+    %>
     <div class="row">
-      <div class="col-md-6">
+      <%
+        for(int j=0;j<3;j++){
+          Produit p=list.get(j+i*3);
+
+
+      %>
+      <div class="col-md-4">
         <!--prod1-->
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">nomProd1</h3>
-            <i class="fas fa-leaf" style="float: right;color: green;"></i>
-          </div>
-          <div class="card-body">
-            <div align="middle">
-              <img src="" alt="imgProd1">
-            </div>
-            <div>
-              <p style="float: left;">prix</p>
-              <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
-            </div>
-          </div>
-        </div>
-        <!--prod2-->
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">nomProd2</h3>
-            <i class="fas fa-leaf" style="float: right;color: green;"></i>
-          </div>
-          <div class="card-body">
-            <div align="middle">
-              <img src="" alt="imgProd2">
-            </div>
-            <div>
-              <p style="float: left;">prix</p>
-              <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
-            </div>
-          </div>
-        </div>
-      </div><!--fin colonne-->
+            <a>
+              <h3 class="card-title"><%out.println( p.getLibelleProduit());%></h3>
+            </a>
+            
+            <%
+              if(p.getBio()==1){
+                out.print("<i class=\"fas fa-leaf\" style=\"float: right;color: green;\"></i>");
+              }
+            %>
 
-      <div class="col-md-6">
-        <!--prod1-->
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">nomProd3</h3>
-            <i class="fas fa-leaf" style="float: right;color: green;"></i>
           </div>
           <div class="card-body">
             <div align="middle">
-              <img src="" alt="imgProd3">
+              <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
             </div>
             <div>
-              <p style="float: left;">prix</p>
+              <p style="float: left;"><%out.print(p.getPrix());%>  € </p>
               <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
             </div>
           </div>
         </div>
-        <!--prod2-->
-        <div class="card">
-          <div class="card-header">
-            <h3 class="card-title">nomProd4</h3>
-            <i class="fas fa-leaf" style="float: right;color: green;"></i>
-          </div>
-          <div class="card-body">
-            <div align="middle">
-              <img src="" alt="imgProd4">
-            </div>
-            <div>
-              <p style="float: left;">prix</p>
-              <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
-            </div>
-          </div>
-        </div>
-      </div><!--fin colonne-->
-    </div><!--fin row-->
+      </div><!-- FIN DE PROD1-->
 
-  </div>
+<%
+      }//fin de 2e for
+    %></div> <%//fin de 1e if
+  }//fin de 1e for
+%>
+
 
   <!-- 切换页面 -->
   <div class="card-footer clearfix">
@@ -110,9 +89,6 @@
     </ul>
   </div>
 </div>
+</div>
 </body>
-
-
-</body>
-
 </html>
