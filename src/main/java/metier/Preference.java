@@ -27,7 +27,7 @@ public class Preference implements Serializable {
     public void setEmailClient(String emailClient) {
         this.emailClient = emailClient;
     }
-
+ 
     @Basic
     @Column(name = "codeProduit", nullable = true)
     public Integer getCodeProduit() {
