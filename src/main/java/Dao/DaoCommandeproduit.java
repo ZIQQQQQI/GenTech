@@ -35,24 +35,7 @@ public class DaoCommandeproduit {
             System.out.println(l);
         }
 
-        /*----- Ouverture de l'espace de requête -----*/
-        try (PreparedStatement st = Bd.cx.prepareStatement(sql))
-        {
-            /*----- Exécution de la requête -----*/
-            st.setString(1, idCdeCli);
-            try (ResultSet rs = st.executeQuery())
-            {
-                /*----- Lecture du contenu du ResultSet -----*/
-                while (rs.next())
-                    list.add(rs.getString(1));
-            }
-        }
-        catch (SQLException ex)
-        {
-            throw new SQLException("Exception lireCitations() : Problème SQL - " + ex.getMessage());
-        }
-
-        return list;
+       return list;
     }
 
 
