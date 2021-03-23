@@ -4,15 +4,14 @@ package dao;/*
  *@date 2021/3/23
  */
 
-import metier.Client;
+import Outil.HibernateConn;
 import metier.Commande;
-import metier.Lignecommande;
+import org.hibernate.Session;
 import org.hibernate.Transaction;
-
 import java.util.ArrayList;
-import java.util.List;
 
-public class DaoClientCommande implements DaoBasic{
+
+public class DaoClientCommande {
     /*
      * @param [emailClient]
      * @return java.util.ArrayList<metier.Commande>
@@ -22,6 +21,8 @@ public class DaoClientCommande implements DaoBasic{
      * @description trouver liste de une commande d'un client
      */
     public ArrayList<Commande> listeCommandeClient(String emailClient){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t= session.beginTransaction();
         session.beginTransaction();
         String sql="select c.* from commande c,client cl where c.emailClient=cl.emailClient and cl.emailClient=?";
 
@@ -34,6 +35,7 @@ public class DaoClientCommande implements DaoBasic{
             System.out.println("DaoClientCommande listeCommandeClient");
             System.out.println("----------------------------");
         }
+        t.commit();
         return list;
     }
 
