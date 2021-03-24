@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 @WebServlet("/ServletAccueil")
+
 public class ServletAccueil extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         ArrayList<Produit> list=new ServiceProduit().listProduit("none");

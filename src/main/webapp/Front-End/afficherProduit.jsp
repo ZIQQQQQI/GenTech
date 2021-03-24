@@ -29,7 +29,8 @@
   <div class="container-fluid">
     <a href="">
       <h2>Produit</h2>
-      <a href="ServletPrix">Ordre par prix</a>
+      <a href="ServletPrix?ordre=asc">asc</a>
+      <a href="ServletPrix?ordre=desc">desc</a>
     </a>
     <%
 
