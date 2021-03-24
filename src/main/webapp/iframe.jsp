@@ -227,6 +227,7 @@
 
             <!--<iframe src="./Front-End/pageProd.jsp" scrolling="yes" frameborder="0" id="Prod"></iframe> -->
             <jsp:include page="./Front-End/afficherProduit.jsp"></jsp:include>
+
         </div>
     </div>
     <!-- /.content-wrapper -->
