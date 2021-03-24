@@ -22,7 +22,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AfficherProduit</title>
-
+    <link rel="stylesheet" href="./Front-End/resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href=".\resources\plugins\fontawesome-free\css\all.min.css">
@@ -31,6 +31,7 @@
 
 </head>
 <body class="hold-transition sidebar-mini">
+<div class="content-wrapper iframe-mode" data-widget="iframe" data-loading-screen="750">
 <div class="tab-content" >
 <div class="wrapper">
     <div class="container-fluid">
@@ -41,11 +42,15 @@
         <%
             Integer total=list.size()/3;
             for(int i=0;i<total;i++){
+
+
         %>
         <div class="row">
             <%
                 for(int j=0;j<3;j++){
                     Produit p=list.get(j+i*3);
+
+
             %>
             <div class="col-md-4">
                 <!--prod1-->
@@ -89,6 +94,7 @@
             </ul>
         </div>
     </div>
+</div>
 </div>
 </div>
 </body>
