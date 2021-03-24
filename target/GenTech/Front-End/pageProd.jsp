@@ -1,4 +1,4 @@
-<%--
+<%@ page import="metier.Produit" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -6,6 +6,13 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+
+        Produit p=(Produit)request.getAttribute("unProduit");
+
+
+
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -46,27 +53,27 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 col-sm-6">
-                    <h3 class="d-inline-block d-sm-none">Le nom complete du produit</h3>
+                    <h3 class="d-inline-block d-sm-none"><%out.print(p.getLibelleProduit()); %></h3>
                     <!-- Les images de produit -->
                     <!-- 大图 -->
                     <div class="col-12">
-                        <img src="resources/dist/img/prod-1.jpg" class="product-image" alt="Product Image">
+                        <img src="images/<%out.print(p.getCodeProduit()); %>.jpg" class="product-image" alt="Product Image">
                     </div>
                     <!-- 缩略图 -->
                     <div class="col-12 product-image-thumbs">
-                        <div class="product-image-thumb active"><img src="resources/dist/img/prod-1.jpg" alt="Product Image"></div>
-                        <div class="product-image-thumb" ><img src="resources/dist/img/prod-2.jpg" alt="Product Image"></div>
-                        <div class="product-image-thumb" ><img src="resources/dist/img/prod-3.jpg" alt="Product Image"></div>
-                        <div class="product-image-thumb" ><img src="resources/dist/img/prod-4.jpg" alt="Product Image"></div>
+                        <div class="product-image-thumb active"><img src="images/<%out.print(p.getCodeProduit()); %>.jpg" alt="Product Image"></div>
+                        <div class="product-image-thumb" ><img src="images/<%out.print(p.getCodeProduit()); %>.jpg" alt="Product Image"></div>
+                        <div class="product-image-thumb" ><img src="images/<%out.print(p.getCodeProduit()); %>.jpg" alt="Product Image"></div>
+                        <div class="product-image-thumb" ><img src="images/<%out.print(p.getCodeProduit()); %>.jpg" alt="Product Image"></div>
                     </div>
                 </div>
 
                 <div class="col-12 col-sm-6">
-                    <h3 class="my-3">Le nom complete du produit</h3>
+                    <h3 class="my-3"><%out.print(p.getLibelleProduit());%></h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae condimentum erat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed posuere, purus at efficitur hendrerit, augue elit lacinia arcu, a eleifend sem elit et nunc. Sed rutrum vestibulum est, sit amet cursus dolor fermentum vel. Suspendisse mi nibh, congue et ante et, commodo mattis lacus. Duis varius finibus purus sed venenatis. Vivamus varius metus quam, id dapibus velit mattis eu. Praesent et semper risus. Vestibulum erat erat, condimentum at elit at, bibendum placerat orci. Nullam gravida velit mauris, in pellentesque urna pellentesque viverra. Nullam non pellentesque justo, et ultricies neque. Praesent vel metus rutrum, tempus erat a, rutrum ante. Quisque interdum efficitur nunc vitae consectetur. Suspendisse venenatis, tortor non convallis interdum, urna mi molestie eros, vel tempor justo lacus ac justo. Fusce id enim a erat fringilla sollicitudin ultrices vel metus.</p>
 
                     <hr>
-                    <h4>Nutri-Score</h4>
+                    <h4>Nutri-Score:<%out.print( p.getNutriScore());%></h4>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
                         <img src="" alt="imgNutri">
                     </div>
@@ -76,7 +83,7 @@
                             Le prix de produit
                         </h2>
                         <h4 class="mt-0">
-                            <small>Ex Tax: $80.00 </small>
+                            <small>Ex Tax: <%out.print(p.getPrix());%>  € </small>
                         </h4>
                     </div>
 
