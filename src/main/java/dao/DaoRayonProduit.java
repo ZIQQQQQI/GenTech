@@ -17,7 +17,7 @@ public class DaoRayonProduit{
     {
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t = session.beginTransaction();
-        String sql = "select * from produit p, rayon r where p.categorie=?";
+        String sql = "select * from produit p where p.categorie=?";
         ArrayList<Produit> list = null;
         try{
             list=(ArrayList<Produit>) session.createSQLQuery(sql).addEntity(Produit.class).setParameter(1,numCate).list();

@@ -71,11 +71,52 @@
 
 <%
       }//fin de 2e for
-    %></div> <%//fin de 1e if
+    %></div>
+
+      <%//fin de 1e if
   }//fin de 1e for
+    if(total*3<list.size()){
+      %>
+    <div class="row">
+    <%
+      for(int i=total;i<list.size();i++){
+        Produit p=list.get(i);
+  %>
+
+    <div class="col-md-4">
+      <!--prod1-->
+      <div class="card">
+        <div class="card-header">
+          <a href="ServletProduitDetail?idProduit=<%out.print( p.getCodeProduit());%>">
+            <h3 class="card-title"><%out.println( p.getLibelleProduit());%></h3>
+          </a>
+
+          <%
+            if(p.getBio()==1){
+              out.print("<i class=\"fas fa-leaf\" style=\"float: right;color: green;\"></i>");
+            }
+          %>
+
+        </div>
+        <div class="card-body">
+          <div align="middle">
+            <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
+          </div>
+          <div>
+            <p style="float: left;"><%out.print(p.getPrix());%>  € </p>
+            <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
+          </div>
+        </div>
+      </div>
+    </div><!-- FIN DE PROD1-->
+
+
+    <%
+        }//fin for
+    }//if ferme
 %>
 
-
+    </div>
   <!-- 切换页面 -->
   <div class="card-footer clearfix">
     <ul class="pagination pagination-sm m-0 float-right">

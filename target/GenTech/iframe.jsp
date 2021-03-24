@@ -177,10 +177,10 @@
                         <%for(Rayon cat:list.get(r)){ %>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="ServletAccueil?idCategorie=<%out.print(cat.getNumCate());%>&math=<%out.print(Math.random());%>" class="nav-link">
+                            <a href="ServletAccueil?idCategorie=<%out.print(cat.getNumCate());%>&math=<%out.print(Math.random());%>" >
                             <i class="far fa-circle nav-icon"></i>
 
-                            <p><% out.print(cat.getNomCate());%></p >
+                            <% out.print(cat.getNomCate());%>
                         </a>
                         </li>
                     </ul>
