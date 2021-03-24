@@ -15,4 +15,6 @@ public class ServiceProduit {
     public ArrayList<Produit> listProduit(String facon){
         return daoProduit.listProduitOrdrePrix(facon);
     }
+
+    public Produit unProduit(Integer id){return  daoProduit.rechercheUnProduit(id);}
 }

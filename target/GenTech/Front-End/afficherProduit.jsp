@@ -48,10 +48,10 @@
         <!--prod1-->
         <div class="card">
           <div class="card-header">
-            <a>
+            <a href="ServletProduitDetail?idProduit=<%out.print( p.getCodeProduit());%>">
               <h3 class="card-title"><%out.println( p.getLibelleProduit());%></h3>
             </a>
-            
+
             <%
               if(p.getBio()==1){
                 out.print("<i class=\"fas fa-leaf\" style=\"float: right;color: green;\"></i>");

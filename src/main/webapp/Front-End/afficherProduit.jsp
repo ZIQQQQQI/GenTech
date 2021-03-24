@@ -48,7 +48,7 @@
         <!--prod1-->
         <div class="card">
           <div class="card-header">
-            <a>
+            <a href="ServletProduitDetail?idProduit=<%out.print( p.getCodeProduit());%>">
               <h3 class="card-title"><%out.println( p.getLibelleProduit());%></h3>
             </a>
 
