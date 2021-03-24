@@ -23,7 +23,6 @@ public class DaoClientCommande {
     public ArrayList<Commande> listeCommandeClient(String emailClient){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
-        session.beginTransaction();
         String sql="select c.* from commande c,client cl where c.emailClient=cl.emailClient and cl.emailClient=?";
 
         ArrayList<Commande> list=null;
@@ -40,7 +39,24 @@ public class DaoClientCommande {
         return list;
     }
 
+    public ArrayList<Commande> listCommandeEnCours (String emailClient){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t= session.beginTransaction();
+        String sql="select c.* from commande c,client cl where c.emailClient=cl.emailClient and c.etat<>'Termine'and cl.emailClient=?";
 
+        ArrayList<Commande> list=null;
+        try {
+            list=(ArrayList<Commande>) session.createSQLQuery(sql).addEntity(Commande.class).setParameter(1,emailClient).list();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoClientCommande listeCommandeEnCours");
+            System.out.println("----------------------------");
+        }
+        t.commit();
+        session.close();
+        return list;
+    }
 
 
 
