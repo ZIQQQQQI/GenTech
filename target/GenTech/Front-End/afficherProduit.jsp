@@ -41,8 +41,6 @@
       <%
         for(int j=0;j<3;j++){
           Produit p=list.get(j+i*3);
-
-
       %>
       <div class="col-md-4">
         <!--prod1-->

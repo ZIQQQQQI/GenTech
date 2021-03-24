@@ -1,6 +1,7 @@
 <%@ page import="metier.Produit" %>
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="metier.Rayon" %><%--
+<%@ page import="metier.Rayon" %>
+<%@ page import="java.util.HashMap" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -163,8 +164,8 @@
                          with font-awesome or any other icon font library -->
                     <li class="nav-header">RAYONS:</li>
 
-                    <% ArrayList<Rayon> list=(ArrayList<Rayon>)request.getAttribute("listRayon");
-                        for(Rayon r:list){
+                    <% HashMap<Rayon,ArrayList<Rayon>> list=(HashMap<Rayon,ArrayList<Rayon>>)request.getAttribute("listRayonandcategories");
+                        for(Rayon r:list.keySet()){
                     %>
                     <li class="nav-item">
                         <a href=" " class="nav-link">
@@ -173,14 +174,17 @@
                             <i class="right fas fa-angle-left"></i>
                         </p >
                     </a>
+                        <%for(Rayon cat:list.get(r)){ %>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="" class="nav-link">
+                            <a href="ServletAccueil?idCategorie=<%out.print(cat.getNumCate());%>&math=<%out.print(Math.random());%>" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
-                            <p>Sous-Categorie</p >
+
+                            <p><% out.print(cat.getNomCate());%></p >
                         </a>
                         </li>
                     </ul>
+                        <%  }%>
                     </li>
                     <%} %>
 
@@ -191,19 +195,19 @@
 
                     <li class="nav-header">LABELS</li>
                     <li class="nav-item">
-                        < a href="#" class="nav-link">
+                        <a href="#" class="nav-link">
                         <i class="nav-icon far fa-circle text-danger"></i>
                         <p class="text">Important</p >
                     </a>
                     </li>
                     <li class="nav-item">
-                        < a href="#" class="nav-link">
+                        <a href="#" class="nav-link">
                         <i class="nav-icon far fa-circle text-warning"></i>
                         <p>Warning</p >
                     </a>
                     </li>
                     <li class="nav-item">
-                        < a href="#" class="nav-link">
+                        <a href="#" class="nav-link">
                         <i class="nav-icon far fa-circle text-info"></i>
                         <p>Informational</p >
                     </a>
@@ -226,7 +230,7 @@
         <div class="tab-content" >
 
             <!--<iframe src="./Front-End/pageProd.jsp" scrolling="yes" frameborder="0" id="Prod"></iframe> -->
-            <jsp:include page="./Front-End/afficherProduit.jsp"></jsp:include>
+            <jsp:include page="./Front-End/afficherProduit.jsp" flush="true"></jsp:include>
         </div>
     </div>
     <!-- /.content-wrapper -->
