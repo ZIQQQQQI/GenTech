@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
   ArrayList<Produit> list=(ArrayList<Produit>)request.getAttribute("listProduit");
-
 %>
 <html>
 <head>
@@ -29,13 +28,12 @@
   <div class="container-fluid">
     <a href="">
       <h2>Produit</h2>
-      <a href="ServletPrix?ordre=asc">Ordre par prix</a>
+      <a href="ServletPrix?ordre=asc">asc</a>
+      <a href="ServletPrix?ordre=desc">desc</a>
     </a>
     <%
-
       Integer total=list.size()/3;
       for(int i=0;i<total;i++){
-
 
     %>
     <div class="row">
