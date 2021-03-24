@@ -16,11 +16,14 @@
         <property name="serverTimezone" value="UTC" />
       </driver-properties>
     </data-source>
-    <data-source source="LOCAL" name="gentech@localhost" uuid="92e3dd78-da6b-4ec6-a330-5932a12d169e">
+    <data-source source="LOCAL" name="gentech@localhost" uuid="13e14ebd-1003-4bf8-97c1-3162a641d7a4">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/gentech</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="APPROVED_DRIVER" value="mysql.8" />
+      </jdbc-additional-properties>
     </data-source>
   </component>
 </project>
