@@ -9,9 +9,6 @@
 <%
 
         Produit p=(Produit)request.getAttribute("unProduit");
-
-
-
 %>
 <!DOCTYPE html>
 <html>

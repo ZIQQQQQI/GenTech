@@ -1,8 +1,11 @@
 import dao.DaoProduit;
 import metier.Produit;
+import metier.Rayon;
 import org.junit.Test;
+import service.ServiceRayon;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class SiTest {
     @Test
@@ -20,9 +23,17 @@ public class SiTest {
 
         //ArrayList<Produit> listProduit = dp.listProduitOrdrePrix("none");
 
-        ArrayList<Produit> listProduit=dp.listProduitMotCle("ok");
-        for (Produit p:listProduit){
-            System.out.println(p.getLibelleProduit());
+        //ArrayList<Produit> listProduit=dp.listProduitMotCle("ok");
+        //for (Produit p:listProduit){
+            //System.out.println(p.getLibelleProduit());
+        //}
+        ServiceRayon sr=new ServiceRayon();
+        HashMap<Rayon,ArrayList<Rayon>> list=sr.allRayonAndCategories();
+        for (Rayon r:list.keySet()){
+            System.out.println("---"+r.getNomCate());
+            for (Rayon cat:list.get(r)){
+                System.out.println(cat.getNomCate());
+            }
         }
     }
 }

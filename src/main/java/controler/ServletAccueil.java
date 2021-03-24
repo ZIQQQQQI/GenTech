@@ -11,15 +11,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @WebServlet("/ServletAccueil")
 public class ServletAccueil extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
-        ArrayList<Produit> list=new ServiceProduit().listProduit("none");
+
+        Integer idCategorie= null;
+        try{
+            idCategorie=Integer.valueOf(request.getParameter("idCategorie"));
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+        ArrayList<Produit> list=null;
+        if (idCategorie==null){
+            list=new ServiceProduit().listProduit("none");
+        }else if (idCategorie!=null){
+            list= new ServiceProduit().listeRayonProduit(idCategorie);
+        }
+        System.out.println(list);
         request.setAttribute("listProduit",list);
-        ArrayList<Rayon> listRayon = new ServiceRayon().allRayon();
-        request.setAttribute("listRayon",listRayon);
-        request.getRequestDispatcher("/iframe.jsp").forward(request, response);
+        HashMap<Rayon,ArrayList<Rayon>> listRayonEtCategories = new ServiceRayon().allRayonAndCategories();
+        request.setAttribute("listRayonandcategories",listRayonEtCategories);
+        request.getRequestDispatcher("/iframe.jsp?math="+Math.random()).forward(request, response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
