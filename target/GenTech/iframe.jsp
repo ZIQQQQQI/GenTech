@@ -1,4 +1,5 @@
-<%--
+<%@ page import="metier.Rayon" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -158,13 +159,35 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
+                    <li class="nav-header">RAYONS</li>
+                    <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+                    <% ArrayList<Rayon> list=(ArrayList<Rayon>)request.getAttribute("listRayon");
+                        for(Rayon r:list){
+                             %>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-chart-pie"></i>
+                            <p><%out.print(r.getNomCate());%>
+                                    <i class="right fas fa-angle-left"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Sous-Categorie</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                        <%}%>
 
+                    
                     <li class="nav-item">
                         <a href="#" class="nav-link">
                             <i class="nav-icon fas fa-chart-pie"></i>
                             <p>
                                 Categorie
-                                <span class="right badge badge-danger">New</span>
                                 <i class="right fas fa-angle-left"></i>
                             </p>
                         </a>
@@ -213,7 +236,7 @@
 
         <!--Afficher les produit-->
         <div class="tab-content" style="height: 1000px">
-            <iframe src="./Front-End/afficherProduit.jsp" scrolling="Yes"frameborder="0" id="afficherProd"></iframe>
+            <jsp:include page="./Front-End/afficherProduit.jsp"></jsp:include>
             <!--<iframe src="./Front-End/pageProd.jsp" scrolling="yes" frameborder="0" id="Prod"></iframe> -->
 
         </div>
