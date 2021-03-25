@@ -131,4 +131,37 @@ public class DaoProduit{
         session.close();
         return produitEnPromo;
     }
+
+
+    /*
+     *@param emailClient
+     *@return java.util.ArrayList<metier.Produit>
+     *@author SI
+     *@date 25/03/2021 21:44
+     *@exception
+     *@description tous les produit commandee par un client
+     */
+    public ArrayList<Produit> produitsPourUnClient(String emailClient){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction transaction=session.beginTransaction();
+        ArrayList<Produit> listProduitPrefere=null;
+        String sql="select p.*\n" +
+                "from Produit p,lignecommande lc,commande co\n" +
+                "where co.idCdeCli=lc.idCdeCli\n" +
+                "and lc.codeProduit=p.codeProduit\n" +
+                "and co.emailClient=?";
+        try{
+            listProduitPrefere=(ArrayList<Produit>)session.createSQLQuery(sql).addEntity(Produit.class).setParameter(1,emailClient).list();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoPreference listProduitPrefere");
+            System.out.println("----------------------------");
+        }
+
+        transaction.commit();
+        session.close();
+        return listProduitPrefere;
+
+    }
 }

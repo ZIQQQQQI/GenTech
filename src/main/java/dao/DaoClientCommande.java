@@ -39,10 +39,26 @@ public class DaoClientCommande {
         return list;
     }
 
-    public ArrayList<Commande> listCommandeEnCours (String emailClient){
+
+
+
+    /*
+     *@param emailClient
+     *@return java.util.ArrayList<metier.Commande>
+     *@author SI
+     *@date 24/03/2021 15:29
+     *@exception Exception
+     *@description rechercher les commendes selon son etat soit en cours soit termine
+     */
+    public ArrayList<Commande> listCommandeEnCoursOuTermine (String emailClient,String etat){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
-        String sql="select c.* from commande c,client cl where c.emailClient=cl.emailClient and c.etat<>'Termine'and cl.emailClient=?";
+        String sql="";
+        if(etat.equals("encours")){
+            sql="select c.* from commande c,client cl where c.emailClient=cl.emailClient and c.etat<>'Termine'and cl.emailClient=?";
+        }else{
+            sql="select c.* from commande c,client cl where c.emailClient=cl.emailClient and c.etat='Termine'and cl.emailClient=?";
+        }
 
         ArrayList<Commande> list=null;
         try {
@@ -50,14 +66,13 @@ public class DaoClientCommande {
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("----------------------------");
-            System.out.println("DaoClientCommande listeCommandeEnCours");
+            System.out.println("DaoClientCommande listCommandeEnCoursOuTermine");
             System.out.println("----------------------------");
         }
         t.commit();
         session.close();
         return list;
     }
-
 
 
 

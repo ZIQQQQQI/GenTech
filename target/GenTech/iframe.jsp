@@ -46,9 +46,9 @@
 <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="height: 120px">
         <!-- Left navbar links -->
-        <ul class="navbar-nav ml-auto" style="height: 100px" >
+        <ul class="navbar-nav "  >
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
@@ -79,7 +79,7 @@
                             </div>
                         </div>
                     </form>
-                    <div id="zoneaff" style="display: none;width: 100%;height: 193px; border-width: 1px;border-style: solid;border-color: #7F9DB9;margin-top: 1px;padding: 2px;overflow:auto;z-index:9999;">
+                    <div id="zoneaff" style="display: none;background-color: white;width: 100%;height: 193px; border-width: 1px;border-style: solid;border-color: #7F9DB9;margin-top: 1px;padding: 2px;overflow:auto;z-index:9999;">
                     </div>
                 </div>
             </li>
