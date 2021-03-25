@@ -8,6 +8,12 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+  Integer idCategorie=null;
+  try {
+    idCategorie=(Integer)request.getAttribute("idCategorie");
+  }catch (Exception e){
+
+  }
   ArrayList<Produit> list=(ArrayList<Produit>)request.getAttribute("listProduit");
 
 %>
@@ -29,6 +35,12 @@
   <div class="container-fluid">
     <a href="">
       <h2>Produit</h2>
+
+      <div style="text-align: right; ">
+        Tirer:
+        <a href="ServletAccueil?ordre=asc&idCategorie=<%out.print(idCategorie); %>"><i class="fas fa-sort-amount-down-alt">Asc</i></a>
+        <a href="ServletAccueil?ordre=desc&idCategorie=<%out.print(idCategorie); %>"><i class="fas fa-sort-amount-up">Desc</i></a>
+      </div>
     </a>
     <%
 

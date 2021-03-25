@@ -43,12 +43,12 @@
     *********************************************************************************************************************************************************** -->
 <div id="login-page">
     <div class="container">
-        <form class="form-login" action="../iframe.jsp">
+        <form class="form-login" action="../ServletLogin" method="post">
             <h2 class="form-login-heading">Login in</h2>
             <div class="login-wrap">
-                <input type="text" class="form-control" placeholder="ID" autofocus>
+                <input type="email" required name="email" class="form-control" placeholder="ID" autofocus>
                 <br>
-                <input type="password" class="form-control" placeholder="Mot de passe">
+                <input type="password" required name="mdp" class="form-control" placeholder="Mot de passe">
                 <label class="checkbox">
             <span class="pull-right">
             <a data-toggle="modal" href="login.html#myModal"> Oubliez votre mot de passe?</a>
