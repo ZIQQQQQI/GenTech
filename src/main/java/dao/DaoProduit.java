@@ -100,4 +100,35 @@ public class DaoProduit{
         session.close();
         return produitMotCle;
     }
+
+    /*
+     * @param
+     * @return java.util.ArrayList<metier.Produit>
+     * @author TANG
+     * @date 2021/3/25 22:36
+     * @description trouver tous les produit en promo
+     */
+    public ArrayList<Produit> listProduitEnPromo(){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction transaction=session.beginTransaction();
+        String sql=
+                "select p.*" +
+                " from enpromo e, promotion pr,produit p" +
+                " where pr.idpromo = e.idPromo" +
+                " and P.codeproduit = e.codeproduit" +
+                " and date_format(curdate(),'%Y/%m/%d')between str_to_date(pr.dateDebut,'%d/%m/%Y')and str_to_date(pr.dateFin,'%d/%m/%Y')" +
+                " and pr.idPromo=1001";
+        ArrayList<Produit> produitEnPromo = null;
+        try{
+            produitEnPromo=(ArrayList<Produit>)session.createSQLQuery(sql).addEntity(Produit.class).list();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoPreference listProduitEnPromo");
+            System.out.println("----------------------------");
+        }
+        transaction.commit();
+        session.close();
+        return produitEnPromo;
+    }
 }

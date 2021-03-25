@@ -20,6 +20,7 @@ public class Commande implements Serializable {
     private String heureRetrait;
     private String etat;
     private String emailClient;
+    private  String idMagasin;
 
     @Basic
     @Column(name = "idCdeCli", nullable = true, length = -1)
@@ -66,6 +67,17 @@ public class Commande implements Serializable {
     public String getEtat() {
         return etat;
     }
+
+    public void setIdMagasin(String idMagasin) {
+        this.idMagasin = idMagasin;
+    }
+
+    @Basic
+    @Column(name = "idMagasin", nullable = true, length = -1)
+    public String getIdMagasin() {
+        return etat;
+    }
+
 
     public void setEtat(String etat) {
         this.etat = etat;

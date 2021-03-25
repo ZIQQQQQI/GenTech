@@ -3,6 +3,7 @@ import Outil.HibernateConn;
 import dao.DaoClient;
 
 import dao.DaoMagasin;
+import dao.DaoProduit;
 import metier.Client;
 
 import metier.Lignecommande;
@@ -21,7 +22,8 @@ import java.util.List;
 public class UnitTest {
     @Test
     public void test(){
-        ArrayList<Produit> list=new ServiceRechercher().findProduitByWord("viand");
+        ArrayList<Produit> list=new DaoProduit().listProduitEnPromo();
+        //ArrayList<Produit> list=new ServiceRechercher().findProduitByWord("viand");
         System.out.println(list);
 
 
