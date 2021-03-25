@@ -8,6 +8,13 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+  String motCle=null;
+  try {
+    motCle=(String) request.getAttribute("motCle");
+  }catch (Exception e){
+
+  }
+
   Integer idCategorie=null;
   try {
     idCategorie=(Integer)request.getAttribute("idCategorie");
@@ -35,12 +42,17 @@
   <div class="container-fluid">
     <a href="">
       <h2>Produit</h2>
+      <%if(motCle==null){%>
 
       <div style="text-align: right; ">
         Tirer:
         <a href="ServletAccueil?ordre=asc&idCategorie=<%out.print(idCategorie); %>"><i class="fas fa-sort-amount-down-alt">Asc</i></a>
         <a href="ServletAccueil?ordre=desc&idCategorie=<%out.print(idCategorie); %>"><i class="fas fa-sort-amount-up">Desc</i></a>
       </div>
+
+
+      <%}%>
+
     </a>
     <%
 

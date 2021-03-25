@@ -6,13 +6,17 @@ import metier.Rayon;
 import service.ServiceMagasin;
 import service.ServiceProduit;
 import service.ServiceRayon;
+import service.ServiceRechercher;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import javax.sound.midi.SoundbankResource;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Enumeration;
 import java.util.HashMap;
 
 @WebServlet("/ServletAccueil")
@@ -26,6 +30,32 @@ public class ServletAccueil extends HttpServlet {
      * @description
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
+        HttpSession session=request.getSession();
+
+        //-----------verifier si deja connecter
+        try{
+            session.getAttribute("email");
+        }catch (Exception e){
+            System.out.println("=============");
+            System.out.println("session not ok servletAccueil");
+            System.out.println("=============");
+        }
+
+        //----------------mot cle recherche
+        String motCle=null;
+        try{
+            motCle=(String)request.getParameter("keyword");
+            Enumeration<String> r= request.getAttributeNames();
+            while (r.hasMoreElements()){
+                System.out.println(r.nextElement());
+            }
+        }catch (Exception e){
+            System.out.println("=============");
+            System.out.println("mot cle not ok");
+            System.out.println("=============");
+        }
+
+
         //----------magasin list
         ArrayList<Magasin> listM=new ServiceMagasin().listMagasin();
         request.setAttribute("listMagasin",listM);
@@ -38,19 +68,27 @@ public class ServletAccueil extends HttpServlet {
         try {
             idCategorie = Integer.valueOf(request.getParameter("idCategorie"));
         } catch (Exception e){
-            e.printStackTrace();
+//            System.out.println("=============");
+//            System.out.println("idCategorie pas ok");
+//            System.out.println("=============");
         }
                 //produit list ordre
-        String ordre= request.getParameter("ordre");
+        String ordre= null;
         try{
             ordre= request.getParameter("ordre");
         }catch (Exception e){
-            e.printStackTrace();
+            System.out.println("=============");
+            System.out.println("ordre pas ok");
+            System.out.println("=============");
         }
 
-            //------------list init
+        //------------list init
         ArrayList<Produit> list=null;
-        if (idCategorie==null & ordre==null){
+        if(motCle!=null){
+            list=new ServiceRechercher().findProduitByWord(motCle);
+
+        }
+        else if (idCategorie==null & ordre==null){
             list=new ServiceProduit().listProduit("none");
         }else if (idCategorie!=null & ordre==null){
             request.setAttribute("idCategorie",idCategorie);
@@ -69,10 +107,11 @@ public class ServletAccueil extends HttpServlet {
         //----------------rayon list
         HashMap<Rayon,ArrayList<Rayon>> listRayonEtCategories = new ServiceRayon().allRayonAndCategories();
         request.setAttribute("listRayonandcategories",listRayonEtCategories);
-
+        //-------mot cle
+        request.setAttribute("motCle",motCle);
 
         //------------------dispatcher
-        request.getRequestDispatcher("/iframe.jsp?math="+Math.random()).forward(request, response);
+        request.getRequestDispatcher("/iframe.jsp?&math="+Math.random()).forward(request, response);
     }
     /*
      * @param request

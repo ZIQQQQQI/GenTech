@@ -4,8 +4,12 @@ package controler;/*
  *@date 2021/3/23
  */
 
+import metier.Magasin;
 import metier.Produit;
+import metier.Rayon;
+import service.ServiceMagasin;
 import service.ServiceProduit;
+import service.ServiceRayon;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -13,6 +17,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+
 @WebServlet("/ServletProduitDetail")
 public class ServletProduitDetail extends HttpServlet {
     /*
@@ -25,6 +32,13 @@ public class ServletProduitDetail extends HttpServlet {
      */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //----------magasin list
+        ArrayList<Magasin> listM=new ServiceMagasin().listMagasin();
+        req.setAttribute("listMagasin",listM);
+
+        //----------------rayon list
+        HashMap<Rayon,ArrayList<Rayon>> listRayonEtCategories = new ServiceRayon().allRayonAndCategories();
+        req.setAttribute("listRayonandcategories",listRayonEtCategories);
         Integer idProduit=Integer.valueOf(req.getParameter("idProduit")) ;
         Produit un=new ServiceProduit().unProduit(idProduit);
 

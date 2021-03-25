@@ -4,7 +4,7 @@
     <facet type="hibernate" name="Hibernate">
       <configuration>
         <datasource-map>
-          <unit-entry name="GenTech.cfg.xml" />
+          <unit-entry name="GenTech.cfg.xml" value="ccc8c808-73cd-4739-8115-e3505b44a693" />
           <unit-entry name="src:main:resource:GenTech.cfg.xml" value="ccc8c808-73cd-4739-8115-e3505b44a693" />
         </datasource-map>
         <naming-strategy-map />

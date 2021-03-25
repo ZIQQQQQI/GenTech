@@ -41,7 +41,7 @@
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
-            
+
 
 
 
@@ -55,9 +55,9 @@
                     <i class="fas fa-search"></i>
                 </a>
                 <div class="navbar-search-block">
-                    <form class="form-inline">
+                    <form class="form-inline" method="get" action="ServletAccueil">
                         <div class="input-group input-group-sm">
-                            <input id="keyword" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                            <input id="keyword" name="keyword" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                             <div class="input-group-append">
                                 <button class="btn btn-navbar" type="submit">
                                     <i class="fas fa-search"></i>
@@ -154,7 +154,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="" class="brand-link">
+        <a href="ServletAccueil" class="brand-link">
             <img src=".\Front-End\resources\image\logo.PNG" alt="logo" class="brand-image img-circle elevation-3" style="opacity: .8"> <!--notre Logo-->
             <span class="brand-text font-weight-light">Magasin en ligne!</span>
         </a>
