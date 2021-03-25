@@ -3,15 +3,12 @@
   <component name="FacetManager">
     <facet type="hibernate" name="Hibernate">
       <configuration>
-
-
         <datasource-map>
-          <unit-entry name="GenTech.cfg.xml" value="13b24b73-aab7-4382-8774-e362dad45138" />
+          <unit-entry name="GenTech.cfg.xml" />
+          <unit-entry name="src:main:resource:GenTech.cfg.xml" value="ccc8c808-73cd-4739-8115-e3505b44a693" />
         </datasource-map>
         <naming-strategy-map />
         <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resource/GenTech.cfg.xml" />
-        <deploymentDescriptor name="hibernate.cfg.xml" url="file://$MODULE_DIR$/src/main/resource/hibernate.cfg.xml" />
-
       </configuration>
     </facet>
   </component>

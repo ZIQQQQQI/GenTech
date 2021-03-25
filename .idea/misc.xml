@@ -5,7 +5,8 @@
     <file type="web" url="file://$PROJECT_DIR$" />
   </component>
   <component name="JavadocGenerationManager">
-    <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/OneDrive/桌面" />
+    <option name="OUTPUT_DIRECTORY" value="$USER_HOME$/OneDrive/桌面/新建文件夹" />
+    <option name="OPTION_DOCUMENT_TAG_AUTHOR" value="true" />
   </component>
   <component name="MavenProjectsManager">
     <option name="originalFiles">
