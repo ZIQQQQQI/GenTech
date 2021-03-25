@@ -44,8 +44,44 @@ function searchKeyword(){
     xhr.send();
 }
 
+function choisirMagasin(){
+    var xhr = new XMLHttpRequest();
+    var content = document.getElementById("keyword").value;
+
+
+
+
+    var url = "ServletMagasin?keyword="+content;
+
+    xhr.open("GET", url,true);
+    xhr.onload = function(){
+        if (xhr.status === 200)
+        {
+            var elt = document.getElementById("zoneaff");
+
+            var prod = xhr.responseXML.getElementsByTagName("nomp");
+
+            elt.innerHTML="";
+
+            for (i = 0; i < prod.length; i++){
+                //获取到table里面的儿子们
+                produit1 = prod[i].firstChild.nodeValue;
+
+                elt.insertAdjacentHTML('beforeend',"<p>"+produit1+"</p>");
+
+            }
+
+        }
+    }
+    xhr.send();
+}
+
+function test(e){
+    var txt=e.innerHTML
+    alert(txt)
+}
 document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("keyword").addEventListener("input",searchKeyword);
-
+    //document.getElementById("magasin").addEventListener("click",test(e))
 });

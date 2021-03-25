@@ -2,7 +2,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="metier.Rayon" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="metier.Magasin" %><%--
+<%@ page import="metier.Magasin" %>
+<%@ page import="metier.Client" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -11,6 +12,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    String email=null;
+    Client client=null;
+    String nomComplet="";
+    try{
+        email=(String) session.getAttribute("email");
+        client=(Client)request.getAttribute("client");
+         nomComplet= client.getNomClient()+" "+client.getPrenomClient();
+    }catch (Exception e){
+        System.out.println("not connecter");
+    }
 
 %>
 <!DOCTYPE html>
@@ -111,12 +122,23 @@
                         for (Magasin m:listM
                              ) {
                             %>
-                        <a href="#" class="dropdown-item">
+                        <a  href="#" class="dropdown-item">
                         <div class="media">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
-                                    <%out.print(m.getLibelleMagasin());%>
-                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
+                                   <p  > <%out.print(m.getLibelleMagasin());
+                                        try{
+                                            if(m.getIdMagasin().equals(client.getIdMagasin()) ){
+
+
+                                   %>
+                                    <span  class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
+                                       <%}//fin star
+                                       }catch (Exception e){
+
+                                       }
+                                       %>
+                                   </p>
                                 </h3>
                             </div>
                         </div></a>
@@ -164,7 +186,13 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href=".\Front-End\login.jsp" class="d-block">Log in</a><!-- 跳转login -->
+                    <%if(email==null) {
+                        out.print("<a href=\".\\Front-End\\login.jsp\" class=\"d-block\">Log in</a><!-- 跳转login -->");
+                    }else{
+                        out.print("<a href='ServletCompteProfil'>"+nomComplet+"</a><!-- 跳转login -->");
+                    }
+                    %>
+
                 </div>
             </div>
 
