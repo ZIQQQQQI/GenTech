@@ -1,5 +1,6 @@
 package controler;
 
+import dao.DaoProduit;
 import metier.Client;
 import metier.Magasin;
 import metier.Produit;
@@ -30,7 +31,9 @@ public class ServletAccueil extends HttpServlet {
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         HttpSession session=request.getSession();
-
+        ArrayList<Produit> listPromo=new ServiceProduit().listProduisPromo();
+        Collections.shuffle(listPromo);
+        request.setAttribute("listPromo",listPromo);
         //-----------verifier si deja connecter
         try{
             String email=(String) session.getAttribute("email");
@@ -38,6 +41,7 @@ public class ServletAccueil extends HttpServlet {
             Client client=new ServiceClient().unClient(email);
             request.setAttribute("client",client);
             Collections.shuffle(listPre);
+
             request.setAttribute("listPre",listPre);
         }catch (Exception e){
             System.out.println("=============");
@@ -49,10 +53,7 @@ public class ServletAccueil extends HttpServlet {
         String motCle=null;
         try{
             motCle=(String)request.getParameter("keyword");
-            Enumeration<String> r= request.getAttributeNames();
-            while (r.hasMoreElements()){
-                System.out.println(r.nextElement());
-            }
+
         }catch (Exception e){
             System.out.println("=============");
             System.out.println("mot cle not ok");

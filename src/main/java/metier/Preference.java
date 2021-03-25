@@ -48,6 +48,14 @@ public class Preference implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "Preference{" +
+                "emailClient='" + emailClient + '\'' +
+                ", codeProduit=" + codeProduit +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(emailClient, codeProduit);
     }
