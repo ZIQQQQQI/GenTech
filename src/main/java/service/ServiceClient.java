@@ -7,8 +7,10 @@ package service;/*
 import dao.DaoClient;
 import metier.Client;
 
+import java.util.ArrayList;
+
 public class ServiceClient {
-    private DaoClient daoClient;
+    private DaoClient daoClient=new DaoClient();
 
 
     /*
@@ -19,6 +21,11 @@ public class ServiceClient {
      * @description recherche un client avec son email
      */
     public Client unClient(String email){
-        return this.daoClient.unClient(email);
+        return daoClient.unClient(email);
     }
+
+    public ArrayList<Client> allClient(){
+        return daoClient.listClient();
+    }
+
 }

@@ -1,12 +1,10 @@
 package controler;
 
+import metier.Client;
 import metier.Magasin;
 import metier.Produit;
 import metier.Rayon;
-import service.ServiceMagasin;
-import service.ServiceProduit;
-import service.ServiceRayon;
-import service.ServiceRechercher;
+import service.*;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,6 +14,7 @@ import javax.servlet.http.HttpSession;
 import javax.sound.midi.SoundbankResource;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.HashMap;
 
@@ -34,7 +33,12 @@ public class ServletAccueil extends HttpServlet {
 
         //-----------verifier si deja connecter
         try{
-            session.getAttribute("email");
+            String email=(String) session.getAttribute("email");
+            ArrayList<Produit> listPre=new ServiceProduit().listProduitPrefre(email);
+            Client client=new ServiceClient().unClient(email);
+            request.setAttribute("client",client);
+            Collections.shuffle(listPre);
+            request.setAttribute("listPre",listPre);
         }catch (Exception e){
             System.out.println("=============");
             System.out.println("session not ok servletAccueil");
