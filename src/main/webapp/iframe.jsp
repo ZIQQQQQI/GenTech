@@ -1,7 +1,9 @@
 <%@ page import="metier.Produit" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="metier.Rayon" %>
-<%@ page import="java.util.HashMap" %><%--
+<%@ page import="java.util.HashMap" %>
+<%@ page import="metier.Magasin" %>
+<%@ page import="metier.Client" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -9,7 +11,19 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+    String email=null;
+    Client client=null;
+    String nomComplet="";
+    try{
+        email=(String) session.getAttribute("email");
+        client=(Client)request.getAttribute("client");
+         nomComplet= client.getNomClient()+" "+client.getPrenomClient();
+    }catch (Exception e){
+        System.out.println("not connecter");
+    }
 
+%>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -32,12 +46,13 @@
 <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="height: 120px">
         <!-- Left navbar links -->
-        <ul class="navbar-nav">
+        <ul class="navbar-nav "  >
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
+
 
 
 
@@ -51,9 +66,9 @@
                     <i class="fas fa-search"></i>
                 </a>
                 <div class="navbar-search-block">
-                    <form class="form-inline">
+                    <form class="form-inline" method="get" action="ServletAccueil">
                         <div class="input-group input-group-sm">
-                            <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                            <input id="keyword" name="keyword" class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
                             <div class="input-group-append">
                                 <button class="btn btn-navbar" type="submit">
                                     <i class="fas fa-search"></i>
@@ -64,6 +79,8 @@
                             </div>
                         </div>
                     </form>
+                    <div id="zoneaff" style="display: none;background-color: white;width: 100%;height: 193px; border-width: 1px;border-style: solid;border-color: #7F9DB9;margin-top: 1px;padding: 2px;overflow:auto;z-index:9999;">
+                    </div>
                 </div>
             </li>
 
@@ -99,24 +116,40 @@
                     <i class="fas fa-store"></i>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <a href="#" class="dropdown-item">
+
+                    <%
+                     ArrayList<Magasin> listM=(ArrayList<Magasin>)request.getAttribute("listMagasin");
+                        for (Magasin m:listM
+                             ) {
+                            %>
+                        <a  href="#" class="dropdown-item">
                         <div class="media">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
-                                    Nom magasin 1
-                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
+                                   <p  > <%out.print(m.getLibelleMagasin());
+                                        try{
+                                            if(m.getIdMagasin().equals(client.getIdMagasin()) ){
+
+
+                                   %>
+                                    <span  class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
+                                       <%}//fin star
+                                       }catch (Exception e){
+
+                                       }
+                                       %>
+                                   </p>
                                 </h3>
                             </div>
                         </div></a>
-                    <a href="#" class="dropdown-item">
-                        <div class="media">
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    Nom magasin 2
-                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
-                                </h3>
-                            </div>
-                        </div></a>
+
+                            <%
+                        }
+
+
+                    %>
+
+
 
                 </div>
             </li>
@@ -143,7 +176,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
         <!-- Brand Logo -->
-        <a href="" class="brand-link">
+        <a href="ServletAccueil" class="brand-link">
             <img src=".\Front-End\resources\image\logo.PNG" alt="logo" class="brand-image img-circle elevation-3" style="opacity: .8"> <!--notre Logo-->
             <span class="brand-text font-weight-light">Magasin en ligne!</span>
         </a>
@@ -153,7 +186,13 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href=".\Front-End\login.jsp" class="d-block">Log in</a><!-- 跳转login -->
+                    <%if(email==null) {
+                        out.print("<a href=\".\\Front-End\\login.jsp\" class=\"d-block\">Log in</a><!-- 跳转login -->");
+                    }else{
+                        out.print("<a href='ServletCompteProfil'>"+nomComplet+"</a><!-- 跳转login -->");
+                    }
+                    %>
+
                 </div>
             </div>
 
@@ -162,8 +201,14 @@
                 <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                     <!-- Add icons to the links using the .nav-icon class
                          with font-awesome or any other icon font library -->
-                    <li class="nav-header">RAYONS:</li>
 
+                    <li>
+                        <a href="ServletAccueil">
+                        <i class="fas fa-cookie-bite"></i>
+                        Tous les produit
+                    </a>
+                    </li>
+                    <br>
                     <% HashMap<Rayon,ArrayList<Rayon>> list=(HashMap<Rayon,ArrayList<Rayon>>)request.getAttribute("listRayonandcategories");
                         for(Rayon r:list.keySet()){
                     %>
@@ -177,10 +222,10 @@
                         <%for(Rayon cat:list.get(r)){ %>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="ServletAccueil?idCategorie=<%out.print(cat.getNumCate());%>&math=<%out.print(Math.random());%>" class="nav-link">
+                            <a href="ServletAccueil?idCategorie=<%out.print(cat.getNumCate());%>&math=<%out.print(Math.random());%>" >
                             <i class="far fa-circle nav-icon"></i>
 
-                            <p><% out.print(cat.getNomCate());%></p >
+                            <% out.print(cat.getNomCate());%>
                         </a>
                         </li>
                     </ul>
@@ -248,6 +293,7 @@
 
 <!-- jQuery -->
 <script src=".\Front-End\resources\plugins\jquery\jquery.min.js"></script>
+<script type="text/JavaScript" src="js/fctxml.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="Front-End/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->

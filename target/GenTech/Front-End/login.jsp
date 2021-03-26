@@ -1,4 +1,5 @@
-<%--
+<%@ page import="metier.Client" %>
+<%@ page import="java.util.ArrayList" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -15,7 +16,7 @@
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <title>Dashio - Bootstrap Admin Template</title>
+    <title>Login In</title>
 
     <!-- Favicons -->
     <link href=".\resources\img\favicon.png" rel="icon">
@@ -36,26 +37,34 @@
       License: https://templatemag.com/license/
     ======================================================= -->
 </head>
+<%
 
+
+%>
 <body>
 <!-- **********************************************************************************************************************************************************
     MAIN CONTENT
     *********************************************************************************************************************************************************** -->
 <div id="login-page">
     <div class="container">
-        <form class="form-login" action="../iframe.jsp">
+        <form class="form-login" method="get" action="../ServletLogin">
             <h2 class="form-login-heading">Login in</h2>
             <div class="login-wrap">
-                <input type="text" class="form-control" placeholder="ID" autofocus>
+
+                <input id="idemail" name="idEmail" type="text" class="form-control" placeholder="ID" autofocus>
+                <span id="message"></span>
                 <br>
-                <input type="password" class="form-control" placeholder="Mot de passe">
+
+                <input name="mdp" type="password" class="form-control" placeholder="Mot de passe">
                 <label class="checkbox">
             <span class="pull-right">
             <a data-toggle="modal" href="login.html#myModal"> Oubliez votre mot de passe?</a>
             </span>
                 </label>
-                <button class="btn btn-theme btn-block" href=".\Front-End\iframe.jsp" type="submit"><i class="fa fa-lock"></i> LOGIN</button>
-                <hr>
+
+                <input class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> LOGIN</input>
+
+                    <hr>
                 <div class="registration">
                     Vous n'avez pas encore de compte?<br/>
                     <a class="" href="#">
@@ -71,10 +80,11 @@
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                             <h4 class="modal-title">Oubliez votre mot de passe ?</h4>
                         </div>
-                        <div class="modal-body">
+
+                        <!--<div class="modal-body">
                             <p>Saisissez votre address électronique.</p>
                             <input type="text" name="email" placeholder="Email" autocomplete="off" class="form-control placeholder-no-fix">
-                        </div>
+                        </div>-->
                         <div class="modal-footer">
                             <button data-dismiss="modal" class="btn btn-default" type="button">Annuler</button>
                             <button class="btn btn-theme" type="button">Envoyer</button>
@@ -87,6 +97,7 @@
     </div>
 </div>
 <!-- js placed at the end of the document so the pages load faster -->
+<script type="text/JavaScript" src="../js/fctLogin.js"></script>
 <script src="resources/lib/jquery/jquery.min.js"></script>
 <script src="resources/lib/bootstrap/js/bootstrap.min.js"></script>
 <!--BACKSTRETCH-->

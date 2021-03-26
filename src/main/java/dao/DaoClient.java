@@ -10,6 +10,8 @@ import metier.Commande;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import java.util.ArrayList;
+
 public class DaoClient {
     /*
      * @param [emailClient]
@@ -34,5 +36,25 @@ public class DaoClient {
         t.commit();
         session.close();
         return c;
+    }
+
+
+
+    public ArrayList<Client> listClient(){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t = session.beginTransaction();
+        String sql = "select client.* from client";
+        ArrayList<Client> list = null;
+        try{
+            list=(ArrayList<Client>) session.createSQLQuery(sql).addEntity(Client.class).list();
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------");
+            System.out.println("DaoRayon listeClient");
+            System.out.println("----------------------");
+        }
+        t.commit();
+        session.close();
+        return list;
     }
 }

@@ -17,6 +17,13 @@ public class ServiceRayon {
     public DaoRayon dr=new DaoRayon();
     public DaoRayonCategorie drg=new DaoRayonCategorie();
 
+    /*
+     * @param
+     * @return java.util.HashMap<metier.Rayon,java.util.ArrayList<metier.Rayon>>
+     * @author SI Lu
+     * @date 2021/3/25 11:19
+     * @description recherche les categories d'un rayon
+     */
     public HashMap<Rayon,ArrayList<Rayon>> allRayonAndCategories(){
         ArrayList<Rayon> tousLesRayon= dr.listeRayon();
         HashMap<Rayon,ArrayList<Rayon>> rayonCategorie=new HashMap<>();
