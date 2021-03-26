@@ -3,31 +3,36 @@ import Outil.HibernateConn;
 import dao.DaoClient;
 
 import dao.DaoMagasin;
+import dao.DaoProduit;
 import metier.Client;
 
 import metier.Lignecommande;
 import metier.Magasin;
 
+import metier.Produit;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Test;
+import service.ServiceRechercher;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 public class UnitTest {
     @Test
     public void test(){
+        ArrayList<Produit> list=new DaoProduit().listProduitEnPromo();
+        //ArrayList<Produit> list=new ServiceRechercher().findProduitByWord("viand");
+        System.out.println(list);
 
 
-
-
-        //test
-        DaoMagasin m=new DaoMagasin();
-        for (Magasin mm:m.listeMagasin()
-             ) {
-            System.out.println(mm);
-        }
+//        //test
+//        DaoMagasin m=new DaoMagasin();
+//        for (Magasin mm:m.listeMagasin()
+//             ) {
+//            System.out.println(mm);
+//        }
 
         //test
         Client client=new DaoClient().unClient("bugubugu@gamil.com");

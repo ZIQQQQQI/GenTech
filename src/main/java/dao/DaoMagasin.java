@@ -39,4 +39,32 @@ public class DaoMagasin {
         session.close();
         return m;
     }
+
+
+    /*
+     *@param idMagasin
+     *@return
+     *@author SI
+     *@date 26/03/2021 00:43
+     *@exception
+     *@description Rechercher un magasin selon son id
+     */
+
+    public Magasin unMagasin(String idMagasin){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t= session.beginTransaction();
+        Magasin m=null;
+        try{
+            m=session.get(Magasin.class,idMagasin);
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoMagasinnot unMagasin not ok");
+            System.out.println("----------------------------");
+        }
+        t.commit();
+        session.close();
+        return m;
+
+    }
 }

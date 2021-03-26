@@ -6,6 +6,9 @@
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306</jdbc-url>
+      <driver-properties>
+        <property name="serverTimezone" value="UTC" />
+      </driver-properties>
     </data-source>
     <data-source source="LOCAL" name="test@localhost" uuid="13b24b73-aab7-4382-8774-e362dad45138">
       <driver-ref>mysql.8</driver-ref>
@@ -24,6 +27,16 @@
       <jdbc-additional-properties>
         <property name="APPROVED_DRIVER" value="mysql.8" />
       </jdbc-additional-properties>
+    </data-source>
+    <data-source source="LOCAL" name="src:main:resource:GenTech.cfg.xml/Hibernate" uuid="da9147a7-75b9-4914-9a21-db430cd876d8">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>Hibernate
+
+C:/CS/JAVA/test/GenTechTang/src/main/resource/GenTech.cfg.xml</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://localhost:3306/GenTech</jdbc-url>
     </data-source>
   </component>
 </project>

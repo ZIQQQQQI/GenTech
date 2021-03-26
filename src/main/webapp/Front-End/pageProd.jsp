@@ -9,9 +9,6 @@
 <%
 
         Produit p=(Produit)request.getAttribute("unProduit");
-
-
-
 %>
 <!DOCTYPE html>
 <html>
@@ -33,7 +30,7 @@
 <div class="container-fluid">
     <div class="row mb-2">
         <div class="col-sm-6">
-            <h2>mot de rechercher</h2>
+            <h2></h2>
         </div>
         <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -75,7 +72,7 @@
                     <hr>
                     <h4>Nutri-Score:<%out.print( p.getNutriScore());%></h4>
                     <div class="btn-group btn-group-toggle" data-toggle="buttons">
-                        <img src="" alt="imgNutri">
+                        <img STYLE="height: 30px;width: 80px" src="images/Nutri/<%out.print( p.getNutriScore());%>.PNG" alt="">
                     </div>
 
                     <div class="bg-gray py-2 px-3 mt-4">

@@ -19,6 +19,7 @@ public class Client implements Serializable {
     private String prenomClient;
     private String mdpClient;
     private String telClient;
+    private String IdMagasin;
 
 
     @Basic
@@ -40,6 +41,9 @@ public class Client implements Serializable {
     public void setNomClient(String nomClient) {
         this.nomClient = nomClient;}
 
+    public void setIdMagasin(String idMagasin) {
+        IdMagasin = idMagasin;
+    }
 
     @Basic
     @Column(name = "prenomClient", nullable = true, length = -1)
@@ -65,6 +69,12 @@ public class Client implements Serializable {
     @Column(name = "telClient", nullable = true, length = -1)
     public String getTelClient() {
         return telClient;
+    }
+
+    @Basic
+    @Column(name = "IdMagasin", nullable = true, length = -1)
+    public String getIdMagasin() {
+        return IdMagasin;
     }
 
     public void setTelClient(String telClient) {
