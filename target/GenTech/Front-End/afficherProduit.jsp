@@ -148,7 +148,7 @@
               <a href="#"><i class="fas fa-heart" style="float: right;"></i></a>
 
               <a href="#"><i class="far fa-heart" style="float: right;"></i></a>
-          
+
             </div>
           </div>
         </div>
@@ -156,11 +156,6 @@
       <%}//fin de for listPre%>
     </div>
     <%}%>
-
-
-
-
-
 
 
 

@@ -61,7 +61,7 @@ public class Commande implements Serializable {
         return heureRetrait;
     }
 
-    public void setHeureRetrait(String heureRetrait) {
+    public  void setHeureRetrait(String heureRetrait) {
         this.heureRetrait = heureRetrait;
     }
 

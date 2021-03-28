@@ -42,8 +42,6 @@ public class ServletMagasin extends HttpServlet {
         {
             /*----- Ecriture de la page XML -----*/
             out.println("<?xml version=\"1.0\"?>");
-
-
             String a = req.getParameter("nomMagasin");
             String e=(String) session.getAttribute("email");
             //System.out.println(a);

@@ -36,6 +36,7 @@ public class ServletAccueil extends HttpServlet {
         Collections.shuffle(listPromo);
         request.setAttribute("listPromo",listPromo);
         //-----------verifier si deja connecter
+        ServiceMagasin sm = new ServiceMagasin();
         try{
             String email=(String) session.getAttribute("email");
             ArrayList<Produit> listPre=new ServiceProduit().listProduitPrefre(email);

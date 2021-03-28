@@ -12,7 +12,6 @@ import java.util.ArrayList;
 public class ServiceClient {
     private DaoClient daoClient=new DaoClient();
 
-
     /*
      * @param email
      * @return metier.Client

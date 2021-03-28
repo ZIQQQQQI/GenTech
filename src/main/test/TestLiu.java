@@ -1,4 +1,6 @@
 import dao.DaoCommandeproduit;
+import dao.DaoCreneau;
+import metier.Creneau;
 import metier.Lignecommande;
 import metier.Produit;
 import org.junit.Test;
@@ -13,7 +15,7 @@ public class TestLiu {
         String idcde = "affd2356";
 
 
-        for (Produit l:dr.commandeProduit(idcde)
+       /* for (Produit l:dr.commandeProduit(idcde)
         ) {
             System.out.println(l);
         }
@@ -22,5 +24,11 @@ public class TestLiu {
         ) {
             System.out.println(q);
 
-    }
+    }*/
+        DaoCreneau dc = new DaoCreneau();
+        /*for (Creneau c:dc.listCreaneau()) {
+            System.out.println(c);
+        }*/
+
+        dc.updateCreaneau( "2", "affd2356");
 } }
