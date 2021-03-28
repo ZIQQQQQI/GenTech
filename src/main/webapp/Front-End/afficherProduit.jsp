@@ -20,7 +20,6 @@
 
   }
 
-
   String motCle=null;
   try {
     motCle=(String) request.getAttribute("motCle");
@@ -54,8 +53,6 @@
 <div class="wrapper">
   <div class="container-fluid">
         <%if(email!=null){%>
-
-
             <a href="">
             <h2>Mes Préférences</h2>
             </a>
@@ -78,17 +75,16 @@
                          out.print("<i class=\"fas fa-leaf\" style=\"float: right;color: green;\"></i>");
                        }
                      %>
-
-                   </div>
+                   </div
                    <div class="card-body">
-                     <div align="middle">
-                       <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
-                     </div>
-                     <div>
+                     <table>
+                       <tr><td><img  style="height:130px;width:100px;float:left;margin:5px;"  src="./images /<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1"></td>
+                         <td> <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a></td></tr>
+
                        <p style="float: left;"><%out.print(p.getPrix());%>  € </p>
                        <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
-                     </div>
-                   </div>
+
+                     </table>
                  </div>
                </div><!-- FIN DE PROD1-->
                <%}//fin de for listPre%>

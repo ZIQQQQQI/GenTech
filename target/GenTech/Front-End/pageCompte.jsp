@@ -1,4 +1,4 @@
-<%@ page import="metier.Commande" %>
+v<%@ page import="metier.Commande" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="metier.Rayon" %>

@@ -37,7 +37,6 @@ public class ServletLoginRechercher extends HttpServlet {
             le.add(c.getEmailClient());
         }
 
-
         try {
             if(le.contains(email1)){
 

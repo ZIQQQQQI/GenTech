@@ -234,10 +234,6 @@
                     <%} %>
 
 
-
-
-
-
                     <li class="nav-header">LABELS</li>
                     <li class="nav-item">
                         <a href="#" class="nav-link">
@@ -275,7 +271,10 @@
         <div class="tab-content" >
 
             <!--<iframe src="./Front-End/pageProd.jsp" scrolling="yes" frameborder="0" id="Prod"></iframe> -->
+
+
             <jsp:include page="./Front-End/afficherProduit.jsp" flush="true"></jsp:include>
+
         </div>
     </div>
     <!-- /.content-wrapper -->
