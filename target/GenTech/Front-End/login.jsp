@@ -16,10 +16,11 @@
     <meta name="description" content="">
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
-    <title>Login In</title>
+    <title>Dashio - Bootstrap Admin Template</title>
 
     <!-- Favicons -->
     <link href=".\resources\img\favicon.png" rel="icon">
+    <link href=".\resources\img\bg-login.jpg">
     <link href=".\resources\img\apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- Bootstrap core CSS -->
@@ -45,10 +46,11 @@
 <!-- **********************************************************************************************************************************************************
     MAIN CONTENT
     *********************************************************************************************************************************************************** -->
-<div id="login-page">
-    <div class="container">
+<div id="login-page" style="background:url(./resources/img/bg-login2.jpg); position:fixed;top:0; left:0; width:100%; height:100%;background-repeat: no-repeat;background-size: cover;">
+    <div class="container" style="position:fixed;top:40%;left:50%;transform:translate(-50%,-50%)">
         <form class="form-login" method="get" action="../ServletLogin">
-            <h2 class="form-login-heading">Login in</h2>
+            <h2 class="form-login-heading" style="background-color: white;color:#212529;font-weight:bold;">Login in</h2>
+            <hr style="margin:0px">
             <div class="login-wrap">
 
                 <input id="idemail" name="idEmail" type="text" class="form-control" placeholder="ID" autofocus>
@@ -62,7 +64,7 @@
             </span>
                 </label>
 
-                <input class="btn btn-theme btn-block" type="submit"><i class="fa fa-lock"></i> LOGIN</input>
+                <input class="btn btn-theme btn-block" type="submit" value="LOGIN" style="background-color: #444444;color:white;border-color:#444444;"></input>
 
                     <hr>
                 <div class="registration">
