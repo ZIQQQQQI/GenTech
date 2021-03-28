@@ -143,41 +143,44 @@
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
                     <%
-                     ArrayList<Magasin> listM=(ArrayList<Magasin>)request.getAttribute("listMagasin");
-                        for (Magasin m:listM
-                             ) {
-                            %>
-                        <a  href="#" class="dropdown-item">
+                        ArrayList<Magasin> listM=(ArrayList<Magasin>)request.getAttribute("listMagasin");
+                        //for (Magasin m:listM
+                        for(int i=0; i<listM.size(); i++)
+                        {
+                    %>
+                    <a  href=" " class="dropdown-item">
                         <div class="media">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
 
-                                   <p>
+                                    <p name="maga" onclick="star(<%out.print(i);%>)"><%out.print(listM.get(i).getLibelleMagasin());%>
+                                        <span name="starrr" class="float-right text-sm text-danger" style="display:
+                                        <%
+                                            try{
+                                                if(listM.get(i).getIdMagasin().equals(client.getIdMagasin())){
+                                                out.print("block");
+                                                }else{
+                                                out.print("none");
+                                                }
+                                            }catch(Exception e){
 
-                                       <%out.print(m.getLibelleMagasin());%>
-                                       <span  class="float-right text-sm text-danger"
-                                       <%
-                                        try{
-                                            if(!m.getIdMagasin().equals(client.getIdMagasin()) ){
-
-                                                out.print("hidden");
+                                            }
 
 
-                                       }//fin star
-                                       }catch (Exception e){
 
-                                       }
-                                       %>
-                                                > <span  class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
-                                   </p>
+
+                                        %>
+
+                                    "><i class="fas fa-star"></i></span>
+
+                                    </p >
                                 </h3>
                             </div>
-                        </div></a>
+                        </div>
+                    </ a>
 
-                            <%
+                    <%
                         }
-
-
                     %>
 
 
@@ -246,18 +249,19 @@
                     <li class="nav-item">
                         <a href=" " class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
-                        <p> <%out.print(r.getNomCate());%>
+                        <p style="line-height:200%"> <%out.print(r.getNomCate());%>
                             <i class="right fas fa-angle-left"></i>
                         </p >
                     </a>
                         <%for(Rayon cat:list.get(r)){ %>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <p  style="line-height:200%" >
                             <a href="ServletAccueil?idCategorie=<%out.print(cat.getNumCate());%>&math=<%out.print(Math.random());%>" >
                             <i class="far fa-circle nav-icon"></i>
 
                             <% out.print(cat.getNomCate());%>
-                        </a>
+                            </a></p>
                         </li>
                     </ul>
                         <%  }%>
@@ -322,6 +326,17 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+<script>
+    function star(i){
+        if(i==0){
+            document.getElementsByName("starrr")[0].style.display='block';
+            document.getElementsByName("starrr")[1].style.display='none'
+        }else{
+            document.getElementsByName("starrr")[0].style.display='none';
+            document.getElementsByName("starrr")[1].style.display='block'
+        }
+    }
+</script>
 <script src=".\Front-End\resources\plugins\jquery\jquery.min.js"></script>
 <script type="text/JavaScript" src="js/fctxml.js"></script>
 <!-- jQuery UI 1.11.4 -->
