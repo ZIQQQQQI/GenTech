@@ -1,4 +1,6 @@
-<%@ page import="metier.Produit" %><%--
+<%@ page import="metier.Produit" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -7,8 +9,9 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
-
+        ArrayList<Produit> listPromo=(ArrayList<Produit>)request.getAttribute("listPromo");
         Produit p=(Produit)request.getAttribute("unProduit");
+    DecimalFormat df = new DecimalFormat("0.00");//decimal formate
 %>
 <!DOCTYPE html>
 <html>
@@ -80,7 +83,19 @@
                             Le prix de produit
                         </h2>
                         <h4 class="mt-0">
-                            <small>Ex Tax: <%out.print(p.getPrix());%>  € </small>
+                            <%if (listPromo.contains(p)){
+
+                              %>
+                            <span style="text-decoration-line: line-through;color: #1d455b"><%out.print(p.getPrixVente());%> € </span>
+                            <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
+
+                            <%
+                            }else{
+                            %>
+                            <small><%out.print(p.getPrix());%>  € </small>
+                            <%
+                            }//fin else
+                            %>
                         </h4>
                     </div>
 
