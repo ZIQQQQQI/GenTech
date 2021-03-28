@@ -20,7 +20,17 @@ public class Client implements Serializable {
     private String mdpClient;
     private String telClient;
     private String IdMagasin;
+    private Integer score;
 
+    @Basic
+    @Column(name = "score", nullable = true, length = -1)
+    public Integer getScore() {
+        return score;
+    }
+
+    public void setScore(Integer score) {
+        this.score = score;
+    }
 
     @Basic
     @Column(name = "emailClient", nullable = true, length = -1)
