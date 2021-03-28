@@ -57,4 +57,14 @@ public class DaoClient {
         session.close();
         return list;
     }
+    public void updateClient(String email, String idMagasin){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        Client client=(Client)session.get(Client.class,email);
+        client.setIdMagasin(idMagasin);
+        session.update(client);
+        session.getTransaction().commit();
+        session.close();
+    }
 }

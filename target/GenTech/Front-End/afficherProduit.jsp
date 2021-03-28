@@ -143,7 +143,12 @@
               <p style="float: left;"><span style="text-decoration-line: line-through;color: #5d6974"><%out.print(p.getPrixVente());%> € </span>
                 <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
               </p>
-              <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
+
+              <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>&nbsp
+              <a href="#"><i class="fas fa-heart" style="float: right;"></i></a>
+
+              <a href="#"><i class="far fa-heart" style="float: right;"></i></a>
+          
             </div>
           </div>
         </div>
