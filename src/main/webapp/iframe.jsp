@@ -16,12 +16,20 @@
     String email=null;
     Client client=null;
     String nomComplet="";
+    ArrayList<Produit> listPre=null;
     try{
         email=(String) session.getAttribute("email");
         client=(Client)request.getAttribute("client");
          nomComplet= client.getNomClient()+" "+client.getPrenomClient();
     }catch (Exception e){
         System.out.println("not connecter");
+    }
+
+    try{
+        email=(String) session.getAttribute("email");
+        listPre=(ArrayList<Produit>) request.getAttribute("listPre");
+    }catch (Exception e){
+
     }
 
 %>
@@ -113,28 +121,42 @@
             </li>
 
             <!--liste de produit favoris-->
+            <%if(email!=null){
+                %>
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href=" ">
                     <i class="fas fa-heart"></i>
-                    <span class="badge badge-warning navbar-badge">0</span>
+                    <span class="badge badge-warning navbar-badge"><%out.print(listPre.size());%></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <a href="#" class="dropdown-item">
-                    <span class="dropdown-item dropdown-header">nb de produits</span>
+            <%
+                for (Produit p:listPre
+                     ) {
+            %>
                     <!-- Premier Produit -->
                     <div class="media">
                         <!-- image de Produit -->
-                        <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+<%--                        <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">--%>
                         <div class="media-body">
                             <h3 class="dropdown-item-title">
-                                Nom Produit
+                                •
+                               <%out.print(p.getLibelleProduit()); %>
+                                <i class="fas fa-minus" style="text-align: right"  id="<%out.print(p.getCodeProduit());%>"></i>
                             </h3>
                         </div>
-                    </div></a>
-                <div class="dropdown-divider"></div>
+                    </div>
+            <%
+                    }//fin for
+
+            %>
+                    <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item dropdown-footer">Tous les produits favoris</a>
-                </div>
-                </li>
+                    </div>
+            </li><!--fin favoris-->
+
+            <%
+                }//fin if favoris
+            %>
 
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
@@ -177,7 +199,7 @@
                                 </h3>
                             </div>
                         </div>
-                    </ a>
+                    </a>
 
                     <%
                         }
@@ -223,7 +245,8 @@
                     <%if(email==null) {
                         out.print("<a href=\".\\Front-End\\login.jsp\" class=\"d-block\">Log in</a><!-- 跳转login -->");
                     }else{
-                        out.print("<a href='ServletCompteProfil'>"+nomComplet+"</a><!-- 跳转login -->");
+                        out.print("<a href='ServletCompteProfil'>"+nomComplet+"</a>&nbsp&nbsp&nbsp&nbsp&nbsp");
+                        out.print("<a href='ServletLogOut'>Log out</a><!-- 跳转login out -->");
                     }
                     %>
 

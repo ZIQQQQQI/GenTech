@@ -144,11 +144,20 @@
                 <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
               </p>
 
-              <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>&nbsp
-              <a href="#"><i class="fas fa-heart" style="float: right;"></i></a>
+              &nbsp<a href="#"><i class="fas fa-plus-circle" style="float: right;"></i>&nbsp</a>&nbsp
+              <%if(listPre.contains(p)){%>
 
-              <a href="#"><i class="far fa-heart" style="float: right;"></i></a>
-          
+              &nbsp<a href="#"><i class="fas fa-heart" style="float: right;display: block"></i>&nbsp</a>&nbsp
+              &nbsp<a href="#"><i class="far fa-heart" style="float: right;display: none;"></i>&nbsp</a>&nbsp
+
+              <%
+                }else {
+                %>
+              &nbsp<a href="#"><i class="fas fa-heart" style="float: right;display: none"></i>&nbsp</a>&nbsp
+              &nbsp<a href="#"><i class="far fa-heart" style="float: right;display: block"></i>&nbsp</a>&nbsp
+              <%
+                }
+              %>
             </div>
           </div>
         </div>
@@ -230,7 +239,20 @@
 
 
               </p>
-              <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
+              &nbsp<a href="#"><i class="fas fa-plus-circle" style="float: right;"></i>&nbsp</a>&nbsp
+              <%if(listPre.contains(p)){%>
+
+              &nbsp<a href="#"><i class="fas fa-heart" style="float: right;display: block"></i>&nbsp</a>&nbsp
+              &nbsp<a href="#"><i class="far fa-heart" style="float: right;display: none;"></i>&nbsp</a>&nbsp
+
+              <%
+              }else {
+              %>
+              &nbsp<a href="#"><i class="fas fa-heart" style="float: right;display: none"></i>&nbsp</a>&nbsp
+              &nbsp <a href="#"><i class="far fa-heart" style="float: right;display: block"></i>&nbsp</a>&nbsp
+              <%
+                }
+              %>
             </div>
           </div>
         </div>
@@ -271,7 +293,10 @@
           </div>
           <div>
             <p style="float: left;"><%out.print(p.getPrix());%>  € </p>
-            <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
+            <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>&nbsp
+            <a href="#"><i class="fas fa-heart" style="float: right;"></i></a>
+
+            <a href="#"><i class="far fa-heart" style="float: right;"></i></a>
           </div>
         </div>
       </div>
