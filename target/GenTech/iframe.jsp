@@ -11,6 +11,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <%
     String email=null;
     Client client=null;
@@ -111,6 +112,30 @@
                 </div>
             </li>
 
+            <!--liste de produit favoris-->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href=" ">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge badge-warning navbar-badge">0</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <a href="#" class="dropdown-item">
+                    <span class="dropdown-item dropdown-header">nb de produits</span>
+                    <!-- Premier Produit -->
+                    <div class="media">
+                        <!-- image de Produit -->
+                        <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+                                Nom Produit
+                            </h3>
+                        </div>
+                    </div></a>
+                <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">Tous les produits favoris</a>
+                </div>
+                </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-store"></i>
@@ -126,18 +151,24 @@
                         <div class="media">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
-                                   <p  > <%out.print(m.getLibelleMagasin());
+
+                                   <p>
+
+                                       <%out.print(m.getLibelleMagasin());%>
+                                       <span  class="float-right text-sm text-danger"
+                                       <%
                                         try{
-                                            if(m.getIdMagasin().equals(client.getIdMagasin()) ){
+                                            if(!m.getIdMagasin().equals(client.getIdMagasin()) ){
+
+                                                out.print("hidden");
 
 
-                                   %>
-                                    <span  class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
-                                       <%}//fin star
+                                       }//fin star
                                        }catch (Exception e){
 
                                        }
                                        %>
+                                                > <span  class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
                                    </p>
                                 </h3>
                             </div>
