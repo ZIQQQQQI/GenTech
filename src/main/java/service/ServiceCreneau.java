@@ -17,7 +17,10 @@ public class ServiceCreneau {
     public ArrayList<Creneau> allCreneau() {
         return dc.listCreneau();
     }
-    public void UpdateCreneau(String email, String idM) {
-        dc.updateCreaneau(email, idM);
+    public void UpdateCreneau(String idheureretrait, String idcommande) {
+        dc.updateCreaneau(idheureretrait, idcommande);
     }
+
+
+
 }

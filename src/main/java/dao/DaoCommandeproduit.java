@@ -44,6 +44,8 @@ public class DaoCommandeproduit {
                 session.close();
         return list;
     }
+
+
     
     /*
      *@param null

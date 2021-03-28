@@ -22,9 +22,11 @@ public class DaoCreneau {
     public void updateCreaneau(String idheureretrait, String idcommande) {
         Session session = HibernateConn.getSessionFactory().getCurrentSession();
         session.beginTransaction();
-        Commande commande = (Commande) session.get(Commande.class, idcommande);
+
+        Commande commande = (Commande) session.get(Commande.class,idcommande);
+        System.out.println(commande);
         commande.setHeureRetrait(idheureretrait);
-        session.update(commande);
+       session.update(commande);
         session.getTransaction().commit();
         session.close();
     }
@@ -47,4 +49,21 @@ public class DaoCreneau {
        session.close();
        return list;
     }
+
+    public void supprimerPre(String emailClient,Integer codeProduit)
+    {
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction transaction=session.beginTransaction();
+        String sql="Delete from preference where emailClient=? and codeProduit=?";
+
+        try {
+            session.createSQLQuery(sql).setParameter(1,emailClient).setParameter(2,codeProduit);
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoPreference listPrefere");
+            System.out.println("----------------------------");
+        }
+        transaction.commit();
+        session.close();}
 }

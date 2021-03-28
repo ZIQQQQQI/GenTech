@@ -101,9 +101,12 @@ public class Commande implements Serializable {
     }
 
 
+
     public void setEtat(String etat) {
         this.etat = etat;
     }
+
+
 
     @Basic
     @Column(name = "emailClient", nullable = true, length = -1)

@@ -177,7 +177,7 @@
                                 </h3>
                             </div>
                         </div>
-                    </ a>
+                    </a>
 
                     <%
                         }
@@ -308,7 +308,7 @@
             <!--<iframe src="./Front-End/pageProd.jsp" scrolling="yes" frameborder="0" id="Prod"></iframe> -->
 
 
-            <jsp:include page="./Front-End/afficherProduit.jsp" flush="true"></jsp:include>
+            <jsp:include page="WEB-INF/afficherProduit.jsp" flush="true"></jsp:include>
 
         </div>
     </div>

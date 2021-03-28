@@ -47,6 +47,14 @@ public class Creneau implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "Creneau{" +
+                "heureRetrait='" + heureRetrait + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(heureRetrait, description);
     }
