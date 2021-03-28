@@ -60,6 +60,11 @@ public class Panier implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return super.toString();
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(emailClient, codeProduit, quantite);
     }

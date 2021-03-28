@@ -72,4 +72,35 @@ public class DaoPreference{
 
 
 
+    /*
+     *@param null
+     *@return
+     *@author Tu
+     *@description
+     *@exception
+     *@date 28/03/2021 20:22
+     */
+
+    public void supprimerPre(String emailClient,Integer codeProduit)
+    {
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction transaction=session.beginTransaction();
+        String sql="Delete from preference where emailClient=? and codeProduit=?";
+
+        try {
+            session.createSQLQuery(sql).setParameter(1,emailClient).setParameter(2,codeProduit).executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoPreference listPrefere");
+            System.out.println("----------------------------");
+        }
+        transaction.commit();
+        session.close();
+
+
+    }
+
+
+
 }
