@@ -29,7 +29,7 @@ public class ServletLogin extends HttpServlet {
         String mdpC = req.getParameter("mdp");
 
         Client c = new ServiceClient().unClient(emailC);
-        ArrayList<String> le = new ArrayList<String>();
+        ArrayList<String> le = new ArrayList<>();
         for(Client cli:new ServiceClient().allClient()){
             le.add(cli.getEmailClient());
         }

@@ -11,6 +11,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page isELIgnored="false" %>
 <%
     String email=null;
     Client client=null;
@@ -46,9 +47,9 @@
 <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="height: 120px">
         <!-- Left navbar links -->
-        <ul class="navbar-nav ml-auto" style="height: 100px" >
+        <ul class="navbar-nav "  >
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
@@ -79,7 +80,7 @@
                             </div>
                         </div>
                     </form>
-                    <div id="zoneaff" style="display: none;width: 100%;height: 193px; border-width: 1px;border-style: solid;border-color: #7F9DB9;margin-top: 1px;padding: 2px;overflow:auto;z-index:9999;">
+                    <div id="zoneaff" style="display: none;background-color: white;width: 100%;height: 193px; border-width: 1px;border-style: solid;border-color: #7F9DB9;margin-top: 1px;padding: 2px;overflow:auto;z-index:9999;">
                     </div>
                 </div>
             </li>
@@ -111,6 +112,30 @@
                 </div>
             </li>
 
+            <!--liste de produit favoris-->
+            <li class="nav-item dropdown">
+                <a class="nav-link" data-toggle="dropdown" href=" ">
+                    <i class="fas fa-heart"></i>
+                    <span class="badge badge-warning navbar-badge">0</span>
+                </a>
+                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                    <a href="#" class="dropdown-item">
+                    <span class="dropdown-item dropdown-header">nb de produits</span>
+                    <!-- Premier Produit -->
+                    <div class="media">
+                        <!-- image de Produit -->
+                        <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+                                Nom Produit
+                            </h3>
+                        </div>
+                    </div></a>
+                <div class="dropdown-divider"></div>
+                    <a href="#" class="dropdown-item dropdown-footer">Tous les produits favoris</a>
+                </div>
+                </li>
+
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-store"></i>
@@ -118,35 +143,44 @@
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
 
                     <%
-                     ArrayList<Magasin> listM=(ArrayList<Magasin>)request.getAttribute("listMagasin");
-                        for (Magasin m:listM
-                             ) {
-                            %>
-                        <a  href="#" class="dropdown-item">
+                        ArrayList<Magasin> listM=(ArrayList<Magasin>)request.getAttribute("listMagasin");
+                        //for (Magasin m:listM
+                        for(int i=0; i<listM.size(); i++)
+                        {
+                    %>
+                    <a  href=" " class="dropdown-item">
                         <div class="media">
                             <div class="media-body">
                                 <h3 class="dropdown-item-title">
-                                   <p  > <%out.print(m.getLibelleMagasin());
-                                        try{
-                                            if(m.getIdMagasin().equals(client.getIdMagasin()) ){
+
+                                    <p name="maga" onclick="star(<%out.print(i);%>)"><%out.print(listM.get(i).getLibelleMagasin());%>
+                                        <span name="starrr" class="float-right text-sm text-danger" style="display:
+                                        <%
+                                            try{
+                                                if(listM.get(i).getIdMagasin().equals(client.getIdMagasin())){
+                                                out.print("block");
+                                                }else{
+                                                out.print("none");
+                                                }
+                                            }catch(Exception e){
+
+                                            }
 
 
-                                   %>
-                                    <span  class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
-                                       <%}//fin star
-                                       }catch (Exception e){
 
-                                       }
-                                       %>
-                                   </p>
+
+                                        %>
+
+                                    "><i class="fas fa-star"></i></span>
+
+                                    </p >
                                 </h3>
                             </div>
-                        </div></a>
+                        </div>
+                    </ a>
 
-                            <%
+                    <%
                         }
-
-
                     %>
 
 
@@ -215,18 +249,19 @@
                     <li class="nav-item">
                         <a href=" " class="nav-link">
                         <i class="nav-icon fas fa-chart-pie"></i>
-                        <p> <%out.print(r.getNomCate());%>
+                        <p style="line-height:200%"> <%out.print(r.getNomCate());%>
                             <i class="right fas fa-angle-left"></i>
                         </p >
                     </a>
                         <%for(Rayon cat:list.get(r)){ %>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <p  style="line-height:200%" >
                             <a href="ServletAccueil?idCategorie=<%out.print(cat.getNumCate());%>&math=<%out.print(Math.random());%>" >
                             <i class="far fa-circle nav-icon"></i>
 
                             <% out.print(cat.getNomCate());%>
-                        </a>
+                            </a></p>
                         </li>
                     </ul>
                         <%  }%>
@@ -292,6 +327,17 @@
 <!-- ./wrapper -->
 
 <!-- jQuery -->
+<script>
+    function star(i){
+        if(i==0){
+            document.getElementsByName("starrr")[0].style.display='block';
+            document.getElementsByName("starrr")[1].style.display='none'
+        }else{
+            document.getElementsByName("starrr")[0].style.display='none';
+            document.getElementsByName("starrr")[1].style.display='block'
+        }
+    }
+</script>
 <script src=".\Front-End\resources\plugins\jquery\jquery.min.js"></script>
 <script type="text/JavaScript" src="js/fctxml.js"></script>
 <!-- jQuery UI 1.11.4 -->

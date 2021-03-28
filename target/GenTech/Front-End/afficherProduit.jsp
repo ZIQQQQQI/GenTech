@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="metier.Produit" %><%--
+<%@ page import="metier.Produit" %>
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -8,9 +9,16 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+
+  DecimalFormat df = new DecimalFormat("0.00");//decimal formate
   String email=null;
+  ArrayList<Produit> listPre=null;
+  ArrayList<Produit> listPromo=(ArrayList<Produit>)request.getAttribute("listPromo");
+
+
   try{
     email=(String) session.getAttribute("email");
+    listPre=(ArrayList<Produit>) request.getAttribute("listPre");
   }catch (Exception e){
 
   }
@@ -48,50 +56,111 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <div class="container-fluid">
-<%--    <% if (email!=null){--%>
-<%--      ArrayList<Produit> listPre=(ArrayList<Produit>)session.getAttribute("listPre");--%>
-<%--   %>--%>
-<%--    <a href="">--%>
-<%--      <h2>Mes préférences</h2>--%>
-<%--    </a>--%>
-<%--    <div class="row">--%>
-<%--      <% for(int i=0;i<3;i++){--%>
-<%--        Produit p=listPre.get(i);--%>
-<%--      %>--%>
-<%--      <div class="col-md-4">--%>
-<%--        <!--prod1-->--%>
-<%--        <div class="card">--%>
-<%--          <div class="card-header">--%>
-<%--            <a href="ServletProduitDetail?idProduit=<%p.getCodeProduit()%>">--%>
-<%--              <h3 class="card-title">Test</h3>--%>
-<%--            </a>--%>
+        <%if(email!=null & motCle==null & idCategorie==null){%>
 
-<%--&lt;%&ndash;            &lt;%&ndash;%>--%>
-<%--&lt;%&ndash;              if(p.getBio()==1){&ndash;%&gt;--%>
-<%--&lt;%&ndash;                out.print("<i class=\"fas fa-leaf\" style=\"float: right;color: green;\"></i>");&ndash;%&gt;--%>
-<%--&lt;%&ndash;              }&ndash;%&gt;--%>
-<%--&lt;%&ndash;            %>&ndash;%&gt;--%>
 
-<%--          </div>--%>
-<%--          <div class="card-body">--%>
-<%--            <div align="middle">--%>
-<%--             <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">--%>
+            <a href="">
+            <h2>Mes Préférences</h2>
+            </a>
+             <div class="row">
 
-<%--            </div>--%>
-<%--            <div>--%>
-<%--              <p style="float: left;"><%out.print(p.getPrix());%>  € </p>--%>
-<%--              <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>--%>
-<%--            </div>--%>
-<%--          </div>--%>
-<%--        </div>--%>
-<%--      </div><!-- FIN DE PROD1-->--%>
-<%--    <%} //fin de for pre%>--%>
+                <%for (int i=0;i<3;i++
+                       ) {
+                Produit p=listPre.get(i);
+                 %>
+               <div class="col-md-4">
+                 <!--prod1-->
+                 <div class="card">
+                   <div class="card-header">
+                     <a href="ServletProduitDetail?idProduit=<%out.print( p.getCodeProduit());%>">
+                       <h3 class="card-title"><%out.println( p.getLibelleProduit());%></h3>
+                     </a>
 
-<%--    </div>--%>
+                     <%
+                       if(p.getBio()==1){
+                         out.print("<i class=\"fas fa-leaf\" style=\"float: right;color: green;\"></i>");
+                       }
+                     %>
 
-<%--    <%--%>
-<%--      }//fin if preference--%>
-<%--    %>--%>
+                   </div>
+                   <div class="card-body">
+                     <div align="middle">
+                       <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
+                     </div>
+                     <div>
+                       <p style="float: left;">
+                           <% if(!listPromo.contains(p)) {
+                            out.print(p.getPrix()+"€");
+                          }else{
+                          %>
+                       <p style="float: left;"><span style="text-decoration-line: line-through;color: #5d6974"><%out.print(p.getPrixVente());%> € </span>
+                         <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
+
+                         <% } %>
+
+
+
+                       </p>
+                       <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
+                     </div>
+                   </div>
+                 </div>
+               </div><!-- FIN DE PROD1-->
+               <%}//fin de for listPre%>
+             </div>
+    <%}else if(email==null & motCle==null & idCategorie==null){%>
+
+
+    <a href="">
+      <h2>Produits En Promotions</h2>
+    </a>
+    <div class="row">
+
+      <%for (int i=0;i<3;i++
+      ) {
+        Produit p=listPromo.get(i);
+      %>
+      <div class="col-md-4">
+        <!--prod1-->
+        <div class="card">
+          <div class="card-header">
+            <a href="ServletProduitDetail?idProduit=<%out.print( p.getCodeProduit());%>">
+              <h3 class="card-title"><%out.println( p.getLibelleProduit());%></h3>
+            </a>
+
+            <%
+              if(p.getBio()==1){
+                out.print("<i class=\"fas fa-leaf\" style=\"float: right;color: green;\"></i>");
+              }
+            %>
+
+          </div>
+          <div class="card-body">
+            <div align="middle">
+              <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
+            </div>
+            <div>
+              <p style="float: left;"><span style="text-decoration-line: line-through;color: #5d6974"><%out.print(p.getPrixVente());%> € </span>
+                <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
+              </p>
+
+              <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>&nbsp
+              <a href="#"><i class="fas fa-heart" style="float: right;"></i></a>
+
+              <a href="#"><i class="far fa-heart" style="float: right;"></i></a>
+          
+            </div>
+          </div>
+        </div>
+      </div><!-- FIN DE PROD1-->
+      <%}//fin de for listPre%>
+    </div>
+    <%}%>
+
+
+
+
+
 
 
 
@@ -143,7 +212,24 @@
               <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
             </div>
             <div>
-              <p style="float: left;"><%out.print(p.getPrix());%>  € </p>
+
+              <p style="float: left;">
+
+                <% if(!listPromo.contains(p)) {
+                  out.print(p.getPrix()+"€");
+                }else{
+                %>
+                  <p style="float: left;"><span style="text-decoration-line: line-through;color: #5d6974"><%out.print(p.getPrixVente());%> € </span>
+                <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
+
+                <% } %>
+
+
+
+
+
+
+              </p>
               <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
             </div>
           </div>

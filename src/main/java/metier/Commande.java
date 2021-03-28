@@ -20,6 +20,10 @@ public class Commande implements Serializable {
     private String heureRetrait;
     private String etat;
     private String emailClient;
+    private String idMagasin;
+    private Double PrixTotal;
+    private Double Economie;
+
 
     @Basic
     @Column(name = "idCdeCli", nullable = true, length = -1)
@@ -66,6 +70,36 @@ public class Commande implements Serializable {
     public String getEtat() {
         return etat;
     }
+
+    @Basic
+    @Column(name = "prixTotal", nullable = true, length = -1)
+    public Double getPrixTotal() {
+        return PrixTotal;
+    }
+
+    public void setPrixTotal(Double prixTotal) {
+        PrixTotal = prixTotal;
+    }
+    @Basic
+    @Column(name = "Economie", nullable = true, length = -1)
+    public Double getEconomie() {
+        return Economie;
+    }
+
+    public void setEconomie(Double economie) {
+        Economie = economie;
+    }
+
+    public void setIdMagasin(String idMagasin) {
+        this.idMagasin = idMagasin;
+    }
+
+    @Basic
+    @Column(name = "idMagasin", nullable = true, length = -1)
+    public String getIdMagasin() {
+        return this.idMagasin;
+    }
+
 
     public void setEtat(String etat) {
         this.etat = etat;

@@ -12,6 +12,7 @@ import metier.Preference;
 import metier.Produit;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class ServiceProduit {
     private DaoProduit daoProduit=new DaoProduit();
@@ -81,13 +82,21 @@ public class ServiceProduit {
      */
     public ArrayList<Produit> listProduitPrefre(String email){
         ArrayList<Preference> listPre=daoPreference.listPrefere(email);
+
         ArrayList<Produit> listPro=new ArrayList<>();
 
         for (Preference p:listPre){
+
             listPro.add(daoProduit.rechercheUnProduit(p.getCodeProduit()));
         }
 
 
         return listPro;
+    }
+
+
+
+    public ArrayList<Produit> listProduisPromo(){
+        return daoProduit.listProduitEnPromo();
     }
 }
