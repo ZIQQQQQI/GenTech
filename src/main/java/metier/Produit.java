@@ -23,6 +23,7 @@ public class Produit implements Serializable {
     private Integer categorie;
     private String marque;
     private Integer nbVente;
+    private String description;
 
     @Override
     public String toString() {
@@ -67,6 +68,17 @@ public class Produit implements Serializable {
 
     public void setPrix(Double prix) {
         this.prix = prix;
+    }
+
+
+    @Basic
+    @Column(name = "description", nullable = true, precision = 0)
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @Basic
