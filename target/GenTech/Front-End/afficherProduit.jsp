@@ -1,5 +1,6 @@
 <%@ page import="java.util.ArrayList" %>
-<%@ page import="metier.Produit" %><%--
+<%@ page import="metier.Produit" %>
+<%@ page import="java.text.DecimalFormat" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -8,6 +9,8 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+
+  DecimalFormat df = new DecimalFormat("0.00");//decimal formate
   String email=null;
   ArrayList<Produit> listPre=null;
   ArrayList<Produit> listPromo=(ArrayList<Produit>)request.getAttribute("listPromo");
@@ -53,7 +56,7 @@
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
   <div class="container-fluid">
-        <%if(email!=null){%>
+        <%if(email!=null & motCle==null & idCategorie==null){%>
 
 
             <a href="">
@@ -85,7 +88,19 @@
                        <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
                      </div>
                      <div>
-                       <p style="float: left;"><%out.print(p.getPrix());%>  € </p>
+                       <p style="float: left;">
+                           <% if(!listPromo.contains(p)) {
+                            out.print(p.getPrix()+"€");
+                          }else{
+                          %>
+                       <p style="float: left;"><span style="text-decoration-line: line-through;color: #5d6974"><%out.print(p.getPrixVente());%> € </span>
+                         <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
+
+                         <% } %>
+
+
+
+                       </p>
                        <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
                      </div>
                    </div>
@@ -93,7 +108,7 @@
                </div><!-- FIN DE PROD1-->
                <%}//fin de for listPre%>
              </div>
-    <%}else if(email==null){%>
+    <%}else if(email==null & motCle==null & idCategorie==null){%>
 
 
     <a href="">
@@ -125,7 +140,9 @@
               <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
             </div>
             <div>
-              <p style="float: left;"><%out.print(p.getPrix());%>  € </p>
+              <p style="float: left;"><span style="text-decoration-line: line-through;color: #5d6974"><%out.print(p.getPrixVente());%> € </span>
+                <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
+              </p>
               <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
             </div>
           </div>
@@ -190,7 +207,24 @@
               <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
             </div>
             <div>
-              <p style="float: left;"><%out.print(p.getPrix());%>  € </p>
+
+              <p style="float: left;">
+
+                <% if(!listPromo.contains(p)) {
+                  out.print(p.getPrix()+"€");
+                }else{
+                %>
+                  <p style="float: left;"><span style="text-decoration-line: line-through;color: #5d6974"><%out.print(p.getPrixVente());%> € </span>
+                <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
+
+                <% } %>
+
+
+
+
+
+
+              </p>
               <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
             </div>
           </div>
