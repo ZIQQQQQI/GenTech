@@ -53,7 +53,25 @@ public class DaoPanier {
 
     }
 
+    public void supprimerPanier(String emailClient,Integer codeProduit)
+    {
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction transaction=session.beginTransaction();
+        String sql="Delete from panier where emailClient=? and codeProduit=?";
 
+        try {
+            session.createSQLQuery(sql).setParameter(1,emailClient).setParameter(2,codeProduit).executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoPanier listPanier");
+            System.out.println("----------------------------");
+        }
+        transaction.commit();
+        session.close();
+
+
+    }
 
 
 

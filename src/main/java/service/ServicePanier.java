@@ -10,4 +10,8 @@ public class ServicePanier {
     private DaoPanier daoPanier=new DaoPanier();
 
     public void ajouer(String email,Integer idP){daoPanier.ajouer(email,idP);}
+
+    public void supPanier(String email, Integer idProduit) {
+        daoPanier.supprimerPanier(email, idProduit);
+    }
 }

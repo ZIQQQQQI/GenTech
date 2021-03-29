@@ -169,12 +169,6 @@
 
 
 
-
-
-
-
-
-
     <!-- tous les produits -->
     <a href="">
       <h2>Produit</h2>
