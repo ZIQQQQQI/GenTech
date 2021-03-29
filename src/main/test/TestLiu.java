@@ -4,55 +4,65 @@ import dao.DaoStock;
 import metier.*;
 import org.junit.Test;
 import service.ServiceCreneau;
+import service.ServiceRayon;
 import service.ServiceStock;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class TestLiu {
     @Test
- public void test()
+ public void test(){
 
-    {
-        DaoCommandeproduit dr = new DaoCommandeproduit();
-        String email = "bugubugu@gamil.com";
-        String idcde = "affd2356";
-
-
-       /* for (Produit l:dr.commandeProduit(idcde)
-        ) {
-            System.out.println(l);
-        }
-
-    for (Produit q:dr.produitPlusCom(email)
-        ) {
-            System.out.println(q);
-
-    }*/
-        DaoCreneau dc = new DaoCreneau();
-       /* for (Creneau c:dc.listCreneau()) {
-            System.out.println(c);
-        }*/
-       Commande c = new Commande();
-       //c.setHeureRetrait("1");
-        //dc.updateCreaneau( "3", "affd2356");
-      // ServiceCreneau sc = new ServiceCreneau();
-       //sc.UpdateCreneau("4","affd2356");
-
-
-       //dc.supprimerPre("yufei@gamil.com",2);
-
-        DaoStock ds = new DaoStock();
-
-//      for (Ligneachat la:ds.achatFurure(1)
-//        ) {
-//            System.out.println(la);
-//
+      DaoStock ds = new DaoStock();
+//        for (Ligneachat la:ds.achatproduitdeja(1,"eiru0782",3)
+//       ) {
+//           System.out.println(la);
 //        }
 
-      ServiceStock st = new ServiceStock();
+//        for (Entrepot e : ds.achatdejaDate(3))
+//        {
+//           System.out.println(e);
+//        }
+
+//        ServiceStock sr = new ServiceStock();
+//        HashMap<Produit,HashMap<Entrepot,Ligneachat>> ligneachatfu=sr.allligneachahtnow(1);
+//
+//        for (Produit p :ligneachatfu.keySet()){
+//            HashMap<Entrepot,Ligneachat> h= ligneachatfu.get(p);
+//            System.out.println(p);
+//            for (Entrepot e:h.keySet()
+//            ) {
+//                Entrepot enree=e;
+//                System.out.println(enree.getIdCdeAchat());
+//                Ligneachat enrl=h.get(e);
+//                System.out.println(enrl.getIdProduit());
+//            }
+
+//     ArrayList<Ligneachat> lign = null;
+//        lign=ds.ligneachatsProduit(4);
+//        for (Ligneachat la:lign)
+//        {
+//            System.out.println(la);
+//        }
 
 
-      st.listfuture(1);
-        for (Ligneachat la:st.listfuture(1)
-        ) {
-            System.out.println(la);
-        }
-} }
+//
+//        ArrayList<HashMap<Ligneachat, Entrepot>> ll=ds.listCommLigne(lign);
+//        System.out.println(ll);
+
+//        ServiceStock sr = new ServiceStock();
+//        ArrayList<Ligneachat> lignqq = sr.listdeja(4);
+//        ArrayList<HashMap<Ligneachat, Entrepot>> h = sr.listCommLigne(lignqq);
+//        System.out.println(h);
+
+
+        ds.ajouterCommande("abcd1111","09/04/2021","21/04/2021","MD0001");
+       }
+
+
+
+
+
+
+}

@@ -81,7 +81,6 @@ public class Entrepot implements Serializable {
                 Objects.equals(etatCdeAchat, entrepot.etatCdeAchat) &&
                 Objects.equals(idMagasin, entrepot.idMagasin);
     }
-
     @Override
     public int hashCode() {
         return Objects.hash(idCdeAchat, dateCdeAchat, dateCdeArrive, etatCdeAchat, idMagasin);
