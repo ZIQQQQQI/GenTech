@@ -154,7 +154,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" class="d-block">Tang Ziqi</a><!-- 跳转login -->
+                        <a href="#" class="d-block"><%out.print(session.getAttribute("email"));%></a><!-- 跳转login -->
                 </div>
             </div>
 

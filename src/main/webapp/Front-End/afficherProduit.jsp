@@ -85,7 +85,7 @@
                    </div>
                    <div class="card-body">
                      <div align="middle">
-                       <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
+                       <img    style="height:200px;width: 200px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
                      </div>
                      <div>
                        <p style="float: left;">
@@ -101,7 +101,7 @@
 
 
                        </p>
-                       <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>
+                       <a  name="produidIdAdd" style="display: block;" email="<%out.print(email); %>" idP="<%out.print(p.getCodeProduit()); %>"><i class="fas fa-plus-circle"  style="float: right;"></i>&nbsp</a>
                      </div>
                    </div>
                  </div>
@@ -137,24 +137,25 @@
           </div>
           <div class="card-body">
             <div align="middle">
-              <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
+              <img    style="height:200px;width: 200px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
             </div>
             <div>
               <p style="float: left;"><span style="text-decoration-line: line-through;color: #5d6974"><%out.print(p.getPrixVente());%> € </span>
                 <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
               </p>
 
-              &nbsp<a href="#"><i class="fas fa-plus-circle" style="float: right;"></i>&nbsp</a>&nbsp
+              <a  name="produidIdAdd" style="display: block;" email="<%out.print(email); %>" idP="<%out.print(p.getCodeProduit()); %>"><i class="fas fa-plus-circle"  style="float: right;"></i>&nbsp</a>
               <%if(listPre.contains(p)){%>
 
-              &nbsp<a href="#"><i class="fas fa-heart" style="float: right;display: block"></i>&nbsp</a>&nbsp
-              &nbsp<a href="#"><i class="far fa-heart" style="float: right;display: none;"></i>&nbsp</a>&nbsp
+              &nbsp<a href=""><i class="fas fa-heart" style="float: right;display: block;color:#CB2E0C"></i>&nbsp</a>&nbsp
+              &nbsp<a href=""><i class="far fa-heart" style="float: right;display: none;color:#CB2E0C"></i>&nbsp</a>&nbsp
 
               <%
                 }else {
                 %>
-              &nbsp<a href="#"><i class="fas fa-heart" style="float: right;display: none"></i>&nbsp</a>&nbsp
-              &nbsp<a href="#"><i class="far fa-heart" style="float: right;display: block"></i>&nbsp</a>&nbsp
+              &nbsp<a  name="pre" idppp="<%out.print(p.getCodeProduit());%>" style="color:#CB2E0C"><i class="far fa-heart" style="float: right;display: block"></i>&nbsp</a>
+              &nbsp<a id="<%out.print(p.getCodeProduit());%>" style="float: right;display: none;color:#CB2E0C"><i class="fas fa-heart" ></i>&nbsp</a>&nbsp
+
               <%
                 }
               %>
@@ -165,12 +166,6 @@
       <%}//fin de for listPre%>
     </div>
     <%}%>
-
-
-
-
-
-
 
 
 
@@ -218,7 +213,7 @@
           </div>
           <div class="card-body">
             <div align="middle">
-              <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
+              <img style="height:200px;width: 200px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
             </div>
             <div>
 
@@ -239,17 +234,17 @@
 
 
               </p>
-              &nbsp<a href="#"><i class="fas fa-plus-circle" style="float: right;"></i>&nbsp</a>&nbsp
+              <a  name="produidIdAdd" style="display: block;" email="<%out.print(email); %>" idP="<%out.print(p.getCodeProduit()); %>"><i class="fas fa-plus-circle"  style="float: right;"></i>&nbsp</a>
               <%if(listPre.contains(p)){%>
 
-              &nbsp<a href="#"><i class="fas fa-heart" style="float: right;display: block"></i>&nbsp</a>&nbsp
-              &nbsp<a href="#"><i class="far fa-heart" style="float: right;display: none;"></i>&nbsp</a>&nbsp
+              &nbsp<a href="" style="color:#CB2E0C"><i class="fas fa-heart" style="float: right;display: block"></i>&nbsp</a>&nbsp
+              &nbsp<a href="" style="color:#CB2E0C"><i class="far fa-heart" style="float: right;display: none"></i>&nbsp</a>&nbsp
 
               <%
               }else {
               %>
-              &nbsp<a href="#"><i class="fas fa-heart" style="float: right;display: none"></i>&nbsp</a>&nbsp
-              &nbsp <a href="#"><i class="far fa-heart" style="float: right;display: block"></i>&nbsp</a>&nbsp
+              &nbsp<a  name="pre" idppp="<%out.print(p.getCodeProduit());%>" style="color:#CB2E0C"><i class="far fa-heart" style="float: right;display: block"></i>&nbsp</a>
+              &nbsp<a  id="<%out.print(p.getCodeProduit());%>" style="float: right;display: none;color: #CB2E0C"><i class="fas fa-heart" ></i>&nbsp</a>&nbsp
               <%
                 }
               %>
@@ -289,14 +284,24 @@
         </div>
         <div class="card-body">
           <div align="middle">
-            <img    style="height:100px;width: 80px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
+            <img    style="height:200px;width: 200px" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1">
           </div>
           <div>
             <p style="float: left;"><%out.print(p.getPrix());%>  € </p>
-            <a href="#"><i class="fas fa-plus-circle" style="float: right;"></i></a>&nbsp
-            <a href="#"><i class="fas fa-heart" style="float: right;"></i></a>
+            <a  name="produidIdAdd" style="display: block;" email="<%out.print(email); %>" idP="<%out.print(p.getCodeProduit()); %>"><i class="fas fa-plus-circle"  style="float: right;"></i>&nbsp</a>
+            <%if(listPre.contains(p)){%>
 
-            <a href="#"><i class="far fa-heart" style="float: right;"></i></a>
+            &nbsp<a href=""><i class="fas fa-heart" style="float: right;display: block;color:#CB2E0C"></i>&nbsp</a>&nbsp
+            &nbsp<a href=""><i class="far fa-heart" style="float: right;display: none;color:#CB2E0C"></i>&nbsp</a>&nbsp
+
+            <%
+            }else {
+            %>
+            &nbsp<a  name="pre" style="color: #CB2E0C"  idppp="<%out.print(p.getCodeProduit());%>"><i class="far fa-heart" style="float: right;display: block"></i>&nbsp</a>
+            <a  id="<%out.print(p.getCodeProduit());%>" style="float: right;display: none;color:#CB2E0C"><i class="fas fa-heart" ></i>&nbsp</a>
+            <%
+              }
+            %>
           </div>
         </div>
       </div>

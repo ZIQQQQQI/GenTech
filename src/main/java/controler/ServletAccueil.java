@@ -1,10 +1,8 @@
 package controler;
 
+import dao.DaoPanier;
 import dao.DaoProduit;
-import metier.Client;
-import metier.Magasin;
-import metier.Produit;
-import metier.Rayon;
+import metier.*;
 import service.*;
 
 import javax.servlet.annotation.WebServlet;
@@ -40,8 +38,9 @@ public class ServletAccueil extends HttpServlet {
             ArrayList<Produit> listPre=new ServiceProduit().listProduitPrefre(email);
             Client client=new ServiceClient().unClient(email);
             request.setAttribute("client",client);
+            ArrayList<Produit> listPanier=new ServiceProduit().listProduitPanier(email);
             Collections.shuffle(listPre);
-
+            request.setAttribute("listPanier",listPanier);
             request.setAttribute("listPre",listPre);
         }catch (Exception e){
             System.out.println("=============");
@@ -130,4 +129,7 @@ public class ServletAccueil extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         this.doPost(request,response);
     }
+    
+    
+
 }

@@ -64,7 +64,7 @@ public class ServletCompteProfil extends HttpServlet {
         /*
          *Rechercher la repartition de nutri Score
         */
-        HashMap<String,String> repartition=serviceCompte.repartitionNutriScore(emailClient);
+        String repartition=serviceCompte.repartitionNutriScore(emailClient);
         req.setAttribute("repartition",repartition);
 
         req.getRequestDispatcher("pageCommande.jsp").forward(req, resp);

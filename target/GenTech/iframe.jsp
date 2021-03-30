@@ -17,10 +17,12 @@
     Client client=null;
     String nomComplet="";
     ArrayList<Produit> listPre=null;
+    ArrayList<Produit> panier=new ArrayList<>();
     try{
         email=(String) session.getAttribute("email");
         client=(Client)request.getAttribute("client");
-         nomComplet= client.getNomClient()+" "+client.getPrenomClient();
+        nomComplet= client.getNomClient()+" "+client.getPrenomClient();
+        panier=(ArrayList<Produit>)request.getAttribute("listPanier");
     }catch (Exception e){
         System.out.println("not connecter");
     }
@@ -99,24 +101,40 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href="#">
                     <i class="fas fa-shopping-basket"></i>
-                    <span class="badge badge-danger navbar-badge">0</span>
+                    <span class="badge badge-danger navbar-badge" id="addPan"><%out.print(panier.size()); %></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <a href="#" class="dropdown-item">
-                        <!-- Premier Produit -->
-                        <div class="media">
-                            <!-- image de Produi -->
-                            <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    Nom Produit
-                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
-                                </h3>
-                            </div>
-                        </div></a>
+
+                    <%
+                        for (Produit p:panier
+                        ) {
+                    %>
+
+
+                    <!-- Premier Produit -->
+                    <div class="media">
+                        <!-- image de Produi -->
+                        <%--                            <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">--%>
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+                                    <span id="<%out.print(p.getCodeProduit()+"listpan");%>">
+
+                                            • <%out.print(p.getLibelleProduit());%>
+
+                                            <i name="minusPan" class="far fa-minus-square" style="text-align: right"  idSupPan="<%out.print(p.getCodeProduit());%>"></i>
+
+
+                                    </span>
+
+
+                            </h3>
+                        </div>
+                    </div>
+                    <% }//fin for panier%>
+
 
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">Valider mon panier</a>
+                    <a href="ServletPanierDetail">Valider mon panier</a>
                 </div>
             </li>
 
@@ -126,29 +144,39 @@
             <li class="nav-item dropdown">
                 <a class="nav-link" data-toggle="dropdown" href=" ">
                     <i class="fas fa-heart"></i>
-                    <span class="badge badge-warning navbar-badge"><%out.print(listPre.size());%></span>
+                    <span class="badge badge-warning navbar-badge" id="addPre"><%out.print(listPre.size());%></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <%
-                for (Produit p:listPre
-                     ) {
-            %>
-                    <!-- Premier Produit -->
-                    <div class="media">
-                        <!-- image de Produit -->
-<%--                        <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">--%>
-                        <div class="media-body">
-                            <h3 class="dropdown-item-title">
-                                •
-                               <%out.print(p.getLibelleProduit()); %>
-                                <i class="fas fa-minus" style="text-align: right"  id="<%out.print(p.getCodeProduit());%>"></i>
-                            </h3>
-                        </div>
-                    </div>
-            <%
-                    }//fin for
+                    <div id="addPreference">
+                        <%
+                            for (Produit p:listPre
+                            ) {
+                        %>
+                        <!-- Premier Produit -->
 
-            %>
+                        <div class="media">
+                            <!-- image de Produit -->
+                            <%--                        <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">--%>
+                            <div class="media-body" >
+                                <h3 class="dropdown-item-title">
+                                <span id="<%out.print(p.getCodeProduit()+"listp");%>">
+<%--                                    <tr>--%>
+<%--                                    <td>--%>
+                                    • <%out.print(p.getLibelleProduit()); %>
+<%--                                    </td>--%>
+<%--                                    <td>--%>
+                                        <i name="minusPre" class="far fa-minus-square" style="text-align: right"  idSup="<%out.print(p.getCodeProduit());%>"></i>
+<%--                                    </td>--%>
+<%--                                    </tr>--%>
+                                </span>
+                                </h3>
+                            </div>
+                        </div>
+                        <%
+                            }//fin for
+
+                        %>
+                    </div>
                     <div class="dropdown-divider"></div>
                     <a href="#" class="dropdown-item dropdown-footer">Tous les produits favoris</a>
                     </div>
@@ -177,7 +205,7 @@
 
                                     <p name="maga" onclick="star(<%out.print(i);%>)"><%out.print(listM.get(i).getLibelleMagasin());%>
                                         <span name="starrr" class="float-right text-sm text-danger" style="display:
-                                        <%
+                                            <%
                                             try{
                                                 if(listM.get(i).getIdMagasin().equals(client.getIdMagasin())){
                                                 out.print("block");
@@ -189,11 +217,8 @@
                                             }
 
 
-
-
                                         %>
-
-                                    "><i class="fas fa-star"></i></span>
+                                                "><i class="fas fa-star"></i></span>
 
                                     </p >
                                 </h3>
@@ -363,6 +388,7 @@
 </script>
 <script src=".\Front-End\resources\plugins\jquery\jquery.min.js"></script>
 <script type="text/JavaScript" src="js/fctxml.js"></script>
+<script type="text/JavaScript" src="js/fctPreference.js"></script>
 <!-- jQuery UI 1.11.4 -->
 <script src="Front-End/resources/plugins/jquery-ui/jquery-ui.min.js"></script>
 <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -375,7 +401,9 @@
 <script src="Front-End/resources/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
 <!-- AdminLTE App -->
 <script src="Front-End/resources/dist/js/adminlte.js"></script>
+<script type="text/JavaScript" src="js/fctMaga.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="Front-End/resources/dist/js/demo.js"></script>
+<script type="text/JavaScript" src="js/fctPanier.js"></script>
 </body>
 </html>
