@@ -5,7 +5,6 @@ package dao;/*
  */
 
 import Outil.HibernateConn;
-import metier.Magasin;
 import metier.Panier;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -39,6 +38,16 @@ public class DaoPanier {
         return list;
     }
 
+    /*
+     * @param emailClient
+	 * @param qte
+	 * @param operation
+	 * @param codeProd
+     * @return
+     * @author SI
+     * @date 2021/3/30 9:00
+     * @description
+     */
     public void modifierQtePanier(String emailClient,int qte,String operation,String codeProd){
         System.out.println(emailClient);
         System.out.println(qte);
@@ -63,7 +72,13 @@ public class DaoPanier {
         session.close();
     }
 
-
+    /*
+     * @param email
+     * @return void
+     * @author Si
+     * @date 2021/3/30 8:59
+     * @description
+     */
     public void supprimer (String email){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
@@ -82,7 +97,14 @@ public class DaoPanier {
 
     }
 
-
+    /*
+     * @param email
+	 * @param idP
+     * @return void
+     * @author Tang
+     * @date 2021/3/30 8:59
+     * @description
+     */
     public void ajouer(String email,Integer idP){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
@@ -96,6 +118,15 @@ public class DaoPanier {
 
     }
 
+
+    /*
+     * @param emailClient
+	 * @param codeProduit
+     * @return void
+     * @author Tu
+     * @date 2021/3/30 8:59
+     * @description
+     */
     public void supprimerPanier(String emailClient,Integer codeProduit)
     {
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
@@ -113,8 +144,9 @@ public class DaoPanier {
         transaction.commit();
         session.close();
 
-
     }
+
+
 
 
 

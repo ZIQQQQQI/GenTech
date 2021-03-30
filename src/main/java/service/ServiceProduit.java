@@ -116,4 +116,10 @@ public class ServiceProduit {
     public ArrayList<Produit> listProduisPromo(){
         return daoProduit.listProduitEnPromo();
     }
+
+
+    public Boolean unProduitDansPanier(Integer codeP,ArrayList<Produit> list){
+        Produit p=daoProduit.rechercheUnProduit(codeP);
+        return list.contains(p);
+    }
 }

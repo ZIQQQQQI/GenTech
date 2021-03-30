@@ -10,7 +10,7 @@ function addProduit(){
     var xhr = new XMLHttpRequest();
     var idp= this.getAttribute("idp");
     var email= this.getAttribute("email");
-    var add=this
+
     var elt = document.getElementById("addPan");
     var count = parseInt(elt.innerHTML);
 
@@ -22,7 +22,11 @@ function addProduit(){
             if (xhr.status === 200) {
                 count= count+1;
                 elt.innerHTML=count.toString();
-                add.style.display="none";
+                if(xhr.responseText=="success"){
+                    alert("exsit dans votre panier!")
+                }else {
+                    alert("success d'ajouter")
+                }
 
             }}
         xhr.send();
