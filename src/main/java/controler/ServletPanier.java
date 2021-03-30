@@ -26,5 +26,6 @@ public class ServletPanier extends HttpServlet {
         new ServicePanier().ajouer(email,idp);
 
 
+
     }
 }

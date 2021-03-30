@@ -4,6 +4,7 @@ package controler;/*
  *@date 29/03/2021
  */
 
+import service.ServicePanier;
 import service.ServicePreference;
 
 import javax.servlet.ServletException;
@@ -27,9 +28,9 @@ public class ServletSupprimerPan extends HttpServlet {
         String email=(String) session.getAttribute("email");
         Integer idSupPre=Integer.valueOf(request.getParameter("idSupPan"));
 
-        ServicePreference sp = new ServicePreference();
+        ServicePanier servicePanier=new ServicePanier();
         try{
-            sp.supPreference(email, idSupPre);
+            servicePanier.supPanier(email, idSupPre);
             response.getWriter().print("supprimer succes");
 
         } catch (Exception ex) {

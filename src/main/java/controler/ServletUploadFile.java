@@ -4,6 +4,8 @@ package controler;/*
  *@date //
  */
 
+import Outil.CsvReader;
+import metier.Ligneachat;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -35,7 +38,7 @@ public class ServletUploadFile extends HttpServlet {
 //                System.out.flush();
 //                in.close();
 
-                String pate=this.getServletContext().getRealPath("/WEB-INF/upload");
+                String pate=this.getServletContext().getRealPath("/WEB-INF/test.csv");
                 DiskFileItemFactory diskFileItemFactory = new DiskFileItemFactory();
                 diskFileItemFactory.setSizeThreshold(1024*1024*50);
                 File repository = new File(getServletContext().getRealPath(
@@ -73,6 +76,10 @@ public class ServletUploadFile extends HttpServlet {
                     e.printStackTrace();
                     System.out.println("echouer");
                 }
+                CsvReader csvReader=new CsvReader();
+                ArrayList<Ligneachat> res=csvReader.read();
+                request.setAttribute("listLigne",res);
+                request.getRequestDispatcher("pageFormRetour.jsp").forward(request, response);
 
 
             }

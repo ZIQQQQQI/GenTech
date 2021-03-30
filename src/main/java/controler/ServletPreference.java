@@ -11,6 +11,7 @@ package controler;
 import service.ServiceClient;
 import service.ServiceMagasin;
 import service.ServicePreference;
+import service.ServiceProduit;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -36,6 +37,10 @@ public class ServletPreference extends HttpServlet {
 
         ServicePreference sp = new ServicePreference();
         sp.addPreference(email,idP);
+        ServiceProduit spr = new ServiceProduit();
+
+        //spr.unProduit(idP).getLibelleProduit();
+        resp.getWriter().print(spr.unProduit(idP).getLibelleProduit());
 
 
     }

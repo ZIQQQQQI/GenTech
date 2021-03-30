@@ -15,8 +15,6 @@ function preference(){
     var block=this
     var c = parseInt(elt.innerHTML);
 
-    var content = "<div class='media'><div class='media-body'><h3 class='dropdown-item-title'><span id='"+id+"'>"+id+"<i name='minusPre' class='far fa-minus-square' style='text-align: right'  idSup='"+id+"'></i></span>"+"</h3></div></div>";
-
     var d1= document.getElementById("addPreference");
 
 
@@ -30,6 +28,8 @@ function preference(){
             block.style.display="none";
             var heart=document.getElementById(id);
             heart.style.display="block";
+
+            var content = "<div class='media'><div class='media-body'><h3 class='dropdown-item-title'><span id='"+id+"'> • "+xhr.responseText+"<i name='minusPre' class='far fa-minus-square' style='text-align: right'  idSup='"+id+"'></i></span>"+"</h3></div></div>";
 
             d1.insertAdjacentHTML('beforeend',content);
 

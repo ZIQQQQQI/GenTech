@@ -63,11 +63,12 @@ function supprimerPan(){
 
 
 document.addEventListener("DOMContentLoaded", () => {
-/*
+
     var produitAdd = document.getElementsByName("produidIdAdd");
-    for(j =0; produitAdd.length; j++){
+    for(j =0;j< produitAdd.length; j++){
         produitAdd[j].addEventListener("click",addProduit);
-    }*/
+    }
+
 
     var tab1 = document.getElementsByName("minusPan");
     for(j =0; j<tab1.length; j++){
@@ -76,4 +77,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-});
+})

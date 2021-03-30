@@ -39,6 +39,49 @@ public class DaoPanier {
         return list;
     }
 
+    public void modifierQtePanier(String emailClient,int qte,String operation,String codeProd){
+        System.out.println(emailClient);
+        System.out.println(qte);
+        System.out.println(operation);
+        System.out.println(codeProd);
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t= session.beginTransaction();
+        String sql="update panier set quantite =? where emailClient=? and codeProduit=?";
+
+        System.out.println(sql);
+        if(operation=="add"){
+            qte = qte+1;
+            session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,emailClient).setParameter(3,codeProd).executeUpdate();
+            System.out.println(sql);
+        }
+        else if(operation=="minus"){
+            qte = qte-1;
+            session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,emailClient).setParameter(3,codeProd).executeUpdate();
+        }
+
+        t.commit();
+        session.close();
+    }
+
+
+    public void supprimer (String email){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t= session.beginTransaction();
+        String sql="delete from panier where emailClient=?";
+        try{
+            session.createSQLQuery(sql).setParameter(1,email).executeUpdate();
+
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoPanier supprimer not ok");
+            System.out.println("----------------------------");
+        }
+        t.commit();
+        session.close();
+
+    }
+
 
     public void ajouer(String email,Integer idP){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();

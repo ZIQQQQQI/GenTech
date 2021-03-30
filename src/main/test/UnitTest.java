@@ -1,4 +1,5 @@
 
+import Outil.CsvReader;
 import Outil.HibernateConn;
 import dao.DaoClient;
 
@@ -23,8 +24,10 @@ public class UnitTest {
 //        //ArrayList<Produit> list=new ServiceRechercher().findProduitByWord("viand");
 //        System.out.println(list);
 
-         ArrayList<Panier> list=new DaoPanier().listPanierUnClient("bugubugu@gamil.com");
-        System.out.println(list);
+//         ArrayList<Panier> list=new DaoPanier().listPanierUnClient("bugubugu@gamil.com");
+//        System.out.println(list);
+        CsvReader csvReader=new CsvReader();
+        csvReader.read();
 
 
 //        //test

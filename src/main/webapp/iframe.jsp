@@ -134,7 +134,7 @@
 
 
                     <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">Valider mon panier</a>
+                    <a href="ServletPanierDetail">Valider mon panier</a>
                 </div>
             </li>
 
