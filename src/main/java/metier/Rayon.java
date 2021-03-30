@@ -15,8 +15,8 @@ public class Rayon implements Serializable {
     private String nomCate;
     private Integer idParant;
     private Integer degre;
-
     @Basic
+
     @Column(name = "numCate", nullable = true)
     public Integer getNumCate() {
         return numCate;

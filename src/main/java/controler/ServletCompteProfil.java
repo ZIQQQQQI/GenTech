@@ -31,7 +31,6 @@ public class ServletCompteProfil extends HttpServlet {
         HttpSession session=req.getSession();
         String emailClient = (String) session.getAttribute("email");
         HashMap<Commande,String> commandeEnCours=serviceCompte.listCommandeEnCoursOuTermine(emailClient,"encours");
-
         HashMap<Commande,String> commandeTermine=serviceCompte.listCommandeEnCoursOuTermine(emailClient,"Termine");
         req.setAttribute("listEnCours",commandeEnCours);
         req.setAttribute("listTermine",commandeTermine);

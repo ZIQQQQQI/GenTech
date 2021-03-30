@@ -42,18 +42,10 @@ public class ServletStock extends HttpServlet {
            //Integer idcate = Integer.valueOf(req.getParameter("idproduit"));
 
            ServiceStock st = new ServiceStock();
-           ArrayList<Ligneachat> lignqq = st.listdeja(4);
-           ArrayList<HashMap<Ligneachat, Entrepot>> h = st.listCommLigne(lignqq);
-
            ArrayList<Ligneachat> lignff = st.ligneachatsfuture(4);
            ArrayList<HashMap<Ligneachat, Entrepot>> f =st.listCommLigne(lignff);
-
-           req.setAttribute("listcommande",lignqq);
-           req.setAttribute("listmap",h);
            req.setAttribute("listfuture",lignff);
            req.setAttribute("listmapfuture",f);
-
-
 
            req.getRequestDispatcher("/afficherCommande.jsp").forward(req, resp);
        } catch (Exception ex) {

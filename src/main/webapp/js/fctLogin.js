@@ -30,7 +30,6 @@ function chercherEmail(){
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-
     document.getElementById("idemail").addEventListener("change",chercherEmail);
 
 

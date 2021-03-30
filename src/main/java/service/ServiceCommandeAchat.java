@@ -11,6 +11,7 @@ public class ServiceCommandeAchat {
     public void  ajouterCommande(String idCdeachat,String dateCdeAchat,String dateCdeArrive,String idMagasin){
         ds.ajouterCommande(idCdeachat,dateCdeAchat,dateCdeArrive,idMagasin);
     }
+
     public void addLigneAchat(String idCdeAchat,Integer codeProduit,Long qteAchat,Long qteReste){
         ds.addLigneAchat(idCdeAchat,codeProduit,qteAchat,qteReste);
     }

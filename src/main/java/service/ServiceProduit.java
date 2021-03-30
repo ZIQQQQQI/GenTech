@@ -90,7 +90,6 @@ public class ServiceProduit {
             listPro.add(daoProduit.rechercheUnProduit(p.getCodeProduit()));
         }
 
-
         return listPro;
     }
 

@@ -119,13 +119,17 @@ public class DaoStock {
     public ArrayList<Ligneachat> ligneachatsfuture(Integer produitId){
         Session session = HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t = session.beginTransaction();
-        String  sql="Select la.*\n" +
-                "from ligneachat la ,entrepot e, produit p,rayon r\n" +
-                "where e.idCdeAchat=la.idCdeAchat\n" +
-                "and r.numcate=p.categorie \n" +
-                "and p.codeProduit=la.idProduit\n" +
-                "and str_to_date(dateCdearrive,'%d/%m/%Y') <date_format(curdate(),'%Y-%m-%d')\n" +
-                "and p.codeproduit=?";
+        String  sql="\tSelect la.* from ligneachat la ,entrepot e, produit p,rayon r,rayon r2 \n" +
+                "\t\twhere e.idCdeAchat=la.idCdeAchat\n" +
+                "\t\t and r.numcate=p.categorie \n" +
+                "\t\t and r.idparant = r2.numcate \n" +
+                "\t\t and p.codeProduit=la.idProduit \n" +
+                "\t\t and e.idCdeAchat=la.idCdeAchat\n" +
+                "\t\t and str_to_date(dateCdearrive,'%d/%m/%Y') \n" +
+                "\t\t between date_format(curdate(),'%Y-%m-%d')\n" +
+                "\t\t and DATE_SUB(CURDATE(), INTERVAL -15 DAY) \n" +
+                "\t\t and p.codeproduit=?\n" +
+                "\t\t ";
         ArrayList<Ligneachat> l=null;
         try{
             l = (ArrayList<Ligneachat>) session.createSQLQuery(sql).addEntity(Ligneachat.class).setParameter(1, produitId).list();
@@ -138,15 +142,6 @@ public class DaoStock {
         session.close();
         return l;
     }
-
-
-
-
-
-
-
-
-
 
 
         public ArrayList<HashMap<Ligneachat, Entrepot>> listCommLigne(ArrayList<Ligneachat> list){
@@ -165,7 +160,6 @@ public class DaoStock {
             session.close();
             return  l;
         }
-
 
     public ArrayList<Entrepot> achatdejaDate(Integer codeproduit) {
         Session session = HibernateConn.getSessionFactory().getCurrentSession();

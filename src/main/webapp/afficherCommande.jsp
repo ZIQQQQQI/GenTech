@@ -31,29 +31,14 @@
     <div class="container-fluid">
             </div>
 
-                <%
-                    Integer count=0;
-                    ArrayList<Ligneachat> list=(ArrayList<Ligneachat> )request.getAttribute("listcommande");
-                    ArrayList<HashMap<Ligneachat, Entrepot>> h = (ArrayList<HashMap<Ligneachat, Entrepot>> )request.getAttribute("listmap");
-
-                    for(HashMap<Ligneachat, Entrepot> r:h){
-                        for (Ligneachat key : r.keySet()){
-
-                %>
-
 
                 <a  href=" " class="dropdown-item">
                     <div class="media">
                         <div class="media-body">
 
-                                <a>produitid: <% out.print(key.getIdProduit()); %></a>
-                                <a> qteachat<%out.print(key.getQteAchat());%></a>
-                                 <a>date: <% out.print(r.get(key).getDateCdeArrive()); %></a>
-                                <a> reste<% out.print(key.getQteReste());%>
-                                <a> restetotal <% out.print(count=count+key.getQteReste().intValue());%></a>
-                               <% }}%>
 
  <%
+        Integer count=0;
         ArrayList<Ligneachat> listf=(ArrayList<Ligneachat> )request.getAttribute("listfuture");
         ArrayList<HashMap<Ligneachat, Entrepot>> f = (ArrayList<HashMap<Ligneachat, Entrepot>> )request.getAttribute("listmapfuture");
         for(HashMap<Ligneachat, Entrepot> r1:f){
@@ -64,8 +49,8 @@
             <a> qteachat<%out.print(key1.getQteAchat());%></a>
             <a>date: <% out.print(r1.get(key1).getDateCdeArrive()); %></a>
             <a> reste<% out.print(key1.getQteReste());%>
-          <a> restetotal <% out.print(count=count+key1.getQteReste().intValue());%></a>
-                    <% }}%>
+                <a> restetotal <% out.print(count=count+key1.getQteReste().intValue());%><br></a>
+                <% }}%>
 
                  </div>
 

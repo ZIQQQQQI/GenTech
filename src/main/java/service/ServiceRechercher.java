@@ -17,7 +17,5 @@ public class ServiceRechercher {
     public ArrayList<Produit> findProduitByWord(String word){
         DaoProduit dp = new DaoProduit();
         return dp.listProduitMotCle(word);
-
-
     }
 }
