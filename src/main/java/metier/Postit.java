@@ -14,7 +14,7 @@ public class Postit {
     private int idPost;
     private String libellePost;
     private Integer idProduit;
-    private Integer idListe;
+    private String idListe;
     private Integer quantite;
 
     @Basic
@@ -49,11 +49,11 @@ public class Postit {
 
     @Basic
     @Column(name = "idListe", nullable = true)
-    public Integer getIdListe() {
+    public String getIdListe() {
         return idListe;
     }
 
-    public void setIdListe(Integer idListe) {
+    public void setIdListe(String idListe) {
         this.idListe = idListe;
     }
 

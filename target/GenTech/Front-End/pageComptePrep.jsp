@@ -1,14 +1,18 @@
-<%@ page import="dao.DaoProduit" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="metier.Produit" %>
-<%@ page import="dao.DaoRayonCategorie" %>
-<%@ page import="metier.Rayon" %><%--
+<%--
   Created by IntelliJ IDEA.
   User: olivi
   Date: 2021/3/28
   Time: 17:42
   To change this template use File | Settings | File Templates.
 --%>
+<%--/*--%>
+<%--*@param nomCate--%>
+<%--*@return metier.Rayon--%>
+<%--*@author Tu--%>
+<%--*@description--%>
+<%--*@exception--%>
+<%--*@date 30/03/2021 10:54--%>
+<%--*/--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -31,88 +35,141 @@
         <section class="content">
             <div class="container-fluid">
                 <a name="cmd"><i class="far fa-hand-point-down"></i>Saisir les commandes: </a>
+
                 <div class="col-md-12">
-                    <div style="text-align: center">
-                        <form id="commandeAchat" action="" method="get">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title" style="text-align: center">La formulaire de nouvelle commande d'achat</h3>
+                        </div>
+                        <div class="card-body">
+                        <form id="commandeAchatEntrepot" action="ServletNewCommande" method="get">
                             <table class="table">
                                 <tbody>
-                                <tr>
-                                    <td><b>Catégories</b></td>
+                                <tr style="text-align: center;">
+                                    <td style="width: 400px;"><b>ID Commande Achat: </b></td>
                                     <td>
-                                        <div class="form-group">
-                                            <select class="form-control custom-select">
-                                                <!--循环-->
 
+                                            <input type="text" name="formidCdeAchat" style="width:400px;" value="<%=request.getParameter("formidCdeAchat")==null?"":request.getParameter("formidCdeAchat")%>">
 
-                                            </select>
-                                        </div>
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="text-align: center;">
+                                    <td style="width: 200px;"><b>Date Commande Achat:</b></td>
                                     <td>
-                                        <b>Nom Produit</b>
-                                    </td>
-                                    <td>
-                                        <div class="form-group">
-                                            <select class="form-control custom-select">
-                                                <% DaoProduit daoprod = new DaoProduit();
-                                                    ArrayList<Produit> listeProd = daoprod.listProduitOrdrePrix("null");
-                                                    for(Produit p:listeProd){%>
-                                                <option><%out.print(p.getLibelleProduit());%></option>
-                                                <%}
-                                                %>
-                                            </select>
-                                        </div>
+
+                                        <input type="date" name="formdateCdeAchat" style="width:400px;">
+
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="text-align: center;">
+                                    <td style="width: 200px;"><b>Date Commande Arrive: </b></td>
                                     <td>
-                                        <b>Quantité</b>
-                                    </td>
-                                    <td>
-                                        <input type="text" id="qte">
+
+                                        <input type="date" name="formdateCdeArrive" style="width:400px;">
+
                                     </td>
                                 </tr>
-                                <tr>
+                                <tr style="text-align: center;">
+                                    <td style="width: 200px;"><b>Etat Commande Achat: </b></td>
                                     <td>
-                                        <b>Date</b>
+
+                                        <input type="text" name="formetatCdeArrive" style="width:400px;">
+
                                     </td>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <td style="width: 200px;"><b>ID Magasin: </b></td>
                                     <td>
-                                        <input style="float: left;" type="date" name="date">
+
+                                        <input type="text" name="formidMagasin" style="width:400px;">
+
                                     </td>
                                 </tr>
                                 </tbody>
                             </table>
-                            <input type="submit" value="submit" class="btn btn-success"/>
-                        </form><br/>
+                                <input type="submit" id="btn_submit1" value="submit" class="btn btn-success" style="display:block;margin:0 auto"/>
 
-                        <form id="upload-form" action="ServletUploadFile" method="post" enctype="multipart/form-data" >
-                            <b><i class="fas fa-paperclip"></i> Attachment</b>
-                        　　 <input type="file" id="upload" name="attachement"/>
-                            <input class="btn btn-success" type="submit" id="btnUpload" value="Upload" />　　　
-                        </form>
+                        </form><br>
+                            <div style="text-align:center">
+                                <% String Msg = (String)session.getAttribute("Msg");
+                                if(Msg != null) {
+                                    out.print(Msg);
+                                    session.removeAttribute("Msg");
+                                }
+                                %>
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+
+                            <form id="commandeLigneAchat" action="ServletLigneAchat" method="get">
+                                <table class="table">
+                                    <tbody>
+
+                                <tr style="text-align: center;">
+                                    <td style="width: 400px;"><b>ID Commande Achat: </b></td>
+                                    <td>
+
+                                        <input type="text" name="formidCdeAchatA" style="width:400px;">
+
+                                    </td>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <td style="width: 200px;"><b>EAN du Produit: </b></td>
+                                    <td>
+
+                                            <input type="text" name="formidProduit" style="width:400px;">
+
+                                    </td>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <td style="width: 200px;"><b>Quantité Achat: </b></td>
+                                    <td>
+
+                                            <input type="text" name="formqteAchat" style="width:400px;">
+
+                                    </td>
+                                </tr>
+                                <tr style="text-align: center;">
+                                    <td style="width: 200px;"><b>Quantité Reste: </b></td>
+                                    <td>
+
+                                            <input type="text" name="formqteReste" style="width:400px;">
+
+                                    </td>
+                                </tr>
+
+                                </tbody>
+                            </table>
+                            <input type="submit" id="btn_submit2" value="submit" class="btn btn-success" style="display:block;margin:0 auto"/>
+                        </form><br/>
+                            <div style="text-align:center">
+                                <% String LinMsg = (String)session.getAttribute("LinMsg");
+                                    if(LinMsg != null) {
+                                        out.print(LinMsg);
+                                        session.removeAttribute("LinMsg");
+                                    }
+                                %>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
 
 
                 <a name="Stockage"><i class="far fa-hand-point-down"></i>Le stockage de 15 jours: </a>
                 <div class="col-md-12">
-                    <div class="card card-primary card-outline">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title" style="text-align: center">Les Stockage de 15 jour</h3>
+                        </div>
                         <div class="card-body box-profile">
-                            <h3 class="profile-username text-center">Les Stockage de 15 jours</h3>
+<%--                            <h3 class="profile-username text-center">Les Stockage de 15 jours</h3>--%>
 
-                            <ul class="list-group list-group-unbordered mb-3">
-                                <table class="table">
+                            <select id="listRayon"><option>----------</option></select>
+                            <input id="bt_Rayon" type="button" value="Afficher les rayons" />
+                            <div id="lproduit"></div>
 
-                                    <tbody>
-                                    <!--循环日期-->
-                                    <tr>
-                                        <td><a href="pageStockage.jsp">01/01/2021</a> </td>
-                                    </tr>
-
-                                    </tbody>
-                                </table>
-                            </ul>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -120,45 +177,29 @@
                 </div>
 
 
-                <a name="Creneau"><i class="far fa-hand-point-down"></i>Les créneau</a>
+                <a name="stock"><i class="far fa-hand-point-down"></i>les stocks pour chaque produit</a>
                 <div class="col-md-12">
                     <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title">Date picker</h3>
+                    <h3 class="card-title" style="text-align: center">Stock</h3>
                 </div>
                 <div class="card-body">
-                    <form action="" method="GET" id="creneau">
+
                         <!-- Date -->
                         <!-- Date range -->
-                        <label>Duree:</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">
-                                <i class="far fa-calendar-alt"></i>
-                              </span>
-                            </div>
-<%--                            <input type="text" class="form-control float-right" id="reservation">--%>
-                            <select class="form-control custom-select">
-                                <!--循环-->
-                                <option>Date</option>
-                            </select>
-                        </div>
-                        <!-- /.input group -->
-                        <!-- Date and time range -->
-                        <label>Creneaux:</label>
-                        <div class="input-group">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text"><i class="far fa-clock"></i></span>
-                            </div>
-<%--                            <input type="text" class="form-control float-right" id="reservationtime">--%>
-                            <select class="form-control custom-select">
-                                <!--循环-->
-                                <option>Creneaux</option>
-                            </select>
-                        </div><br/>
-                        <!-- /.input group -->
-                        <input type="submit" value="Rechercher" class="btn btn-success">
-                    </form>
+                        <table class="table" style="table-layout: fixed">
+                            <tr>
+                                <td>produitid</td>
+                                <td>qteachat</td>
+                                <td>date</td>
+                                <td>reste</td>
+                                <td>restetotal</td>
+                            </tr>
+                        </table>
+                        <table class="table" id="rayonprod" style="table-layout: fixed">
+
+                        </table>
+
                 </div>
 
                 </div>
@@ -170,6 +211,8 @@
     </div>
 
 <!-- jQuery -->
+
+    <script src="resources/plugins/jquery/jquery.min.js"></script>
 <script src="resources/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
 <script src="resources/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>

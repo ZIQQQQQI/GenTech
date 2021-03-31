@@ -57,4 +57,23 @@ public class DaoRayonProduit{
         session.close();
         return listProduit;
     }
+    public ArrayList<Produit> listeProduitByRayon(Integer numCate)
+    {
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t = session.beginTransaction();
+        String sql = "select * from produit p,rayon r,rayon r2 where p.categorie=r.numcate and r.idParant=r2.numcate and r2.numcate=?";
+        ArrayList<Produit> list = null;
+        try{
+            list=(ArrayList<Produit>) session.createSQLQuery(sql).addEntity(Produit.class).setParameter(1,numCate).list();
+        }catch(Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------");
+            System.out.println("DaoRayonProduit listeRayonProduit");
+            System.out.println("----------------------");
+
+        }
+        t.commit();
+        session.close();
+        return list;
+    }
 }

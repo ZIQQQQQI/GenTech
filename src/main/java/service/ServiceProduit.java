@@ -122,4 +122,7 @@ public class ServiceProduit {
         Produit p=daoProduit.rechercheUnProduit(codeP);
         return list.contains(p);
     }
+    public Integer idProduit(String nomProduit){
+        return(daoProduit.rechercherNomPro(nomProduit).getCodeProduit());
+    }
 }
