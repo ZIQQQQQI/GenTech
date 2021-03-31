@@ -26,8 +26,11 @@ public class UnitTest {
 
 //         ArrayList<Panier> list=new DaoPanier().listPanierUnClient("bugubugu@gamil.com");
 //        System.out.println(list);
-        CsvReader csvReader=new CsvReader();
-        csvReader.read();
+//        CsvReader csvReader=new CsvReader();
+//        csvReader.read();
+
+        DaoPanier daoPanier=new DaoPanier();
+        daoPanier.modifierQtePanier("bugubugu@gamil.com",10L,8);
 
 
 //        //test

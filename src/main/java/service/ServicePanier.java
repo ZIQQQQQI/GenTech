@@ -27,7 +27,13 @@ public class ServicePanier {
         return new DaoMagasin().unMagasin(idMagasin);
     }
 
-
+    /*
+     * @param
+     * @return java.util.HashMap<metier.Produit,metier.Promotion>
+     * @author TANG
+     * @date 2021/3/30 9:01
+     * @description les prouit en promo
+     */
     public HashMap<Produit, Promotion> produitPrixPromo(){
         ArrayList<Produit> tousLesProduitPromo=new DaoProduit().listProduitEnPromo();
         ArrayList<Promotion> tousLesPromo=new DaoPromotion().listPromotion();
@@ -53,6 +59,13 @@ public class ServicePanier {
         return res;
     }
 
+    /*
+     * @param emailClient
+     * @return java.util.HashMap<metier.Produit,java.lang.Integer>
+     * @author TANG
+     * @date 2021/3/30 9:01
+     * @description list de produit dun client
+     */
     public HashMap<Produit,Integer> listPanierUnClient (String emailClient){
         ArrayList<Panier> tousLesProduitDansPainer=daoPanier.listPanierUnClient(emailClient);
         HashMap<Produit,Integer> res=new HashMap<>();
@@ -61,6 +74,11 @@ public class ServicePanier {
             res.put(produit,p.getQuantite().intValue());
         }
         return res;
+    }
+
+
+    public  void changeQte(String emailClient,Long qte,Integer codeProd){
+        this.daoPanier.modifierQtePanier(emailClient,qte,codeProd);
     }
 
 }

@@ -5,7 +5,6 @@ package dao;/*
  */
 
 import Outil.HibernateConn;
-import metier.Magasin;
 import metier.Panier;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -39,31 +38,34 @@ public class DaoPanier {
         return list;
     }
 
-    public void modifierQtePanier(String emailClient,int qte,String operation,String codeProd){
-        System.out.println(emailClient);
-        System.out.println(qte);
-        System.out.println(operation);
-        System.out.println(codeProd);
+    /*
+     * @param emailClient
+	 * @param qte
+	 * @param operation
+	 * @param codeProd
+     * @return
+     * @author SI
+     * @date 2021/3/30 9:00
+     * @description
+     */
+    public void modifierQtePanier(String emailClient,Long qte,Integer codeProd){
+
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
         String sql="update panier set quantite =? where emailClient=? and codeProduit=?";
-
-        System.out.println(sql);
-        if(operation=="add"){
-            qte = qte+1;
-            session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,emailClient).setParameter(3,codeProd).executeUpdate();
-            System.out.println(sql);
-        }
-        else if(operation=="minus"){
-            qte = qte-1;
-            session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,emailClient).setParameter(3,codeProd).executeUpdate();
-        }
+        session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,emailClient).setParameter(3,codeProd).executeUpdate();
 
         t.commit();
         session.close();
     }
 
-
+    /*
+     * @param email
+     * @return void
+     * @author Si
+     * @date 2021/3/30 8:59
+     * @description
+     */
     public void supprimer (String email){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
@@ -82,7 +84,14 @@ public class DaoPanier {
 
     }
 
-
+    /*
+     * @param email
+	 * @param idP
+     * @return void
+     * @author Tang
+     * @date 2021/3/30 8:59
+     * @description
+     */
     public void ajouer(String email,Integer idP){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
@@ -96,6 +105,15 @@ public class DaoPanier {
 
     }
 
+
+    /*
+     * @param emailClient
+	 * @param codeProduit
+     * @return void
+     * @author Tu
+     * @date 2021/3/30 8:59
+     * @description
+     */
     public void supprimerPanier(String emailClient,Integer codeProduit)
     {
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
@@ -113,8 +131,9 @@ public class DaoPanier {
         transaction.commit();
         session.close();
 
-
     }
+
+
 
 
 
