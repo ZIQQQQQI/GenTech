@@ -1,10 +1,10 @@
 
+import Outil.CsvReader;
+import Outil.DateString;
 import Outil.HibernateConn;
-import dao.DaoClient;
+import Outil.RandomString;
+import dao.*;
 
-import dao.DaoMagasin;
-import dao.DaoPanier;
-import dao.DaoProduit;
 import metier.*;
 
 import org.hibernate.Session;
@@ -23,8 +23,23 @@ public class UnitTest {
 //        //ArrayList<Produit> list=new ServiceRechercher().findProduitByWord("viand");
 //        System.out.println(list);
 
-         ArrayList<Panier> list=new DaoPanier().listPanierUnClient("bugubugu@gamil.com");
-        System.out.println(list);
+//         ArrayList<Panier> list=new DaoPanier().listPanierUnClient("bugubugu@gamil.com");
+//        System.out.println(list);
+//        CsvReader csvReader=new CsvReader();
+//        csvReader.read();
+
+//        DaoPanier daoPanier=new DaoPanier();
+//        daoPanier.modifierQtePanier("bugubugu@gamil.com",10L,8);
+
+        DaoListeCourse daoListeCourse=new DaoListeCourse();
+        Listecourse listecourse=new Listecourse();
+        String id=new RandomString().getRandomString(12);
+        listecourse.setIdListe(id);
+        listecourse.setEmailClient("bugubugu@gamil.com");
+        listecourse.setLibelleListe("legume");
+        String date= DateString.dateString();
+        listecourse.setDatecree(date);
+        daoListeCourse.creerUneListe(listecourse);
 
 
 //        //test

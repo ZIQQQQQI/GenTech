@@ -46,7 +46,7 @@
                                                     <th>Date Commande</th>
                                                     <th>Date Retrait</th>
                                                     <th>Etat</th>
-<%--                                                    <th>Prix</th>--%>
+                                                    <th>Prix</th>
                                                     <th>Magasin</th>
                                                 </tr>
                                             </thead>
@@ -55,11 +55,11 @@
                                                 HashMap<Commande,String> list =(HashMap<Commande,String>)request.getAttribute("listEnCours");
                                             for (Commande c:list.keySet()){%>
                                             <tr>
-                                                <td><a href=""><%out.print(c.getIdCdeCli());%></a> </td>
+                                                <td><a href="ServletCommandeDetail?idCde=<%out.print(c.getIdCdeCli());%>"><%out.print(c.getIdCdeCli());%></a> </td>
                                                 <td><%out.print(c.getDateCdeCli());%></td>
                                                 <td><%out.print(c.getDateRetrait());%></td>
                                                 <td><%out.print(c.getEtat());%></td>
-                                                <!--<td>100</td>-->
+                                                <td><%out.print(c.getPrixTotal());%></td>
                                                 <td><%out.print(list.get(c));%></td>
                                             </tr>
                                             <%}%>
@@ -89,7 +89,7 @@
                                             <th>Id</th>
                                             <th>Date Commande</th>
                                             <th>Date Retrait</th>
-<%--                                            <th>Prix</th>--%>
+                                            <th>Prix</th>
                                             <th>Magasin</th>
                                         </tr>
                                         </thead>
@@ -98,10 +98,10 @@
                                         <%HashMap<Commande,String> listT =(HashMap<Commande,String>)request.getAttribute("listTermine");
                                             for (Commande c:listT.keySet()){%>
                                         <tr>
-                                            <td><a href=""><%out.print(c.getIdCdeCli());%></a> </td>
+                                            <td><a href="ServletCommandeDetail?idCde=<%out.print(c.getIdCdeCli());%>"><%out.print(c.getIdCdeCli());%></a> </td>
                                             <td><%out.print(c.getDateCdeCli());%></td>
                                             <td><%out.print(c.getDateRetrait());%></td>
-                                            <!--<td>100</td>-->
+                                            <td><%out.print(c.getPrixTotal());%></td>
                                             <td><%out.print(listT.get(c));%></td>
                                         </tr>
                                         <%}%>
@@ -113,6 +113,44 @@
                         </div>
                         <!-- /.card -->
                     </div>
+
+
+                <!--liste de courses-->
+                <a name="listeC"><i class="far fa-hand-point-down"></i>Listes de courses</a>
+                <div class="col-md-12">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <h3 class="profile-username text-center">Les listes de courses</h3>
+
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <!---循环Commandes termines-->
+                                <table style="text-align: center">
+                                    <thead>
+                                    <tr>
+                                        <th>Nom de liste</th>
+                                        <th>Date de création</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!--循环lsite-->
+                                        <tr>
+                                            <td>
+                                                <a href="pageListeC.jsp" >nomListe1</a>
+                                            </td>
+                                            <td>
+                                                01/01/2021
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </ul>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
 
 
                 <!--Preference的锚点-->

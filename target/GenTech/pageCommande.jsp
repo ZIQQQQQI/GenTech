@@ -176,6 +176,10 @@
                         <a href="#pref"><i class="nav-icon far fa-circle text-info"></i>
                         habitude</a>
                     </li>
+                    <li class="nav-item">
+                        <a href="ServletClickAjouterList"><i class="nav-icon far fa-circle text-info"></i>
+                            liste des courses</a>
+                    </li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->
