@@ -48,25 +48,12 @@ public class DaoPanier {
      * @date 2021/3/30 9:00
      * @description
      */
-    public void modifierQtePanier(String emailClient,int qte,String operation,String codeProd){
-        System.out.println(emailClient);
-        System.out.println(qte);
-        System.out.println(operation);
-        System.out.println(codeProd);
+    public void modifierQtePanier(String emailClient,Long qte,Integer codeProd){
+
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
         String sql="update panier set quantite =? where emailClient=? and codeProduit=?";
-
-        System.out.println(sql);
-        if(operation=="add"){
-            qte = qte+1;
-            session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,emailClient).setParameter(3,codeProd).executeUpdate();
-            System.out.println(sql);
-        }
-        else if(operation=="minus"){
-            qte = qte-1;
-            session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,emailClient).setParameter(3,codeProd).executeUpdate();
-        }
+        session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,emailClient).setParameter(3,codeProd).executeUpdate();
 
         t.commit();
         session.close();

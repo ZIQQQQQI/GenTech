@@ -73,7 +73,7 @@
                             <tr>
                                 <!--循环produit-->
                                 <td><%out.print(p.getLibelleProduit());%></td>
-                                <td><input type="number" min="0" max="99" value="<%out.print(list.get(p));%>"></td>
+                                <td><input type="number" name="changeQte" min="1" max="99" idc="<%out.print(p.getCodeProduit());%>" value="<%out.print(list.get(p));%>"></td>
 <%--                                <td><a href="ServletModifierPainer?codeProduit=<%out.print(p.getCodeProduit());%>&qte=<%out.print(list.get(p));%>&operation=minus"><i class="fas fa-minus"></i></a> <%out.print(list.get(p));%> <a href="ServletModifierPainer?codeProduit=<%out.print(p.getCodeProduit());%>&qte=<%out.print(list.get(p));%>&operation=add"><i class="fas fa-plus"></i></a></td>--%>
                                 <td>€<%out.print(df.format(p.getPrixVente()*list.get(p)));%></td>
 
@@ -224,7 +224,7 @@
     </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-
+<script src="js/fctValidePanier.js"></script>
 <!-- jQuery -->
 <script src="Front-End/resources/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->

@@ -115,6 +115,44 @@
                     </div>
 
 
+                <!--liste de courses-->
+                <a name="listeC"><i class="far fa-hand-point-down"></i>Listes de courses</a>
+                <div class="col-md-12">
+                    <div class="card card-primary card-outline">
+                        <div class="card-body box-profile">
+                            <h3 class="profile-username text-center">Les listes de courses</h3>
+
+                            <ul class="list-group list-group-unbordered mb-3">
+                                <!---循环Commandes termines-->
+                                <table style="text-align: center">
+                                    <thead>
+                                    <tr>
+                                        <th>Nom de liste</th>
+                                        <th>Date de création</th>
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!--循环lsite-->
+                                        <tr>
+                                            <td>
+                                                <a href="pageListeC.jsp" >nomListe1</a>
+                                            </td>
+                                            <td>
+                                                01/01/2021
+                                            </td>
+                                        </tr>
+
+                                    </tbody>
+                                </table>
+                            </ul>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+
+
                 <!--Preference的锚点-->
                 <a name="pref"><i class="far fa-hand-point-down"></i>Préférences</a>
                 <div class="row">

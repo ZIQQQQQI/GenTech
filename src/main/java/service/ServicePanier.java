@@ -76,4 +76,9 @@ public class ServicePanier {
         return res;
     }
 
+
+    public  void changeQte(String emailClient,Long qte,Integer codeProd){
+        this.daoPanier.modifierQtePanier(emailClient,qte,codeProd);
+    }
+
 }

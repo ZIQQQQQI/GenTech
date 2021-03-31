@@ -8,16 +8,12 @@
 */
 function preference(){
     var xhr = new XMLHttpRequest();
-
     var url = "ServletPreference?idPP="+this.getAttribute("idppp");
     var id=this.getAttribute("idppp")
     var elt = document.getElementById("addPre");
     var block=this
     var c = parseInt(elt.innerHTML);
-
     var d1= document.getElementById("addPreference");
-
-
     xhr.open("GET", url,true);
     xhr.onload = function(){
         if (xhr.status === 200) {
