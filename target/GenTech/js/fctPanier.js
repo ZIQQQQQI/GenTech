@@ -13,6 +13,7 @@ function addProduit(){
 
     var elt = document.getElementById("addPan");
     var count = parseInt(elt.innerHTML);
+    var d1= document.getElementById("addPanier");
 
     if(email!="null"){
 
@@ -22,10 +23,13 @@ function addProduit(){
             if (xhr.status === 200) {
                 count= count+1;
                 elt.innerHTML=count.toString();
+
                 if(xhr.responseText=="success"){
                     alert("exsit dans votre panier!")
                 }else {
                     alert("success d'ajouter")
+                    var content = "<div class='media'><div class='media-body'><h3 class='dropdown-item-title'><span id='"+idp+"'>"+xhr.responseText+"<i name='minusPan' class='far fa-minus-square' style='text-align: right'  idSupPan='"+idp+"'></i></span>"+"</h3></div></div>";
+                    d1.insertAdjacentHTML('beforeend',content);
                 }
 
             }}
@@ -34,34 +38,6 @@ function addProduit(){
         alert("S'il vous plait,Connectez-vous d'abord");
     }
 }
-function supprimerPan(){
-    var xhr = new XMLHttpRequest();
-
-    var url = "ServletSupprimerPan?idSupPan="+this.getAttribute("idSupPan");
-
-    //alert(this.getAttribute("idSupPan"));
-    var idlistpan = this.getAttribute("idSupPan")+"listpan";
-    //alert(idlistpan);
-
-    var elt = document.getElementById("addPan");
-    var c = parseInt(elt.innerHTML);
-    //alert(c);
-    xhr.open("GET", url,true);
-    xhr.onload = function(){
-        if (xhr.status === 200)
-        {
-            c= c-1;
-            //alert(c);
-            var zone = document.getElementById(idlistpan);
-            zone.innerHTML="";
-
-            elt.innerHTML=c.toString();
-        }
-
-    };
-    xhr.send();
-}
-
 
 
 
@@ -71,12 +47,6 @@ document.addEventListener("DOMContentLoaded", () => {
     var produitAdd = document.getElementsByName("produidIdAdd");
     for(j =0;j< produitAdd.length; j++){
         produitAdd[j].addEventListener("click",addProduit);
-    }
-
-
-    var tab1 = document.getElementsByName("minusPan");
-    for(j =0; j<tab1.length; j++){
-        tab1[j].addEventListener("click",supprimerPan);
     }
 
 

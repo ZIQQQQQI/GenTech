@@ -5,6 +5,14 @@
   Time: 16:54
   To change this template use File | Settings | File Templates.
 --%>
+<%--/*--%>
+<%--*@param nomCate--%>
+<%--*@return metier.Rayon--%>
+<%--*@author Tu--%>
+<%--*@description--%>
+<%--*@exception--%>
+<%--*@date 30/03/2021 10:54--%>
+<%--*/--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -150,6 +158,6 @@
     <!-- /.control-sidebar -->
 </div>
 
-
+<script type="text/JavaScript" src="js/fctRayon.js"></script>
 </body>
 </html>

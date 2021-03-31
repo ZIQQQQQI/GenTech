@@ -104,7 +104,7 @@
                     <span class="badge badge-danger navbar-badge" id="addPan"><%out.print(panier.size()); %></span>
                 </a>
                 <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
+                <div id="addPanier">
                     <%
                         for (Produit p:panier
                         ) {
@@ -132,7 +132,7 @@
                     </div>
                     <% }//fin for panier%>
 
-
+                    </div>
                     <div class="dropdown-divider"></div>
                     <a href="ServletPanierDetail">Valider mon panier</a>
                 </div>
@@ -405,5 +405,6 @@
 <!-- AdminLTE for demo purposes -->
 <script src="Front-End/resources/dist/js/demo.js"></script>
 <script type="text/JavaScript" src="js/fctPanier.js"></script>
+<script type="text/JavaScript" src="js/fctPanierSup.js"></script>
 </body>
 </html>
