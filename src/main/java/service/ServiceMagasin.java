@@ -20,4 +20,6 @@ public class ServiceMagasin {
      * @description trouver tous les magasin
      */
     public ArrayList<Magasin> listMagasin(){return this.daoMagasin.listeMagasin();}
+
+
 }

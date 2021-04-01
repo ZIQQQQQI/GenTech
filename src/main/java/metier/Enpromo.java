@@ -48,6 +48,14 @@ public class Enpromo implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "Enpromo{" +
+                "codeProduit=" + codeProduit +
+                ", idPromo=" + idPromo +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(codeProduit, idPromo);
     }

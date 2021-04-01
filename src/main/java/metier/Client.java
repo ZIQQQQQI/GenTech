@@ -20,6 +20,7 @@ public class Client implements Serializable {
     private String mdpClient;
     private String telClient;
     private String IdMagasin;
+    private int score;
 
 
     @Basic
@@ -79,6 +80,16 @@ public class Client implements Serializable {
 
     public void setTelClient(String telClient) {
         this.telClient = telClient;
+    }
+
+    @Basic
+    @Column(name = "score", nullable = true, length = -1)
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     @Override
