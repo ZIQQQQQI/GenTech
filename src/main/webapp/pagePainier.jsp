@@ -57,12 +57,14 @@
                             <tr>
                                 <th>Nom de Produit</th>
                                 <th>Qty</th>
+                                <th>Prix Unité</th>
                                 <th>Subtotal</th>
                                 <th>Economies</th>
+                                <th>Option</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <%DecimalFormat df   =new DecimalFormat("00.00");
+                            <%DecimalFormat df =new DecimalFormat("00.00");
                                 HashMap<Produit,Integer> list=(HashMap<Produit,Integer>)request.getAttribute("listProduitPanier");
                                 HashMap<Produit,Promotion> produitPromo =(HashMap<Produit, Promotion>)request.getAttribute("listProduitPromo");
                                 Double sum=0.00;
@@ -72,20 +74,24 @@
                                 sum=sum+ p.getPrixVente()*list.get(p);%>
                             <tr>
                                 <!--循环produit-->
-                                <td><%out.print(p.getLibelleProduit());%></td>
-                                <td><input type="number" name="changeQte" min="1" max="99" idc="<%out.print(p.getCodeProduit());%>" value="<%out.print(list.get(p));%>"></td>
-<%--                                <td><a href="ServletModifierPainer?codeProduit=<%out.print(p.getCodeProduit());%>&qte=<%out.print(list.get(p));%>&operation=minus"><i class="fas fa-minus"></i></a> <%out.print(list.get(p));%> <a href="ServletModifierPainer?codeProduit=<%out.print(p.getCodeProduit());%>&qte=<%out.print(list.get(p));%>&operation=add"><i class="fas fa-plus"></i></a></td>--%>
-                                <td>€<%out.print(df.format(p.getPrixVente()*list.get(p)));%></td>
+                                <td><img style="height:100px;width: 100px;padding:15px;" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1"><%out.print(p.getLibelleProduit());%></td>
+                                <td style="vertical-align:middle;"><input type="number" name="changeQte" min="1" max="99" idc="<%out.print(p.getCodeProduit());%>" value="<%out.print(list.get(p));%>"></td>
+                                <td style="vertical-align:middle;">€<%out.print(p.getPrixVente());%></td>
+                                <td style="vertical-align:middle;">€<%out.print(df.format(p.getPrixVente()*list.get(p)));%></td>
 
                             <%if(produitPromo.containsKey(p)){
                                 %>
-                                <td>€<%out.print(df.format(economies=p.getPrix()*produitPromo.get(p).getReduction()*list.get(p)));
+                                <td style="vertical-align:middle;">€<%out.print(df.format(economies=p.getPrixVente()*produitPromo.get(p).getReduction()*list.get(p)));
                                     sumEco=sumEco+economies;%></td>
-                                    <%} else{ economies=0.00;
+                                    <%} else{economies=0.00;
                                         sumEco=sumEco+economies;%>
-                                <td>€<%out.print(df.format(economies));%><td>
-                                    <%}}%>
+                                <td style="vertical-align:middle;">€<%out.print(df.format(economies));%></td>
+                                    <%}%>
+
+                                <td style="vertical-align:middle;"><a href="ServletDeletePanier?id=<%out.print(p.getCodeProduit());%>">Suppprimer</a></td>
                             </tr>
+                                <%}//fin for%>
+
                             </tbody>
                         </table>
                     </div>
@@ -99,6 +105,65 @@
                     <!-- /.col -->
                     <div class="col-12">
                         <p class="lead">Prix Commande</p>
+                        <script>
+                            window.onload=verifierPoint;
+                            function verifierPoint(){
+                                var btn=document.getElementById("reduction");
+                                if (<%out.print(client.getScore()+"<10");%>){
+                                    btn.disabled="disabled"
+                                }
+
+                            }
+                            document.addEventListener("DOMContentLoaded",()=>{
+                                var btn=document.getElementById("reduction");
+                                btn.addEventListener("click",avoirReduction);
+
+                                var btnS=document.getElementById("supprimer");
+                                btnS.addEventListener("click",suppReduction);
+                            })
+
+                            function avoirReduction(){
+                                var btn=document.getElementById("reduction");
+                                var btn2=document.getElementById("supprimer");
+                                var inReduction=document.getElementById("avoirReductionOuPas");
+
+                                btn.style.display="none";
+                                btn2.style.display="block";
+                                inReduction.value="1";
+
+                                var total= document.getElementById("total");
+                                var montantReduction=document.getElementById("montantReduction");
+                                montantReduction.style.display="block";
+                                var score=<%out.print(client.getScore());%>
+                                var point=document.getElementById("point");
+                                point.innerHTML=score-10;
+                                var total=<%out.print(df.format(sum-sumEco));%>;
+                                var totalaff =document.getElementById("totalAff");
+                                totalaff.innerHTML="€"+<%out.print(df.format(sum-sumEco-5.00));%>;
+                            }
+
+                            function suppReduction(){
+                                var btn=document.getElementById("supprimer");
+                                var btn2=document.getElementById("reduction");
+                                var inReduction=document.getElementById("avoirReductionOuPas");
+                                btn.style.display="none";
+                                btn2.style.display="block";
+                                inReduction.value="0";
+
+
+                                var total= document.getElementById("total");
+                                var montantReduction=document.getElementById("montantReduction");
+                                montantReduction.style.display="none";
+
+                                var point=document.getElementById("point");
+                                var score=parseInt(point.innerHTML)+10;
+                                point.innerHTML=<%out.print(client.getScore());%>;
+                                var totalaff =document.getElementById("totalAff");
+                                var total=totalaff.innerHTML;
+                                totalaff.innerHTML="€"+<%out.print(df.format(sum-sumEco));%>;
+                            }
+
+                        </script>
 
                         <div class="table-responsive">
                             <table class="table">
@@ -106,18 +171,25 @@
                                     <th style="width:50%">Total original:</th>
                                     <td>€<%out.print(df.format(sum));%></td>
                                 </tr>
+                                <tr>
                                 <th>Promotion:</th>
                                 <td>€<%out.print(df.format(sumEco));%></td>
                                 </tr>
                                 <tr>
-                                    <th>Total:</th>
-                                    <td><b>€<%out.print(df.format(sum-sumEco));%></b></td>
-                                </tr>
-                                <tr>
                                     <th>Point fidélité:</th>
-                                    <td><%out.print(client.getScore());%> <button type="button" class="btn btn-primary float-right">Avoir la redution</button></td>
+
+                                    <td><span id="point"><%out.print(client.getScore());%></span> <span><button type="button" style="display: block" class="btn btn-primary float-right" id="reduction">Avoir la redution</button></span> <span><button type="button" style="display: none"class="btn btn-primary float-right" id="supprimer">Supprimer la redution</button></span></td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>Chaque commande peut être réduite de 5 euros avec 10 points</td>
+                                    <td><span><p id="montantReduction" style="display: none">5€</p></span></td>
                                 </tr>
                                 <tr>
+                                <th>Total:</th>
+                                <td><b id="totalAff">€<%out.print(df.format(sum-sumEco));%></b></td>
+                                </tr>
                             </table>
                         </div>
                     </div>
@@ -125,11 +197,12 @@
                 </div>
                 <!-- /.row -->
 
+
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
                     <div class="col-12">
-                        <a href="" rel="noopener" target="_blank" class="btn btn-default">Retour</a>
-                        <a href="ServletModifierPainer?operation=annuler">Annuler</a>
+                        <a href="/GenTech/" rel="noopener" target="_blank" class="btn btn-default">Retour</a>
+
                         <button id="btnValider" type="button" class="btn btn-success float-right"></i>Suivant
                         </button>
                     </div>
@@ -138,7 +211,6 @@
                 <script type="text/javascript">
                     function OpenDiv(){
                         document.getElementById("zoneModif").style.display="block";}
-
                     document.addEventListener("DOMContentLoaded", () => {
                         document.getElementById("btnValider").addEventListener("click",OpenDiv);
                     })
@@ -147,6 +219,7 @@
                 <div id="zoneModif" style="display: none;">
                     <div class="col-12">
                         <h5>Confirmer le magasin de retrait</h5>
+
                         <table class="table">
                             <thead>
                             <tr>
@@ -165,10 +238,12 @@
                         </table>
                     </div>
 
-
+                    <form method="get" action="ServletConfirmerCommande">
                     <div class="col-12">
                         <h5>Choisir le creneau de retrait</h5>
-                        <table class="table">
+
+                            <input type="hidden" name="avoirReductionOuPas" id="avoirReductionOuPas" value="0">
+                            <table class="table">
                             <thead>
                             <tr>
                                 <th>Date</th>
@@ -178,9 +253,10 @@
                             <tbody>
                             <tr>
                                 <td><div class="form-group">
-                                    <select class="form-control custom-select">
+
+                                    <select class="form-control custom-select" name="dateRetrait">
                                         <%Date date=new Date();
-                                            SimpleDateFormat dateFormat=new SimpleDateFormat("dd-MM-YYYY");
+                                            SimpleDateFormat dateFormat=new SimpleDateFormat("dd/MM/YYYY");
                                             Calendar calendar=Calendar.getInstance();
                                             calendar.setTime(new Date());
                                             for (int i = 0; i < 15; i++) { %>
@@ -191,10 +267,11 @@
 
                                         <%}%>
                                     </select>
+
                                 </div>
                                 </td>
                                 <td><div class="form-group">
-                                    <select id="inputStatus" class="form-control custom-select">
+                                    <select id="inputStatus" class="form-control custom-select" name="idCreneau">
                                         <!--循环 填入时间-->
                                         <%
                                             ArrayList<Creneau> listC=(ArrayList<Creneau>)request.getAttribute("listcreneau");
@@ -210,13 +287,15 @@
                             </tr>
                             </tbody>
                         </table>
+
                     </div>
                     <div class="row no-print">
                         <div class="col-12">
-                            <button type="button" class="btn btn-success float-right"><i class="far fa-calendar-alt"></i> Valider
+                            <button type="submit" class="btn btn-success float-right"><i class="far fa-calendar-alt"></i> Valider
                             </button>
                         </div>
                     </div>
+                    </form>
                 </div>
                 <!-- /.invoice -->
             </div><!-- /.col -->
@@ -224,7 +303,7 @@
     </div><!-- /.container-fluid -->
 </section>
 <!-- /.content -->
-<script src="js/fctValidePanier.js"></script>
+
 <!-- jQuery -->
 <script src="Front-End/resources/plugins/jquery/jquery.min.js"></script>
 <!-- Bootstrap 4 -->
@@ -233,6 +312,7 @@
 <script src="Front-End/resources/dist/js/adminlte.min.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="Front-End/resources/dist/js/demo.js"></script>
+<script src="js/fctValidePanier.js"></script>
 
 </body>
 </html>

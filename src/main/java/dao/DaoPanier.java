@@ -9,6 +9,7 @@ import metier.Panier;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 
 public class DaoPanier {
@@ -105,7 +106,6 @@ public class DaoPanier {
 
     }
 
-
     /*
      * @param emailClient
 	 * @param codeProduit
@@ -129,6 +129,28 @@ public class DaoPanier {
             System.out.println("----------------------------");
         }
         transaction.commit();
+        session.close();
+
+    }
+    /*
+     * @param email
+    	 * @param idP
+    	 * @param qte
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 17:41
+     * @description
+     */
+    public void ajouterAvecQte(String email, Integer idP, Integer qte){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t= session.beginTransaction();
+        Panier panier=new Panier();
+        panier.setQuantite(qte.longValue());
+        panier.setCodeProduit(idP);
+        panier.setEmailClient(email);
+        panier.setQuantite((long)qte);
+        session.save(panier);
+        t.commit();
         session.close();
 
     }

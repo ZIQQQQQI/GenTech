@@ -28,7 +28,7 @@ function addProduit(){
                     alert("exsit dans votre panier!")
                 }else {
                     alert("success d'ajouter")
-                    var content = "<div class='media'><div class='media-body'><h3 class='dropdown-item-title'><span id='"+idp+"'>"+xhr.responseText+"<i name='minusPan' class='far fa-minus-square' style='text-align: right'  idSupPan='"+idp+"'></i></span>"+"</h3></div></div>";
+                    var content = "<div class='media'><div class='media-body'><h3 class='dropdown-item-title' style='color:#666666'><span id='"+idp+"'><i name='minusPan' class='far fa-trash-alt' style='float: left;margin-top: 18px;margin-right:10px' idSupPan='"+idp+"'></i><img style='height:50px;width: 50px;padding:10px;' src='./images/"+idp+".jpg' alt='imgProd1'>"+xhr.responseText+"</span><hr style='margin-top: 5px;margin-bottom: 5px;'></h3></div></div>";
                     d1.insertAdjacentHTML('beforeend',content);
                 }
 

@@ -31,15 +31,19 @@ public class UnitTest {
 //        DaoPanier daoPanier=new DaoPanier();
 //        daoPanier.modifierQtePanier("bugubugu@gamil.com",10L,8);
 
-        DaoListeCourse daoListeCourse=new DaoListeCourse();
-        Listecourse listecourse=new Listecourse();
-        String id=new RandomString().getRandomString(12);
-        listecourse.setIdListe(id);
-        listecourse.setEmailClient("bugubugu@gamil.com");
-        listecourse.setLibelleListe("legume");
-        String date= DateString.dateString();
-        listecourse.setDatecree(date);
-        daoListeCourse.creerUneListe(listecourse);
+//        DaoListeCourse daoListeCourse=new DaoListeCourse();
+//        Listecourse listecourse=new Listecourse();
+//        String id=new RandomString().getRandomString(12);
+//        listecourse.setIdListe(id);
+//        listecourse.setEmailClient("bugubugu@gamil.com");
+//        listecourse.setLibelleListe("legume");
+//        String date= DateString.dateString();
+//        listecourse.setDatecree(date);
+//        daoListeCourse.creerUneListe(listecourse);
+//        DaoPostIt daoPostIt=new DaoPostIt();
+//        daoPostIt.updatePost(1,1,20);
+        DaoProduit daoProduit=new DaoProduit();
+        ArrayList<Produit> list=daoProduit.listProduitEnPromo();
 
 
 //        //test

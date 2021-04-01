@@ -25,7 +25,7 @@ function preference(){
             var heart=document.getElementById(id);
             heart.style.display="block";
 
-            var content = "<div class='media'><div class='media-body'><h3 class='dropdown-item-title'><span id='"+id+"'> • "+xhr.responseText+"<i name='minusPre' class='far fa-minus-square' style='text-align: right'  idSup='"+id+"'></i></span>"+"</h3></div></div>";
+            var content = "<div class='media'><div class='media-body'><h3 class='dropdown-item-title' style='color:#666666'><span id='"+id+"'><i name='minusPre' class='far fa-trash-alt' style='float: left;margin-top: 18px;margin-right:10px'  idSup='"+id+"'></i><img style='height:50px;width: 50px;padding:10px;' src='./images/"+id+".jpg' alt='imgProd1'>"+xhr.responseText+"</span><hr style='margin-top: 5px;margin-bottom: 5px;'></h3></div></div>";
 
             d1.insertAdjacentHTML('beforeend',content);
 
