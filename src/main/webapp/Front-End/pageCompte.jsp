@@ -2,7 +2,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.HashMap" %>
 <%@ page import="metier.Rayon" %>
-<%@ page import="metier.Produit" %><%--
+<%@ page import="metier.Produit" %>
+<%@ page import="metier.Listecourse" %><%--
   Created by IntelliJ IDEA.
   User: olivi
   Date: 2021/3/24
@@ -129,22 +130,37 @@
                                     <tr>
                                         <th>Nom de liste</th>
                                         <th>Date de création</th>
+                                        <th>Supprimer</th>
 
                                     </tr>
                                     </thead>
                                     <tbody>
                                     <!--循环lsite-->
+                                    <%
+                                        ArrayList<Listecourse> listecourses=(ArrayList<Listecourse>)request.getAttribute("listeCourse");
+
+                                        for (Listecourse l:listecourses
+                                             ) {
+
+
+                                    %>
                                         <tr>
                                             <td>
-                                                <a href="pageListeC.jsp" >nomListe1</a>
+                                                <a href="ServletListeCourseDetail?id=<%out.print(l.getIdListe());%>" ><%out.print(l.getLibelleListe());%></a>
                                             </td>
                                             <td>
-                                                01/01/2021
+                                                <%out.print(l.getDatecree());%>
+                                            </td>
+                                            <td>
+                                                <a href="ServletSupprimerListe?id=<%out.print(l.getIdListe());%>" ><i class="far fa-trash-alt"></i></a>
                                             </td>
                                         </tr>
-
+                                        <%
+                                            }//fin for listecourse
+                                        %>
                                     </tbody>
-                                </table>
+                                </table><br/>
+                                <a href="ServletClickAjouterList"><button class="btn btn-info">créer une nouvelle liste de courses</button></a>
                             </ul>
                         </div>
                         <!-- /.card-body -->

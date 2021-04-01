@@ -46,12 +46,14 @@ public class ServletCreerList extends HttpServlet {
                 Postit postit=new Postit();
                 postit.setLibellePost(post);
                 postit.setIdListe(id);
+                postit.setQuantite(0);
                 servicePostit.creerPost(postit);
 
             }
 
 
         }
+        req.getRequestDispatcher("ServletCompteProfil").forward(req, resp);
        
 
     }

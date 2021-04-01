@@ -21,13 +21,11 @@ public class ServiceCompte {
 
     public HashMap<Commande,String> listCommandeEnCoursOuTermine (String emailClient, String etat){
         ArrayList<Commande> tousLesCommandes =daoClientCommande.listCommandeEnCoursOuTermine(emailClient,etat);
-        System.out.println(tousLesCommandes);
         HashMap<Commande,String> res=new HashMap<>();
         for(Commande c:tousLesCommandes){
             String libelleMagasin=new DaoMagasin().unMagasin(c.getIdMagasin()).getLibelleMagasin();
             res.put(c,libelleMagasin);
         }
-        System.out.println(res);
         return res;
     }
 

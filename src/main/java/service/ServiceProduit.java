@@ -125,4 +125,18 @@ public class ServiceProduit {
     public Integer idProduit(String nomProduit){
         return(daoProduit.rechercherNomPro(nomProduit).getCodeProduit());
     }
+
+
+    /*
+     * @param codeP
+     * @param list
+     * @return java.lang.Boolean
+     * @author TANG
+     * @date 2021/4/1 21:07
+     * @description
+     */
+    public Boolean unProduitDansPrefre(Integer codeP,ArrayList<Produit> list){
+        Produit p=daoProduit.rechercheUnProduit(codeP);
+        return list.contains(p);
+    }
 }
