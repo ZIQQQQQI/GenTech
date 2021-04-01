@@ -88,7 +88,6 @@
                               %>
                             <span style="text-decoration-line: line-through;color: #1d455b"><%out.print(p.getPrixVente());%> € </span>
                             <span ><% out.print(df.format(p.getPrixVente()*0.8));%> € </span>
-
                             <%
                             }else{
                             %>

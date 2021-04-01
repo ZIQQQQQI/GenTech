@@ -19,9 +19,7 @@ public class Ligneachat implements Serializable {
     private Integer idProduit;
     private Long qteAchat;
     private Long qteReste;
-
-
-
+    
     @Basic
     @Column(name = "idCdeAchat", nullable = true, length = -1)
     public String getIdCdeAchat() {
