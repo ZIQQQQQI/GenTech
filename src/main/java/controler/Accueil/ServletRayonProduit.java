@@ -24,6 +24,14 @@ import java.util.HashMap;
 
 @WebServlet("/ServletRayonProduit")
 public class ServletRayonProduit extends HttpServlet {
+    /*
+     * @param request
+    	 * @param response
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:13
+     * @description obtenir les produit selon rayons
+     */
     @Override
     protected void doGet (HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
     {

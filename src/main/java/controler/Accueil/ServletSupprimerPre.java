@@ -18,6 +18,14 @@ import java.util.logging.Logger;
 
 @WebServlet("/ServletSupprimerPre")
 public class ServletSupprimerPre extends HttpServlet {
+    /*
+     * @param request
+    	 * @param response
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:15
+     * @description suppimer une preference d'un client
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

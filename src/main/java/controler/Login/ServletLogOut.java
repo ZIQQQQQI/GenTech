@@ -13,6 +13,14 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 @WebServlet("/ServletLogOut")
 public class ServletLogOut extends HttpServlet {
+    /*
+     * @param req
+    	 * @param resp
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:46
+     * @description log out clear session
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session=req.getSession();

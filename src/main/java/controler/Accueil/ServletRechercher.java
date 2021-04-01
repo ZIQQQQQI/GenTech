@@ -25,6 +25,14 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 @WebServlet("/ServletRechercher")
 public class ServletRechercher extends HttpServlet {
+    /*
+     * @param request
+    	 * @param response
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:14
+     * @description recherche dan page d'accuiel
+     */
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("application/xml;charset=UTF-8");

@@ -22,6 +22,14 @@ import java.util.HashMap;
 
 @WebServlet("/ServletCreerList")
 public class ServletCreerList extends HttpServlet {
+    /*
+     * @param req
+    	 * @param resp
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:44
+     * @description creer une list course
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session=req.getSession();

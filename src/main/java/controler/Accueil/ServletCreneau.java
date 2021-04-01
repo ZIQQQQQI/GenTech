@@ -17,7 +17,14 @@ import java.io.IOException;
 
 @WebServlet("/ServletCreneau")
 public class ServletCreneau extends HttpServlet {
-
+    /*
+     * @param req
+    	 * @param resp
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:11
+     * @description update creaneau pour une commande
+     */
     @Override
         protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
             //----------creneau list
@@ -29,11 +36,8 @@ public class ServletCreneau extends HttpServlet {
                 ServiceCreneau sc = new ServiceCreneau();
                 String idCde = (String)req.getParameter("idCde");
                 String idC = (String)req.getParameter("idCreneau");
-                System.out.println(idC);
-                System.out.println(idCde);
                 //mettre à jour le commande choisi
                 sc.UpdateCreneau(idC,idCde);
-                System.out.println("ok");
                 req.getRequestDispatcher("ServletCommandeDetail?idCde="+idCde).forward(req, resp);
 
             }catch(Exception ex){
