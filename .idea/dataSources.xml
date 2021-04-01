@@ -35,5 +35,14 @@ C:/CS/JAVA/test/GenTechTang/src/main/resource/GenTech.cfg.xml</remarks>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://localhost:3306/GenTech</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="liuyue" uuid="0007fcc1-2f98-4e8f-b4a2-83c8e8c4b69f">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://etu-web2.ut-capitole.fr:3306</jdbc-url>
+      <jdbc-additional-properties>
+        <property name="APPROVED_DRIVER" value="mysql.8" />
+      </jdbc-additional-properties>
+    </data-source>
   </component>
 </project>

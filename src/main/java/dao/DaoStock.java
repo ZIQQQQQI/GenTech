@@ -5,7 +5,10 @@ package dao;/*
  */
 
 import Outil.HibernateConn;
-import metier.*;
+import metier.Commande;
+import metier.Entrepot;
+import metier.Ligneachat;
+import metier.Produit;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -13,7 +16,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class DaoStock {
-    public void ajouterCommande(String idCdeachat,String dateCdeAchat,String dateCdeArrive,String idMagasin){
+    public void ajouterCommande(String idCdeachat,String dateCdeAchat,String dateCdeArrive,String etatCdeAchat,String idMagasin){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction transaction=session.beginTransaction();
         Entrepot en =new  Entrepot();
@@ -21,6 +24,7 @@ public class DaoStock {
         en.setEtatCdeAchat(idCdeachat);
         en.setDateCdeAchat(dateCdeAchat);
         en.setDateCdeArrive(dateCdeArrive);
+        en.setEtatCdeAchat(etatCdeAchat);
         en.setIdMagasin(idMagasin);
         try{
             session.save(en);
@@ -57,17 +61,49 @@ public class DaoStock {
     }
 
 
+        public ArrayList<Ligneachat> achatproduitdeja (Integer idcat,String idachat,Integer codeproduit) {
+            Session session = HibernateConn.getSessionFactory().getCurrentSession();
+            Transaction t = session.beginTransaction();
+
+            ArrayList<Ligneachat> listachatpr = null;
+
+            String sql = "Select la.*,e.idCdeAchat\n" +
+                    "from ligneachat la ,entrepot e, produit p,rayon r,rayon r2\n" +
+                    "where e.idCdeAchat=la.idCdeAchat\n" +
+                    "and r.numcate=p.categorie \n" +
+                    "and r.idparant = r2.numcate\n" +
+                    "and p.codeProduit=la.idProduit\n" +
+                    "and str_to_date(dateCdearrive,'%d/%m/%Y') <date_format(curdate(),'%Y-%m-%d')\n" +
+                    "and r2.numcate=?\n" +
+                    "and e.idCdeAchat=?\n" +
+                    "and p.codeProduit=?";
+            try {
+                listachatpr = (ArrayList<Ligneachat>) session.createSQLQuery(sql).addEntity(Ligneachat.class).setParameter(1, idcat).setParameter(2,idachat).setParameter(3,codeproduit).list();
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.out.println("----------------");
+                System.out.println("Daostockdeja");
+                System.out.println("----------------");
+            }
+
+            t.commit();
+            session.close();
+            return listachatpr;
+        }
+
 
         public ArrayList<Ligneachat> ligneachatsProduit(Integer produitId){
             Session session = HibernateConn.getSessionFactory().getCurrentSession();
             Transaction t = session.beginTransaction();
-            String  sql="Select la.* " +
-                    "from ligneachat la ,entrepot e, produit p " +
-                    "where e.idCdeAchat=la.idCdeAchat " +
-                    "and p.codeProduit=la.idProduit" +
-                    " and str_to_date(dateCdearrive,'%d/%m/%Y') <date_format(curdate(),'%Y-%m-%d') " +
-                    "and p.codeProduit=? " +
-                    "order by str_to_date(dateCdearrive,'%d/%m/%Y') asc";
+            String  sql="Select la.*\n" +
+                    "from ligneachat la ,entrepot e, produit p,rayon r\n" +
+                    "where e.idCdeAchat=la.idCdeAchat\n" +
+                    "and r.numcate=p.categorie \n" +
+                    "and p.codeProduit=la.idProduit\n" +
+                    "and str_to_date(dateCdearrive,'%d/%m/%Y') <date_format(curdate(),'%Y-%m-%d')\n" +
+                    "and p.codeProduit=?\n" +
+                    "order by str_to_date(dateCdearrive,'%d/%m/%Y') desc\n" +
+                    "limit 1";
             ArrayList<Ligneachat> l=null;
             try{
         l = (ArrayList<Ligneachat>) session.createSQLQuery(sql).addEntity(Ligneachat.class).setParameter(1, produitId).list();
@@ -108,7 +144,6 @@ public class DaoStock {
         return l;
     }
 
-
         public ArrayList<HashMap<Ligneachat, Entrepot>> listCommLigne(ArrayList<Ligneachat> list){
             ArrayList<HashMap<Ligneachat, Entrepot>> l=new ArrayList<>();
             Session session = HibernateConn.getSessionFactory().getCurrentSession();
@@ -125,6 +160,7 @@ public class DaoStock {
             session.close();
             return  l;
         }
+
 
     public ArrayList<Entrepot> achatdejaDate(Integer codeproduit) {
         Session session = HibernateConn.getSessionFactory().getCurrentSession();
@@ -149,18 +185,17 @@ public class DaoStock {
         return listEp;
     }
 
-
     public ArrayList<Entrepot> Toutlistachat() {
         Session session = HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t = session.beginTransaction();
         ArrayList<Entrepot> toutacha = null;
-        String sql = "select * from entrepot";
+        String sql = "select entrepot.* from entrepot";
         try{
             toutacha=(ArrayList<Entrepot>) session.createSQLQuery(sql).addEntity(Entrepot.class).list();
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("----------------------");
-            System.out.println("DaoRayon listeachat");
+            System.out.println("DaoRayon listeEntrepot");
             System.out.println("----------------------");
         }
         t.commit();
@@ -195,7 +230,7 @@ public class DaoStock {
     public void updateLigneAchat(String idCde,Integer idProduit,long qte){
         Session session = HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t = session.beginTransaction();
-        String sql="update ligneachat set qteRest=? where idCdeAchat=? and idProduit=?";
+        String sql="update ligneachat set qteReste=? where idCdeAchat=? and idProduit=?";
         try{
             session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,idCde).setParameter(3,idProduit).executeUpdate();
         }catch (Exception e){
@@ -206,6 +241,4 @@ public class DaoStock {
         t.commit();
         session.close();
     }
-
-
 }

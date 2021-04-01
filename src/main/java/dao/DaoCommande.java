@@ -5,7 +5,6 @@ package dao;/*
  */
 
 import Outil.HibernateConn;
-import Outil.RandomString;
 import metier.Client;
 import metier.Commande;
 import org.hibernate.Session;

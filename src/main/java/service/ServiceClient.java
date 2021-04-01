@@ -35,5 +35,8 @@ public class ServiceClient {
     public ArrayList<Client> allClient(){
         return daoClient.listClient();
     }
+    public void updateCli(String email, String idM){
+        daoClient.updateClient(email, idM);
+    }
 
 }

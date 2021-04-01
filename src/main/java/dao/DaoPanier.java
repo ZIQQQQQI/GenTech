@@ -5,14 +5,12 @@ package dao;/*
  */
 
 import Outil.HibernateConn;
-import metier.Magasin;
 import metier.Panier;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
-
-import static java.lang.Integer.parseInt;
 
 public class DaoPanier {
 
@@ -41,20 +39,34 @@ public class DaoPanier {
         return list;
     }
 
+    /*
+     * @param emailClient
+	 * @param qte
+	 * @param operation
+	 * @param codeProd
+     * @return
+     * @author SI
+     * @date 2021/3/30 9:00
+     * @description
+     */
+    public void modifierQtePanier(String emailClient,Long qte,Integer codeProd){
 
-    public void ajouer(String email,Integer idP){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
-        Panier panier=new Panier();
-        panier.setCodeProduit(idP);
-        panier.setEmailClient(email);
-        panier.setQuantite((long)1);
-        session.save(panier);
+        String sql="update panier set quantite =? where emailClient=? and codeProduit=?";
+        session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,emailClient).setParameter(3,codeProd).executeUpdate();
+
         t.commit();
         session.close();
-
     }
 
+    /*
+     * @param email
+     * @return void
+     * @author Si
+     * @date 2021/3/30 8:59
+     * @description
+     */
     public void supprimer (String email){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
@@ -73,16 +85,79 @@ public class DaoPanier {
 
     }
 
-    public void modifierQtePanier(String emailClient,Long qte,Integer codeProd){
-
+    /*
+     * @param email
+	 * @param idP
+     * @return void
+     * @author Tang
+     * @date 2021/3/30 8:59
+     * @description
+     */
+    public void ajouer(String email,Integer idP){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
-        String sql="update panier set quantite =? where emailClient=? and codeProduit=?";
-        session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,emailClient).setParameter(3,codeProd).executeUpdate();
-
+        Panier panier=new Panier();
+        panier.setCodeProduit(idP);
+        panier.setEmailClient(email);
+        panier.setQuantite((long)1);
+        session.save(panier);
         t.commit();
         session.close();
+
     }
+
+    /*
+     * @param emailClient
+	 * @param codeProduit
+     * @return void
+     * @author Tu
+     * @date 2021/3/30 8:59
+     * @description
+     */
+    public void supprimerPanier(String emailClient,Integer codeProduit)
+    {
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction transaction=session.beginTransaction();
+        String sql="Delete from panier where emailClient=? and codeProduit=?";
+
+        try {
+            session.createSQLQuery(sql).setParameter(1,emailClient).setParameter(2,codeProduit).executeUpdate();
+        }catch (Exception e){
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoPanier listPanier");
+            System.out.println("----------------------------");
+        }
+        transaction.commit();
+        session.close();
+
+    }
+    /*
+     * @param email
+    	 * @param idP
+    	 * @param qte
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 17:41
+     * @description
+     */
+    public void ajouterAvecQte(String email, Integer idP, Integer qte){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t= session.beginTransaction();
+        Panier panier=new Panier();
+        panier.setQuantite(qte.longValue());
+        panier.setCodeProduit(idP);
+        panier.setEmailClient(email);
+        panier.setQuantite((long)qte);
+        session.save(panier);
+        t.commit();
+        session.close();
+
+    }
+
+
+
+
 
 
 

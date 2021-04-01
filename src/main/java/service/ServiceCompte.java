@@ -8,7 +8,6 @@ import dao.DaoMagasin;
 import dao.DaoProduit;
 import dao.DaoRayon;
 import metier.Commande;
-import metier.Magasin;
 import metier.Produit;
 import metier.Rayon;
 
@@ -20,28 +19,15 @@ public class ServiceCompte {
     private DaoRayon dr=new DaoRayon();
     private DaoProduit daoProduit=new DaoProduit();
 
-    /*
-     *@param emailClient
-	 * @param etat
-     *@return java.util.HashMap<metier.Commande,java.lang.String>
-     *@author SI
-     *@date 28/03/2021 09:32
-     *@exception
-     *@description Rechercher la liste de commande en cours ou Termine
-    */
     public HashMap<Commande,String> listCommandeEnCoursOuTermine (String emailClient, String etat){
         ArrayList<Commande> tousLesCommandes =daoClientCommande.listCommandeEnCoursOuTermine(emailClient,etat);
-        System.out.println(tousLesCommandes);
         HashMap<Commande,String> res=new HashMap<>();
         for(Commande c:tousLesCommandes){
             String libelleMagasin=new DaoMagasin().unMagasin(c.getIdMagasin()).getLibelleMagasin();
             res.put(c,libelleMagasin);
         }
-        System.out.println(res);
         return res;
     }
-
-
 
     /*
      *@param emailClient
@@ -136,6 +122,7 @@ public class ServiceCompte {
 
     }
 
+
     /*
      *@param emailClient
      *@return
@@ -143,7 +130,7 @@ public class ServiceCompte {
      *@date 25/03/2021 21:08
      *@exception
      *@description Rechercher la repartition de  nutriScore
-    */
+     */
     public String repartitionNutriScore(String emailClient){
         ArrayList<Produit> tousLesProduit =daoProduit.produitsPourUnClient(emailClient);
         String s="";
@@ -173,8 +160,6 @@ public class ServiceCompte {
         }
         return s;
     }
-
-
     /*
      *@param emailClient
      *@return java.lang.String
@@ -182,7 +167,7 @@ public class ServiceCompte {
      *@date 28/03/2021 22:32
      *@exception
      *@description Rechercher des economies d'un client par mois
-    */
+     */
     public String economies(String emailClient){
         ArrayList<Commande> commandesCetAnnee=daoClientCommande.commandeCetAnnee(emailClient);
         String res="";
@@ -201,15 +186,18 @@ public class ServiceCompte {
         economies.put("12",(double)0);
         for(Commande c:commandesCetAnnee){
             String mois=c.getDateCdeCli().substring(3,5);
-           if(economies.containsKey(mois)) {
-               Double o=economies.get(mois);
-               Double xin=o+c.getEconomie();
-               economies.put(mois, xin);
-           }
+            if(economies.containsKey(mois)) {
+                Double o=economies.get(mois);
+                Double xin=o+c.getEconomie();
+                economies.put(mois, xin);
+            }
         }
         res= economies.get("01")+","+economies.get("02")+","+economies.get("03")+","+economies.get("04")+","+economies.get("05")+","+economies.get("06")+","+economies.get("07")+","+economies.get("08")+","+economies.get("09")+","+economies.get("10")+","+economies.get("11")+","+economies.get("12");
         return res;
     }
+
+
+
 
 
 

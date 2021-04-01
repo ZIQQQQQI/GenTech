@@ -1,11 +1,11 @@
-import dao.*;
+import dao.DaoClient;
+import dao.DaoProduit;
 import metier.Produit;
-import metier.Promotion;
 import metier.Rayon;
 import org.junit.Test;
-import service.*;
+import service.ServicePanier;
+import service.ServiceRayon;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,7 +19,7 @@ public class SiTest {
             //System.out.println(p.getCodeProduit());
         //}
 
-        DaoProduit dp=new DaoProduit();
+//        DaoProduit dp=new DaoProduit();
         //Produit p= dp.rechercheUnProduit(1);
         //System.out.println(p.getLibelleProduit());
 
@@ -39,42 +39,8 @@ public class SiTest {
 //        }
 
 
-        //System.out.println(new ServiceCommandeDetail().ligneCommandeDetail("affd2356"));
-        //System.out.println(new DaoCommandeMagasin().magasinComande("affd2356"));
-        //System.out.println(new ServiceCreneau().allCreneau());
 
-        //System.out.println(new ServicePanier().listPanierUnClient("bugubugu@gamil.com"));
-        //System.out.println(new DaoPanier().listPanierUnClient("bugubugu@gamil.com"));
-
-        //System.out.println(new DaoPromotion().listEnPromo());
-        //System.out.println(new DaoPromotion().listPromotion());
-        //System.out.println(new ServicePanier().produitPrixPromo());
-        HashMap<Produit,Integer> listProduitPanier= new ServicePanier().listPanierUnClient("bugubugu@gamil.com");
-        HashMap<Produit, Promotion> listpromo=new ServicePanier().produitPrixPromo();
-//        double eco=0.00;
-//        for (Produit p:listProduitPanier.keySet()){
-//            if (listpromo.containsKey(p)){
-//                eco=p.getPrixVente()*listpromo.get(p).getReduction()*listProduitPanier.get(p);
-//                System.out.println(p.getCodeProduit()+"="+eco);
-//            }else{
-//                eco=0.00;
-//                System.out.println(p.getCodeProduit()+"="+eco);
-//            }
-//        }
-
-        //new DaoPanier().supprimer("yufei@gamil.com");
-        //new ServicePanier().modifierQtePanier("bugubugu@gamil.com",4,"minus","6");
-
-//        DaoPanier daoPanier=new DaoPanier();
-//        daoPanier.modifierQtePanier("bugubugu@gamil.com",15L,8);
-
-//
-
-        //System.out.println(new ServicePanier().verifierStock("bugubugu@gamil.com","03/04/2021"));
-
-        //System.out.println(new DaoStock().ligneachatsProduitVerifier(6,"03/04/2021"));
-        //new DaoCommande().ajouterCommande("01/04/2021","03/04/2021","2","haha",35.00,5.00,"M0001");
-        new DaoLigneCommande().ajouterLigneCommande("12345678",6,4);
-
+        new ServicePanier().updateScoreClient("bugubugu@gamil.com",50);
+        //new DaoClient().updateScoreCli("bugubugu@gamil.com",50);
     }
 }

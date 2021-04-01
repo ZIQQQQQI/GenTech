@@ -82,14 +82,14 @@ public class DaoClientCommande {
      *@date 28/03/2021 13:38
      *@exception Exception
      *@description Recherche des commande de cet annee par un client
-    */
+     */
     public ArrayList<Commande> commandeCetAnnee(String emailClient){
         Session session= HibernateConn.getSessionFactory().getCurrentSession();
         Transaction t= session.beginTransaction();
         String sql="select commande.* from commande where emailClient=? and RIGHT(dateCdeCli,4)=?";
         ArrayList<Commande> list=null;
         try{
-            list=(ArrayList<Commande>) session.createSQLQuery(sql).addEntity(Commande.class).setParameter(1,emailClient).setParameter(2,Calendar.getInstance().get(Calendar.YEAR)).list();
+            list=(ArrayList<Commande>) session.createSQLQuery(sql).addEntity(Commande.class).setParameter(1,emailClient).setParameter(2, Calendar.getInstance().get(Calendar.YEAR)).list();
         }catch (Exception e){
             e.printStackTrace();
             System.out.println("----------------------------");
@@ -100,6 +100,9 @@ public class DaoClientCommande {
         session.close();
         return list;
     }
+
+
+
 
 
 

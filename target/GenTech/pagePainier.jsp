@@ -57,8 +57,10 @@
                             <tr>
                                 <th>Nom de Produit</th>
                                 <th>Qty</th>
+                                <th>Prix Unité</th>
                                 <th>Subtotal</th>
                                 <th>Economies</th>
+                                <th>Option</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -72,20 +74,24 @@
                                 sum=sum+ p.getPrixVente()*list.get(p);%>
                             <tr>
                                 <!--循环produit-->
-                                <td><%out.print(p.getLibelleProduit());%></td>
-                                <td><input type="number" min="1" max="99" name="changeQte" value="<%out.print(p.getCodeProduit());%>" idc="<%out.print(p.getCodeProduit());%>"></td>
-<%--                                <td><a href="ServletModifierPainer?codeProduit=<%out.print(p.getCodeProduit());%>&qte=<%out.print(list.get(p));%>&operation=minus"><i class="fas fa-minus"></i></a> <%out.print(list.get(p));%> <a href="ServletModifierPainer?codeProduit=<%out.print(p.getCodeProduit());%>&qte=<%out.print(list.get(p));%>&operation=add"><i class="fas fa-plus"></i></a></td>--%>
-                                <td>€<%out.print(df.format(p.getPrixVente()*list.get(p)));%></td>
+                                <td><img style="height:100px;width: 100px;padding:15px;" src="./images/<%out.println( p.getCodeProduit());%>.jpg" alt="imgProd1"><%out.print(p.getLibelleProduit());%></td>
+                                <td style="vertical-align:middle;"><input type="number" name="changeQte" min="1" max="99" idc="<%out.print(p.getCodeProduit());%>" value="<%out.print(list.get(p));%>"></td>
+                                <td style="vertical-align:middle;">€<%out.print(p.getPrixVente());%></td>
+                                <td style="vertical-align:middle;">€<%out.print(df.format(p.getPrixVente()*list.get(p)));%></td>
 
                             <%if(produitPromo.containsKey(p)){
                                 %>
-                                <td>€<%out.print(df.format(economies=p.getPrixVente()*produitPromo.get(p).getReduction()*list.get(p)));
+                                <td style="vertical-align:middle;">€<%out.print(df.format(economies=p.getPrixVente()*produitPromo.get(p).getReduction()*list.get(p)));
                                     sumEco=sumEco+economies;%></td>
                                     <%} else{economies=0.00;
                                         sumEco=sumEco+economies;%>
-                                <td>€<%out.print(df.format(economies));%><td>
-                                    <%}}%>
+                                <td style="vertical-align:middle;">€<%out.print(df.format(economies));%></td>
+                                    <%}%>
+
+                                <td style="vertical-align:middle;"><a href="ServletDeletePanier?id=<%out.print(p.getCodeProduit());%>">Suppprimer</a></td>
                             </tr>
+                                <%}//fin for%>
+
                             </tbody>
                         </table>
                     </div>
@@ -100,6 +106,14 @@
                     <div class="col-12">
                         <p class="lead">Prix Commande</p>
                         <script>
+                            window.onload=verifierPoint;
+                            function verifierPoint(){
+                                var btn=document.getElementById("reduction");
+                                if (<%out.print(client.getScore()+"<10");%>){
+                                    btn.disabled="disabled"
+                                }
+
+                            }
                             document.addEventListener("DOMContentLoaded",()=>{
                                 var btn=document.getElementById("reduction");
                                 btn.addEventListener("click",avoirReduction);
@@ -125,7 +139,7 @@
                                 point.innerHTML=score-10;
                                 var total=<%out.print(df.format(sum-sumEco));%>;
                                 var totalaff =document.getElementById("totalAff");
-                                totalaff.innerHTML=<%out.print(df.format(sum-sumEco-5.00));%>;
+                                totalaff.innerHTML="€"+<%out.print(df.format(sum-sumEco-5.00));%>;
                             }
 
                             function suppReduction(){
@@ -143,10 +157,10 @@
 
                                 var point=document.getElementById("point");
                                 var score=parseInt(point.innerHTML)+10;
-                                point.innerHTML=score;
+                                point.innerHTML=<%out.print(client.getScore());%>;
                                 var totalaff =document.getElementById("totalAff");
                                 var total=totalaff.innerHTML;
-                                totalaff.innerHTML=parseDouble(total)+5;
+                                totalaff.innerHTML="€"+<%out.print(df.format(sum-sumEco));%>;
                             }
 
                         </script>
@@ -187,7 +201,7 @@
                 <!-- this row will not appear when printing -->
                 <div class="row no-print">
                     <div class="col-12">
-                        <a href="" rel="noopener" target="_blank" class="btn btn-default">Retour</a>
+                        <a href="/GenTech/" rel="noopener" target="_blank" class="btn btn-default">Retour</a>
 
                         <button id="btnValider" type="button" class="btn btn-success float-right"></i>Suivant
                         </button>
@@ -247,7 +261,7 @@
                                             calendar.setTime(new Date());
                                             for (int i = 0; i < 15; i++) { %>
                                         <!--循环 填入日期-->
-                                        <option value=<%calendar.add(Calendar.DATE,i);
+                                        <option value=<%calendar.add(Calendar.DATE,1);
                                         Date date1=calendar.getTime();
                                             out.print(dateFormat.format(date1));%>><%out.print(dateFormat.format(date1));%></option>
 

@@ -4,12 +4,9 @@ package service;/*
  *@date 2021/3/28
  */
 
-import com.sun.jdi.request.DuplicateRequestException;
 import dao.*;
 import metier.*;
-import org.hibernate.boot.model.source.spi.PluralAttributeElementSourceOneToMany;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -19,21 +16,22 @@ public class ServicePanier {
 
     public void ajouer(String email,Integer idP){daoPanier.ajouer(email,idP);}
 
-    public HashMap<Produit,Integer> listPanierUnClient (String emailClient){
-        ArrayList<Panier> tousLesProduitDansPainer=daoPanier.listPanierUnClient(emailClient);
-        HashMap<Produit,Integer> res=new HashMap<>();
-        for(Panier p:tousLesProduitDansPainer){
-            Produit produit=new DaoProduit().rechercheUnProduit(p.getCodeProduit());
-            res.put(produit,p.getQuantite().intValue());
-        }
-        return res;
+    public void supPanier(String email, Integer idProduit) {
+        daoPanier.supprimerPanier(email, idProduit);
     }
+
 
     public Magasin unMagasin(String idMagasin){
         return new DaoMagasin().unMagasin(idMagasin);
     }
 
-
+    /*
+     * @param
+     * @return java.util.HashMap<metier.Produit,metier.Promotion>
+     * @author TANG
+     * @date 2021/3/30 9:01
+     * @description les prouit en promo
+     */
     public HashMap<Produit, Promotion> produitPrixPromo(){
         ArrayList<Produit> tousLesProduitPromo=new DaoProduit().listProduitEnPromo();
         ArrayList<Promotion> tousLesPromo=new DaoPromotion().listPromotion();
@@ -59,15 +57,37 @@ public class ServicePanier {
         return res;
     }
 
-    public void supprimer(String email){
-        daoPanier.supprimer(email);
+    /*
+     * @param emailClient
+     * @return java.util.HashMap<metier.Produit,java.lang.Integer>
+     * @author TANG
+     * @date 2021/3/30 9:01
+     * @description list de produit dun client
+     */
+    public HashMap<Produit,Integer> listPanierUnClient (String emailClient){
+        ArrayList<Panier> tousLesProduitDansPainer=daoPanier.listPanierUnClient(emailClient);
+        HashMap<Produit,Integer> res=new HashMap<>();
+        for(Panier p:tousLesProduitDansPainer){
+            Produit produit=new DaoProduit().rechercheUnProduit(p.getCodeProduit());
+            res.put(produit,p.getQuantite().intValue());
+        }
+        return res;
     }
+    /*
+     * @param email
+    	 * @param idP
+    	 * @param qte
+     * @return void
+     * @author TANG
+     * @date 2021/3/31 18:31
+     * @description
+     */
+    public void ajouterAvecQte(String email, Integer idP, Integer qte){daoPanier.ajouterAvecQte(email,idP,qte);}
+
 
     public  void changeQte(String emailClient,Long qte,Integer codeProd){
         this.daoPanier.modifierQtePanier(emailClient,qte,codeProd);
     }
-
-
 
     public ArrayList<String> verifierStock(String emailClient,String dateRetrait){
         ArrayList<String> res=new ArrayList<>();
@@ -116,4 +136,31 @@ public class ServicePanier {
     public void ajouterLigneCommande(String idCde,Integer codeProduit,Integer qte){
         new DaoLigneCommande().ajouterLigneCommande(idCde,codeProduit,qte);
     }
+    public void supprimer(String email){
+        daoPanier.supprimer(email);
+    }
+
+    public void updateScoreClient(String emailClient,int score){
+        new DaoClient().updateScoreCli(emailClient,score);
+    }
+
+
+    /*
+     * @param emailClient
+     * @return java.util.HashMap<metier.Produit,java.lang.Integer>
+     * @author TANG
+     * @date 2021/3/30 9:01
+     * @description list de produit dun client
+     */
+    public HashMap<Integer,Integer> listPanierUnClientCode (String emailClient){
+        ArrayList<Panier> tousLesProduitDansPainer=daoPanier.listPanierUnClient(emailClient);
+        HashMap<Integer,Integer> res=new HashMap<>();
+        for(Panier p:tousLesProduitDansPainer){
+            res.put(p.getCodeProduit(),p.getQuantite().intValue());
+        }
+        return res;
+    }
+
+    public void modifierPanier(String email,Long qte,Integer codeProduid){daoPanier.modifierQtePanier(email,qte,codeProduid);}
+
 }

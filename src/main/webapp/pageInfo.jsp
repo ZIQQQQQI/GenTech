@@ -45,7 +45,7 @@
         <!-- /.error-page -->
     </section>
     <div>
-        <a href=""><button class="btn btn-info">Retour</button></a>
+        <a href="ServletPanierDetail"><button class="btn btn-info">Retour</button></a>
     </div>
 </div>
 
@@ -78,7 +78,7 @@
         <!-- /.error-page -->
     </section>
     <div style="margin: 20px">
-        <a href=""><button  class="btn btn-danger">Retour</button></a>
+        <a href="ServletPanierDetail"><button  class="btn btn-danger">Retour</button></a>
     </div>
 </div>
 

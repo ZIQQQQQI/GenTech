@@ -5,9 +5,11 @@ package controler;/*
  */
 
 import metier.Commande;
+import metier.Listecourse;
 import metier.Produit;
 import metier.Rayon;
 import service.ServiceCompte;
+import service.ServiceListeCourse;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,6 +37,10 @@ public class ServletCompteProfil extends HttpServlet {
         HashMap<Commande,String> commandeTermine=serviceCompte.listCommandeEnCoursOuTermine(emailClient,"Termine");
         req.setAttribute("listEnCours",commandeEnCours);
         req.setAttribute("listTermine",commandeTermine);
+
+        //recherch les liste course
+        ArrayList<Listecourse> listecourses=new ServiceListeCourse().listecoursesUnclietn(emailClient);
+        req.setAttribute("listeCourse",listecourses);
 
 
         /*

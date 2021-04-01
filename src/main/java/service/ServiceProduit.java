@@ -93,6 +93,7 @@ public class ServiceProduit {
         return listPro;
     }
 
+
     /*
      * @param email
      * @return java.util.ArrayList<metier.Produit>
@@ -105,19 +106,37 @@ public class ServiceProduit {
         ArrayList<Produit> listP=new ArrayList<>();
 
         for (Panier p:list
-        ) {
+             ) {
             listP.add(daoProduit.rechercheUnProduit(p.getCodeProduit()));
         }
 
         return listP;
     }
 
-
-
     public ArrayList<Produit> listProduisPromo(){
         return daoProduit.listProduitEnPromo();
     }
 
 
+    public Boolean unProduitDansPanier(Integer codeP,ArrayList<Produit> list){
+        Produit p=daoProduit.rechercheUnProduit(codeP);
+        return list.contains(p);
+    }
+    public Integer idProduit(String nomProduit){
+        return(daoProduit.rechercherNomPro(nomProduit).getCodeProduit());
+    }
 
+
+    /*
+     * @param codeP
+     * @param list
+     * @return java.lang.Boolean
+     * @author TANG
+     * @date 2021/4/1 21:07
+     * @description
+     */
+    public Boolean unProduitDansPrefre(Integer codeP,ArrayList<Produit> list){
+        Produit p=daoProduit.rechercheUnProduit(codeP);
+        return list.contains(p);
+    }
 }

@@ -31,7 +31,7 @@ function chercherEmail(){
 
 document.addEventListener("DOMContentLoaded", () => {
 
-    document.getElementById("idemail").addEventListener("keyup",chercherEmail);
+    document.getElementById("idemail").addEventListener("change",chercherEmail);
 
 
 });

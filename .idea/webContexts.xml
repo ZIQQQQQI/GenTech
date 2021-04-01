@@ -3,7 +3,9 @@
   <component name="WebContextManager">
     <option name="state">
       <map>
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/Front-End/pageProd.jsp" value="file://$PROJECT_DIR$/src/main/webapp/Front-End" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/iframe.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/pagePainier.jsp" value="file://$PROJECT_DIR$/src/main/webapp" />
       </map>
     </option>
   </component>
