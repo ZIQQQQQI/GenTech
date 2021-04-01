@@ -25,7 +25,7 @@ public class ServletAccueil extends HttpServlet {
      * @return void
      * @author TANG
      * @date 2021/3/25 11:16
-     * @description
+     * @description servlet principal
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws javax.servlet.ServletException, IOException {
         HttpSession session=request.getSession();

@@ -22,6 +22,14 @@ import java.util.HashMap;
 
 @WebServlet("/ServletAjouterPanier")
 public class ServletAjouterPanier extends HttpServlet {
+    /*
+     * @param req
+    	 * @param resp
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:42
+     * @description ajouter liste course au panier et la supprimer
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //email

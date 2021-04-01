@@ -20,6 +20,14 @@ import java.util.logging.Logger;
 
 @WebServlet("/ServletLoginRechercher")
 public class ServletLoginRechercher extends HttpServlet {
+    /*
+     * @param request
+    	 * @param response
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:45
+     * @description ajax dans le page login
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
