@@ -27,9 +27,16 @@ public class ServletPanierAjouterDetail extends HttpServlet {
         Integer idp=Integer.valueOf((String) req.getParameter("idp")) ;
         String email=(String)req.getParameter("email");
         //System.out.println(idp+email);
-        new ServicePanier().ajouer(email,idp);
+        if(new ServiceProduit().unProduitDansPanier(idp,new ServiceProduit().listProduitPanier(email) )){
+            resp.getWriter().print("exist");
 
-        resp.getWriter().print("success");
+        }else {
+            new ServicePanier().ajouer(email,idp);
+
+            resp.getWriter().print("nonexist");
+
+        }
+
 
     }
 }

@@ -6,6 +6,7 @@ package controler;/*
 
 import service.ServicePanier;
 import service.ServicePreference;
+import service.ServiceProduit;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -26,9 +27,15 @@ public class ServletPreAjouterDetail extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer idp=Integer.valueOf((String) req.getParameter("idp")) ;
         String email=(String)req.getParameter("email");
-        new ServicePreference().addPreference(email,idp);
 
-        resp.getWriter().print("success");
+        if(new ServiceProduit().unProduitDansPrefre(idp,new ServiceProduit().listProduitPrefre(email))){
+            resp.getWriter().print("exist");
 
+        }else {
+            new ServicePreference().addPreference(email,idp);
+
+            resp.getWriter().print("nonexist");
+
+        }
     }
 }
