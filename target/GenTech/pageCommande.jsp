@@ -154,7 +154,7 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href="#" class="d-block">Tang Ziqi</a><!-- 跳转login -->
+                        <a href="#" class="d-block"><%out.print(session.getAttribute("email"));%></a><!-- 跳转login -->
                 </div>
             </div>
 
@@ -168,13 +168,19 @@
                         Commandes</a >
                     </li>
                     <li class="nav-item">
-                        <a href="">
-                            <i class="nav-icon far fa-circle text-warning"></i>
-                            Budget</a>
+                        <a href="#listeC"><i class="nav-icon far fa-circle text-info"></i>
+                            liste des courses</a>
                     </li>
+
                     <li class="nav-item">
                         <a href="#pref"><i class="nav-icon far fa-circle text-info"></i>
                         habitude</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="#profile">
+                            <i class="nav-icon far fa-circle text-warning"></i>
+                            profile</a>
                     </li>
                 </ul>
             </nav>

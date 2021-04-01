@@ -2,7 +2,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="metier.Rayon" %>
 <%@ page import="java.util.HashMap" %>
-<%@ page import="metier.Magasin" %><%--
+<%@ page import="metier.Magasin" %>
+<%@ page import="metier.Client" %><%--
   Created by IntelliJ IDEA.
   User: woshi
   Date: 2021/3/23
@@ -11,7 +12,26 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
+    String email=null;
+    Client client=null;
+    String nomComplet="";
+    ArrayList<Produit> listPre=null;
+    ArrayList<Produit> panier=new ArrayList<>();
+    try{
+        email=(String) session.getAttribute("email");
+        client=(Client)request.getAttribute("client");
+        nomComplet= client.getNomClient()+" "+client.getPrenomClient();
+        panier=(ArrayList<Produit>)request.getAttribute("listPanier");
+    }catch (Exception e){
+        System.out.println("not connecter");
+    }
 
+    try{
+        email=(String) session.getAttribute("email");
+        listPre=(ArrayList<Produit>) request.getAttribute("listPre");
+    }catch (Exception e){
+
+    }
 %>
 <!DOCTYPE html>
 <html lang="fr">
@@ -35,16 +55,12 @@
 <div class="wrapper">
 
     <!-- Navbar -->
-    <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <nav class="main-header navbar navbar-expand navbar-white navbar-light" style="height: 120px">
         <!-- Left navbar links -->
-        <ul class="navbar-nav ml-auto" style="height: 100px" >
+        <ul class="navbar-nav">
             <li class="nav-item">
                 <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
             </li>
-
-
-
-
         </ul>
 
         <!-- Right navbar links -->
@@ -68,70 +84,15 @@
                             </div>
                         </div>
                     </form>
-                    <div id="zoneaff" style="display: none;width: 100%;height: 193px; border-width: 1px;border-style: solid;border-color: #7F9DB9;margin-top: 1px;padding: 2px;overflow:auto;z-index:9999;">
+                    <div id="zoneaff" style="display: none;background-color: white;width: 100%;height: 193px; border-width: 1px;border-style: solid;border-color: #7F9DB9;margin-top: 1px;padding: 2px;overflow:auto;z-index:9999;">
                     </div>
+
                 </div>
             </li>
 
             <!-- Messages Dropdown Menu -->
 
             <!--Panier-->
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="fas fa-shopping-basket"></i>
-                    <span class="badge badge-danger navbar-badge">0</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                    <a href="#" class="dropdown-item">
-                        <!-- Premier Produit -->
-                        <div class="media">
-                            <!-- image de Produi -->
-                            <img src="" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    Nom Produit
-                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
-                                </h3>
-                            </div>
-                        </div></a>
-
-                    <div class="dropdown-divider"></div>
-                    <a href="#" class="dropdown-item dropdown-footer">Valider mon panier</a>
-                </div>
-            </li>
-
-            <li class="nav-item dropdown">
-                <a class="nav-link" data-toggle="dropdown" href="#">
-                    <i class="fas fa-store"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-
-                    <%
-                        ArrayList<Magasin> listM=(ArrayList<Magasin>)request.getAttribute("listMagasin");
-                        for (Magasin m:listM
-                        ) {
-                    %>
-                    <a href="#" class="dropdown-item">
-                        <div class="media">
-                            <div class="media-body">
-                                <h3 class="dropdown-item-title">
-                                    <%out.print(m.getLibelleMagasin());%>
-                                    <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span> <!-- 左上角的星星 -->
-                                </h3>
-                            </div>
-                        </div></a>
-
-                    <%
-                        }
-
-
-                    %>
-
-
-
-                </div>
-            </li>
-
 
             <li class="nav-item">
                 <a class="nav-link" data-widget="fullscreen" href="#" role="button">
@@ -164,7 +125,14 @@
             <!-- Sidebar user panel (optional) -->
             <div class="user-panel mt-3 pb-3 mb-3 d-flex">
                 <div class="info">
-                    <a href=".\Front-End\login.jsp" class="d-block">Log in</a><!-- 跳转login -->
+                    <%if(email==null) {
+                        out.print("<a href=\".\\Front-End\\login.jsp\" class=\"d-block\">Log in</a><!-- 跳转login -->");
+                    }else{
+                        out.print("<a href='ServletCompteProfil'>"+nomComplet+"</a>&nbsp&nbsp&nbsp&nbsp&nbsp");
+                        out.print("<a href='ServletLogOut'>Log out</a><!-- 跳转login out -->");
+                    }
+                    %>
+
                 </div>
             </div>
 
@@ -187,18 +155,19 @@
                     <li class="nav-item">
                         <a href=" " class="nav-link">
                             <i class="nav-icon fas fa-chart-pie"></i>
-                            <p> <%out.print(r.getNomCate());%>
+                            <p style="line-height:200%"> <%out.print(r.getNomCate());%>
                                 <i class="right fas fa-angle-left"></i>
                             </p >
                         </a>
                         <%for(Rayon cat:list.get(r)){ %>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
+                                <p  style="line-height:200%" >
                                 <a href="ServletAccueil?idCategorie=<%out.print(cat.getNumCate());%>&math=<%out.print(Math.random());%>" >
                                     <i class="far fa-circle nav-icon"></i>
 
                                     <% out.print(cat.getNomCate());%>
-                                </a>
+                                </a></p>
                             </li>
                         </ul>
                         <%  }%>
@@ -280,5 +249,6 @@
 <script src="Front-End/resources/dist/js/adminlte.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="Front-End/resources/dist/js/demo.js"></script>
+<script type="text/JavaScript" src="js/fctDetail.js"></script>
 </body>
 </html>

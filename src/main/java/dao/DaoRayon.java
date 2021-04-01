@@ -70,4 +70,30 @@ public class DaoRayon{
         session.close();
         return list;
     }
+
+    /*
+     *@param nomCate
+     *@return metier.Rayon
+     *@author Tu
+     *@description
+     *@exception
+     *@date 30/03/2021 10:54
+     */
+    public Rayon unRayon(String nomCate) {
+        Session session = HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        String sql = "Select rayon.* from rayon where nomCate like ?";
+        Rayon r = null;
+        try {
+            r = (Rayon) session.createSQLQuery(sql).addEntity(Rayon.class).setParameter(1, "%" + nomCate + "%").list().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoRayon unRayon");
+            System.out.println("----------------------------");
+        }
+        transaction.commit();
+        session.close();
+        return r;
+    }
 }

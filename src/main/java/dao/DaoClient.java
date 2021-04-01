@@ -57,4 +57,31 @@ public class DaoClient {
         session.close();
         return list;
     }
+    public void updateClient(String email, String idMagasin){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+
+        Client client=(Client)session.get(Client.class,email);
+        client.setIdMagasin(idMagasin);
+        session.update(client);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    public void updateScoreCli(String emailClient,int score){
+            Session session= HibernateConn.getSessionFactory().getCurrentSession();
+            Transaction t = session.beginTransaction();
+            String sql="update client set score=? where emailClient=?";
+            try{
+                session.createSQLQuery(sql).setParameter(1,score).setParameter(2,emailClient).executeUpdate();
+            }catch(Exception e){
+                e.printStackTrace();
+                System.out.println("----------------------");
+                System.out.println("DaoRayon listeClient");
+                System.out.println("----------------------");
+            }
+            t.commit();
+            session.close();
+        }
+
 }

@@ -115,7 +115,7 @@ public class DaoProduit{
                 "select p.*" +
                 " from enpromo e, promotion pr,produit p" +
                 " where pr.idpromo = e.idPromo" +
-                " and P.codeproduit = e.codeproduit" +
+                " and p.codeproduit = e.codeproduit" +
                 " and date_format(curdate(),'%Y/%m/%d')between str_to_date(pr.dateDebut,'%d/%m/%Y')and str_to_date(pr.dateFin,'%d/%m/%Y')" +
                 " and pr.idPromo=1001";
         ArrayList<Produit> produitEnPromo = null;
@@ -164,4 +164,31 @@ public class DaoProduit{
         return listProduitPrefere;
 
     }
+
+    /*
+     *@param nomCate
+     *@return metier.Rayon
+     *@author Tu
+     *@description
+     *@exception
+     *@date 30/03/2021 10:54
+     */
+    public Produit rechercherNomPro(String libelleProduit) {
+        Session session = HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction transaction = session.beginTransaction();
+        String sql = "Select produit.* from produit where libelleProduit like ?";
+        Produit p = null;
+        try {
+            p = (Produit) session.createSQLQuery(sql).addEntity(Produit.class).setParameter(1, "%" + libelleProduit + "%").list().get(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("----------------------------");
+            System.out.println("DaoProduit - rechercherNomPro ");
+            System.out.println("----------------------------");
+        }
+        transaction.commit();
+        session.close();
+        return p;
+    }
+
 }

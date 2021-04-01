@@ -1,15 +1,12 @@
 
+import Outil.CsvReader;
+import Outil.DateString;
 import Outil.HibernateConn;
-import dao.DaoClient;
+import Outil.RandomString;
+import dao.*;
 
-import dao.DaoMagasin;
-import dao.DaoProduit;
-import metier.Client;
+import metier.*;
 
-import metier.Lignecommande;
-import metier.Magasin;
-
-import metier.Produit;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.junit.Test;
@@ -22,9 +19,31 @@ import java.util.List;
 public class UnitTest {
     @Test
     public void test(){
-        ArrayList<Produit> list=new DaoProduit().listProduitEnPromo();
-        //ArrayList<Produit> list=new ServiceRechercher().findProduitByWord("viand");
-        System.out.println(list);
+//        ArrayList<Produit> list=new DaoProduit().listProduitEnPromo();
+//        //ArrayList<Produit> list=new ServiceRechercher().findProduitByWord("viand");
+//        System.out.println(list);
+
+//         ArrayList<Panier> list=new DaoPanier().listPanierUnClient("bugubugu@gamil.com");
+//        System.out.println(list);
+//        CsvReader csvReader=new CsvReader();
+//        csvReader.read();
+
+//        DaoPanier daoPanier=new DaoPanier();
+//        daoPanier.modifierQtePanier("bugubugu@gamil.com",10L,8);
+
+//        DaoListeCourse daoListeCourse=new DaoListeCourse();
+//        Listecourse listecourse=new Listecourse();
+//        String id=new RandomString().getRandomString(12);
+//        listecourse.setIdListe(id);
+//        listecourse.setEmailClient("bugubugu@gamil.com");
+//        listecourse.setLibelleListe("legume");
+//        String date= DateString.dateString();
+//        listecourse.setDatecree(date);
+//        daoListeCourse.creerUneListe(listecourse);
+//        DaoPostIt daoPostIt=new DaoPostIt();
+//        daoPostIt.updatePost(1,1,20);
+        DaoProduit daoProduit=new DaoProduit();
+        ArrayList<Produit> list=daoProduit.listProduitEnPromo();
 
 
 //        //test
@@ -35,9 +54,9 @@ public class UnitTest {
 //        }
 
         //test
-        Client client=new DaoClient().unClient("bugubugu@gamil.com");
-        System.out.println(client);
-
+//        Client client=new DaoClient().unClient("bugubugu@gamil.com");
+//        System.out.println(client);
+//
 
         //test
 //        DaoClientCommande daoClientCommande=new DaoClientCommande();

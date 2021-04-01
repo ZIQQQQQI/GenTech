@@ -1,4 +1,6 @@
-<%--
+<%@ page import="java.util.HashMap" %>
+<%@ page import="service.ServiceCompte" %>
+<%@ page import="org.hibernate.Session" %><%--
   Created by IntelliJ IDEA.
   User: olivi
   Date: 2021/3/25
@@ -175,7 +177,7 @@
         var areaChartCanvas = $('#areaChart').get(0).getContext('2d')
 
         var areaChartData = {
-            labels  : ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet'],
+            labels  : ['Jan', 'Fer', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug','Sept','Oct','Nov','Dec'],
             datasets: [
                 {
                     label               : 'Montant Original',
@@ -186,18 +188,20 @@
                     pointStrokeColor    : 'rgba(60,141,188,1)',
                     pointHighlightFill  : '#fff',
                     pointHighlightStroke: 'rgba(60,141,188,1)',
-                    data                : [28, 48, 40, 19, 86, 27, 90]//saisir les donnees
+                    <%String email=(String) session.getAttribute("email");
+                    String eco= new ServiceCompte().economies(email);%>
+                    data                : [<%out.print(eco);%>]//saisir les donnees
                 },
                 {
-                    label               : 'Montant Reel',
-                    backgroundColor     : 'rgba(210, 214, 222, 1)',
-                    borderColor         : 'rgba(210, 214, 222, 1)',
-                    pointRadius         : false,
-                    pointColor          : 'rgba(210, 214, 222, 1)',
-                    pointStrokeColor    : '#c1c7d1',
-                    pointHighlightFill  : '#fff',
-                    pointHighlightStroke: 'rgba(220,220,220,1)',
-                    data                : [65, 59, 80, 81, 56, 55, 40]//saisir les donnees
+                    // label               : 'Montant Reel',
+                    // backgroundColor     : 'rgba(210, 214, 222, 1)',
+                    // borderColor         : 'rgba(210, 214, 222, 1)',
+                    // pointRadius         : false,
+                    // pointColor          : 'rgba(210, 214, 222, 1)',
+                    // pointStrokeColor    : '#c1c7d1',
+                    // pointHighlightFill  : '#fff',
+                    // pointHighlightStroke: 'rgba(220,220,220,1)',
+                    // data                : [65, 59, 80, 81, 56, 55, 40]//saisir les donnees
                 },
             ]
         }
@@ -263,7 +267,10 @@
             datasets: [
                 {
                     //占比
-                    data: [42.31,25.00,9.62,11.54,11.54],
+
+                    <%
+                    String pourcentage= new ServiceCompte().repartitionNutriScore(email);%>
+                    data: [<%out.print(pourcentage);%>],
                     backgroundColor : ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
                 }
             ]

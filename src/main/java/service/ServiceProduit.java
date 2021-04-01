@@ -4,10 +4,8 @@ package service;/*
  *@date 2021/3/23
  */
 
-import dao.DaoPreference;
-import dao.DaoProduit;
-import dao.DaoRayonCategorie;
-import dao.DaoRayonProduit;
+import dao.*;
+import metier.Panier;
 import metier.Preference;
 import metier.Produit;
 
@@ -18,6 +16,7 @@ public class ServiceProduit {
     private DaoProduit daoProduit=new DaoProduit();
     private DaoRayonProduit daoRayonProduit=new DaoRayonProduit();
     private DaoPreference daoPreference=new DaoPreference();
+    private DaoPanier daoPanier=new DaoPanier();
     /*
      * @param facon
      * @return java.util.ArrayList<metier.Produit>
@@ -95,8 +94,49 @@ public class ServiceProduit {
     }
 
 
+    /*
+     * @param email
+     * @return java.util.ArrayList<metier.Produit>
+     * @author TANG
+     * @date 2021/3/28 17:44
+     * @description recherche un panier d'un client avec son email
+     */
+    public ArrayList<Produit> listProduitPanier(String email){
+        ArrayList<Panier> list=daoPanier.listPanierUnClient(email);
+        ArrayList<Produit> listP=new ArrayList<>();
+
+        for (Panier p:list
+             ) {
+            listP.add(daoProduit.rechercheUnProduit(p.getCodeProduit()));
+        }
+
+        return listP;
+    }
 
     public ArrayList<Produit> listProduisPromo(){
         return daoProduit.listProduitEnPromo();
+    }
+
+
+    public Boolean unProduitDansPanier(Integer codeP,ArrayList<Produit> list){
+        Produit p=daoProduit.rechercheUnProduit(codeP);
+        return list.contains(p);
+    }
+    public Integer idProduit(String nomProduit){
+        return(daoProduit.rechercherNomPro(nomProduit).getCodeProduit());
+    }
+
+
+    /*
+     * @param codeP
+     * @param list
+     * @return java.lang.Boolean
+     * @author TANG
+     * @date 2021/4/1 21:07
+     * @description
+     */
+    public Boolean unProduitDansPrefre(Integer codeP,ArrayList<Produit> list){
+        Produit p=daoProduit.rechercheUnProduit(codeP);
+        return list.contains(p);
     }
 }

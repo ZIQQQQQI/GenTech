@@ -21,13 +21,11 @@ public class ServiceCompte {
 
     public HashMap<Commande,String> listCommandeEnCoursOuTermine (String emailClient, String etat){
         ArrayList<Commande> tousLesCommandes =daoClientCommande.listCommandeEnCoursOuTermine(emailClient,etat);
-        System.out.println(tousLesCommandes);
         HashMap<Commande,String> res=new HashMap<>();
         for(Commande c:tousLesCommandes){
             String libelleMagasin=new DaoMagasin().unMagasin(c.getIdMagasin()).getLibelleMagasin();
             res.put(c,libelleMagasin);
         }
-        System.out.println(res);
         return res;
     }
 
@@ -124,6 +122,7 @@ public class ServiceCompte {
 
     }
 
+
     /*
      *@param emailClient
      *@return
@@ -131,11 +130,10 @@ public class ServiceCompte {
      *@date 25/03/2021 21:08
      *@exception
      *@description Rechercher la repartition de  nutriScore
-    */
-    public HashMap<String,String> repartitionNutriScore(String emailClient){
+     */
+    public String repartitionNutriScore(String emailClient){
         ArrayList<Produit> tousLesProduit =daoProduit.produitsPourUnClient(emailClient);
-        HashMap<String,String> repartition=new HashMap<>();
-
+        String s="";
         int total=0;
         int a=0;
         int b=0;
@@ -148,30 +146,59 @@ public class ServiceCompte {
                 total++;
                 if(p.getNutriScore().equals("A")){
                     a++;
-
                 }else if(p.getNutriScore().equals("B")){
                     b++;
-
                 }else if(p.getNutriScore().equals("C")){
                     c++;
-
                 }else if(p.getNutriScore().equals("D")){
                     d++;
-
                 }else{
                     e++;
-
                 }
             }
-            repartition.put("A",df.format((float)a/total*100));
-            repartition.put("B",df.format((float)b/total*100));
-            repartition.put("C",df.format((float)c/total*100));
-            repartition.put("D",df.format((float)d/total*100));
-            repartition.put("E",df.format((float)e/total*100));
-
+            s=df.format((float)a/total*100)+","+df.format((float)b/total*100)+","+df.format((float)c/total*100)+","+df.format((float)d/total*100)+","+df.format((float)e/total*100);
         }
-
-        return repartition;
+        return s;
     }
+    /*
+     *@param emailClient
+     *@return java.lang.String
+     *@author SI
+     *@date 28/03/2021 22:32
+     *@exception
+     *@description Rechercher des economies d'un client par mois
+     */
+    public String economies(String emailClient){
+        ArrayList<Commande> commandesCetAnnee=daoClientCommande.commandeCetAnnee(emailClient);
+        String res="";
+        HashMap<String, Double> economies=new HashMap<>();
+        economies.put("01",(double)0);
+        economies.put("02",(double)0);
+        economies.put("03",(double)0);
+        economies.put("04",(double)0);
+        economies.put("05",(double)0);
+        economies.put("06",(double)0);
+        economies.put("07",(double)0);
+        economies.put("08",(double)0);
+        economies.put("09",(double)0);
+        economies.put("10",(double)0);
+        economies.put("11",(double)0);
+        economies.put("12",(double)0);
+        for(Commande c:commandesCetAnnee){
+            String mois=c.getDateCdeCli().substring(3,5);
+            if(economies.containsKey(mois)) {
+                Double o=economies.get(mois);
+                Double xin=o+c.getEconomie();
+                economies.put(mois, xin);
+            }
+        }
+        res= economies.get("01")+","+economies.get("02")+","+economies.get("03")+","+economies.get("04")+","+economies.get("05")+","+economies.get("06")+","+economies.get("07")+","+economies.get("08")+","+economies.get("09")+","+economies.get("10")+","+economies.get("11")+","+economies.get("12");
+        return res;
+    }
+
+
+
+
+
 
 }
