@@ -16,6 +16,14 @@ import java.io.IOException;
 
 @WebServlet("/ServletAjouterPost")
 public class ServletAjouterPost extends HttpServlet {
+    /*
+     * @param req
+    * @param resp
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:43
+     * @description ajouter un postit dans un listecourse exist
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String post=req.getParameter("post");

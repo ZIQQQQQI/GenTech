@@ -14,6 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 @WebServlet("/ServletClickAjouterList")
 public class ServletClickAjouterList extends HttpServlet {
+    /*
+     * @param req
+    	 * @param resp
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:43
+     * @description init un listecourse
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 

@@ -18,6 +18,14 @@ import java.util.logging.Logger;
 
 @WebServlet("/ServletSupprimerPan")
 public class ServletSupprimerPan extends HttpServlet {
+    /*
+     * @param request
+    	 * @param response
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:14
+     * @description supprimer un panier ,pas realiser
+     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {

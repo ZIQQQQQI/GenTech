@@ -19,7 +19,14 @@ import java.util.ArrayList;
 
 @WebServlet("/ServletChangeOption")
 public class ServletChangeOption extends HttpServlet {
-
+    /*
+     * @param req
+    	 * @param resp
+     * @return void
+     * @author TANG
+     * @date 2021/4/1 22:43
+     * @description change option produit pour un postit
+     */
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //
