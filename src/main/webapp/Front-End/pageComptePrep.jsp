@@ -34,7 +34,9 @@
     <div class="tab-content" >
         <section class="content">
             <div class="container-fluid">
+                <br>
                 <a name="cmd"><i class="far fa-hand-point-down"></i>Saisir les commandes: </a>
+                <p></p>
 
                 <div class="col-md-12">
                     <div class="card card-primary">
@@ -43,7 +45,7 @@
                         </div>
                         <div class="card-body">
                         <form id="commandeAchatEntrepot" action="ServletNewCommande" method="get">
-                            <table class="table">
+                            <table class="table table-striped">
                                 <tbody>
                                 <tr style="text-align: center;">
                                     <td style="width: 400px;"><b>ID Commande Achat: </b></td>
@@ -103,7 +105,7 @@
                         <div class="card-body">
 
                             <form id="commandeLigneAchat" action="ServletLigneAchat" method="get">
-                                <table class="table">
+                                <table class="table table-striped">
                                     <tbody>
 
                                 <tr style="text-align: center;">
@@ -156,19 +158,20 @@
                     </div>
                 </div>
 
-
-                <a name="Stockage"><i class="far fa-hand-point-down"></i>Le stockage de 15 jours: </a>
+                <br>
+                <a name="Stockage"><i class="far fa-hand-point-down"></i>Choisir les rayons et les produits </a>
+                <p></p>
                 <div class="col-md-12">
                     <div class="card card-primary">
                         <div class="card-header">
-                            <h3 class="card-title" style="text-align: center">Les Stockage de 15 jour</h3>
+                            <h3 class="card-title" style="text-align: center">Afficher les produits</h3>
                         </div>
                         <div class="card-body box-profile">
 <%--                            <h3 class="profile-username text-center">Les Stockage de 15 jours</h3>--%>
 
                             <select id="listRayon"><option>----------</option></select>
                             <input id="bt_Rayon" type="button" value="Afficher les rayons" />
-                            <div id="lproduit"></div>
+                            <div id="lproduit"><br></div>
 
                         </div>
                         <!-- /.card-body -->
@@ -176,12 +179,13 @@
 
                 </div>
 
-
-                <a name="stock"><i class="far fa-hand-point-down"></i>les stocks pour chaque produit</a>
+                <br>
+                <a name="stock"><i class="far fa-hand-point-down"></i>les stocks pour chaque produit </a>
+                <p></p>
                 <div class="col-md-12">
                     <div class="card card-primary">
                 <div class="card-header">
-                    <h3 class="card-title" style="text-align: center">Stock</h3>
+                    <h3 class="card-title" style="text-align: center">Les stocks pour 15 jours</h3>
                 </div>
                 <div class="card-body">
 
@@ -196,7 +200,7 @@
                                 <td>restetotal</td>
                             </tr>
                         </table>
-                        <table class="table" id="rayonprod" style="table-layout: fixed">
+                        <table class="table table-striped" id="rayonprod" style="table-layout: fixed">
 
                         </table>
 

@@ -24,13 +24,13 @@
 String id=(String)request.getAttribute("id");
 
 %>
-<body>
+<body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
 
 <section class="content-header">
     <div class="container-fluid" >
         <div class="row mb-2">
             <div class="col-sm-12">
-                <h1 style="margin:10px"><b>Nouvelle Liste</b></h1>
+                <h1 class="text-info" style="text-align: center;"><b>Nouvelle Liste</b></h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -40,35 +40,41 @@ String id=(String)request.getAttribute("id");
         <div class="col-12">
 
             <form action="ServletCreerList" method="GET">
-                <table class="table" style="text-align: center;">
-                    Nom de Liste:<input type="text" name="nom">
+                <table class="table" style="text-align: center;margin: 20px;">
+                    <thead>
+                    <tr>
+                        <th></th>
+                        <th>Nom de Liste:</th>
+                        <th><input required type="text" name="nom"></th>
+                        <th><input type="hidden" value="<%out.print(id);%>" name="id"></th>
+                    </tr>
+                    </thead>
 
-                    <input type="hidden" value="<%out.print(id);%>" name="id">
                     <tbody>
                     <tr>
                         <td>1</td>
-                        <td>Post-It:</td>
-                        <td><input type="text" name="num1"></td>
+                        <td style="text-align: right">Post-It:</td>
+                        <td style="text-align: left"><input type="text"required name="num1"></td>
                     </tr>
                     <tr>
                         <td>2</td>
-                        <td>Post-It:</td>
-                        <td><input type="text" name="num2"></td>
+                        <td style="text-align: right">Post-It:</td>
+                        <td style="text-align: left"><input type="text" name="num2"></td>
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Post-It:</td>
-                        <td><input type="text" name="num3"></td>
+                        <td style="text-align: right">Post-It:</td>
+                        <td style="text-align: left"><input type="text" name="num3"></td>
                     </tr>
                     <tr>
                         <td>4</td>
-                        <td>Post-It:</td>
-                        <td><input type="text" name="num4"></td>
+                        <td style="text-align: right">Post-It:</td>
+                        <td style="text-align: left"><input type="text" name="num4"></td>
                     </tr>
                     <tr>
                         <td>5</td>
-                        <td>Post-It:</td>
-                        <td><input type="text" name="num5"></td>
+                        <td style="text-align: right">Post-It:</td>
+                        <td style="text-align: left"><input type="text" name="num5"></td>
                     </tr>
                     </tbody>
                 </table>

@@ -203,4 +203,42 @@ public class DaoStock {
         return toutacha;
 
     }
+
+    public ArrayList<Ligneachat> ligneachatsProduitVerifier(Integer produitId,String dateRetrait){
+        Session session = HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t = session.beginTransaction();
+        String  sql="Select la.* " +
+                "from ligneachat la ,entrepot e, produit p " +
+                "where e.idCdeAchat=la.idCdeAchat " +
+                "and p.codeProduit=la.idProduit " +
+                "and str_to_date(dateCdearrive,'%d/%m/%Y') <str_to_date(?,'%d/%m/%Y') " +
+                "and p.codeProduit=? " +
+                "order by str_to_date(dateCdearrive,'%d/%m/%Y') asc";
+        ArrayList<Ligneachat> l=null;
+        try{
+            l = (ArrayList<Ligneachat>) session.createSQLQuery(sql).addEntity(Ligneachat.class).setParameter(1,dateRetrait ).setParameter(2,produitId).list();
+        }catch (Exception e){
+            System.out.println("----------------");
+            System.out.println("Daostockdeja");
+            System.out.println("----------------");
+        }
+        t.commit();
+        session.close();
+        return l;
+    }
+
+    public void updateLigneAchat(String idCde,Integer idProduit,long qte){
+        Session session = HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t = session.beginTransaction();
+        String sql="update ligneachat set qteReste=? where idCdeAchat=? and idProduit=?";
+        try{
+            session.createSQLQuery(sql).setParameter(1,qte).setParameter(2,idCde).setParameter(3,idProduit).executeUpdate();
+        }catch (Exception e){
+            System.out.println("----------------");
+            System.out.println("Daostock updateLigneAchat");
+            System.out.println("----------------");
+        }
+        t.commit();
+        session.close();
+    }
 }

@@ -115,7 +115,7 @@ public class DaoProduit{
                 "select p.*" +
                 " from enpromo e, promotion pr,produit p" +
                 " where pr.idpromo = e.idPromo" +
-                " and P.codeproduit = e.codeproduit" +
+                " and p.codeproduit = e.codeproduit" +
                 " and date_format(curdate(),'%Y/%m/%d')between str_to_date(pr.dateDebut,'%d/%m/%Y')and str_to_date(pr.dateFin,'%d/%m/%Y')" +
                 " and pr.idPromo=1001";
         ArrayList<Produit> produitEnPromo = null;

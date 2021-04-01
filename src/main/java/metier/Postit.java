@@ -80,6 +80,17 @@ public class Postit {
     }
 
     @Override
+    public String toString() {
+        return "Postit{" +
+                "idPost=" + idPost +
+                ", libellePost='" + libellePost + '\'' +
+                ", idProduit=" + idProduit +
+                ", idListe='" + idListe + '\'' +
+                ", quantite=" + quantite +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(idPost, libellePost, idProduit, idListe, quantite);
     }

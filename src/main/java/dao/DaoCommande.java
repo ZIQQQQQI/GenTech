@@ -35,4 +35,23 @@ public class DaoCommande {
         session.close();
         return c;
     }
+
+    public void ajouterCommande(String idCde,String dateCdeCli,String dateRetrait,String heureRetrait,String emailClient,double prixTotal,double economie,String idMagasin){
+        String etat="valide";
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t= session.beginTransaction();
+        Commande commande=new Commande();
+        commande.setIdCdeCli(idCde);
+        commande.setDateCdeCli(dateCdeCli);
+        commande.setDateRetrait(dateRetrait);
+        commande.setHeureRetrait(heureRetrait);
+        commande.setEtat(etat);
+        commande.setEmailClient(emailClient);
+        commande.setPrixTotal(prixTotal);
+        commande.setEconomie(economie);
+        commande.setIdMagasin(idMagasin);
+        session.save(commande);
+        t.commit();
+        session.close();
+    }
 }

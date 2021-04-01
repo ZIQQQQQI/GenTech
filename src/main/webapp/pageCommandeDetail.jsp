@@ -124,7 +124,8 @@ Magasin magasin=(Magasin)request.getAttribute("magasin");
                                 <thead>
                                 <tr>
                                     <th>Nom de Produit</th>
-                                    <th>Qty</th>
+                                    <th>Quantite</th>
+                                    <th>Prix unitaire</th>
                                     <th>Subtotal</th>
                                 </tr>
                                 </thead>
@@ -136,6 +137,7 @@ Magasin magasin=(Magasin)request.getAttribute("magasin");
                                     <tr>
                                     <td><%out.print(p.getLibelleProduit());%></td>
                                     <td><%out.print(ligneCommande.get(p));%></td>
+                                    <td><%out.print(p.getPrixVente());%></td>
                                     <td>€<%DecimalFormat df   =new DecimalFormat("#.00");
 
                                         out.print(df.format(p.getPrixVente()*ligneCommande.get(p)));%></td>
@@ -160,7 +162,8 @@ Magasin magasin=(Magasin)request.getAttribute("magasin");
                                 <table class="table">
                                     <tr>
                                         <th style="width:50%">Total original:</th>
-                                        <td>€<%out.print(commande.getEconomie()+commande.getPrixTotal());%></td>
+                                        <td>€<% DecimalFormat df =new DecimalFormat("#.00");
+                                            out.print(df.format(commande.getEconomie()+commande.getPrixTotal()));%></td>
                                     </tr>
                                     <tr>
                                         <th>Promotion:</th>

@@ -39,4 +39,17 @@ public class DaoLigneCommande {
         session.close();
         return list;
     }
+
+    public void ajouterLigneCommande(String idCde,Integer codeProduit,Integer qte){
+        Session session= HibernateConn.getSessionFactory().getCurrentSession();
+        Transaction t= session.beginTransaction();
+        Lignecommande l=new Lignecommande();
+        l.setIdCdeCli(idCde);
+        l.setCodeProduit(codeProduit);
+        l.setQuantite(qte);
+        session.save(l);
+        t.commit();
+        session.close();
+
+    }
 }

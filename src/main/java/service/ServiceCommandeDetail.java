@@ -47,6 +47,11 @@ public class ServiceCommandeDetail {
         return res;
     }
 
+
+
+
+
+
     /*
      *@param idCde
      *@return metier.Commande

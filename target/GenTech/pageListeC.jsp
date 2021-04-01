@@ -1,4 +1,8 @@
-<%--
+<%@ page import="metier.Listecourse" %>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="metier.Postit" %>
+<%@ page import="java.util.HashMap" %>
+<%@ page import="metier.Produit" %><%--
   Created by IntelliJ IDEA.
   User: olivi
   Date: 2021/3/30
@@ -20,12 +24,18 @@
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="./Front-End/resources/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 </head>
-<body>
+<%
+    Listecourse listecourse=(Listecourse)request.getAttribute("listC");
+    ArrayList<Postit> listP=(ArrayList<Postit>)request.getAttribute("listP");
+    HashMap<Postit,ArrayList<Produit>> listO=(HashMap<Postit,ArrayList<Produit>>) request.getAttribute("listOption");
+
+%>
+<body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
 <section class="content-header">
     <div class="container-fluid" >
         <div class="row mb-2">
             <div class="col-sm-12">
-                <h1 style="margin:10px"><b>Liste des courses</b></h1>
+                <h1 class="text-info" style="text-align: center;"><b><%out.print(listecourse.getLibelleListe());%></b></h1>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -34,8 +44,10 @@
     <div class="row">
         <div class="col-12">
 
-            <form action="" method="GET">
-                <table class="table" style="text-align: center;">
+            <form action="ServletChangeOption" method="GET">
+                <input type="hidden" name="size" value="<%out.print(listP.size());%>">
+                <input type="hidden" name="idL" value="<%out.print(listecourse.getIdListe());%>">
+                <table class="table" style="text-align: center;margin: 20px;">
                     <thead>
                     <tr>
                         <th></th>
@@ -44,30 +56,81 @@
                     </tr>
                     </thead>
                     <tbody>
+
+                    <%
+                        for (Postit p:listP
+                             ) {
+
+
+                    %>
                     <tr>
-                        <td>N1 de liste</td>
-                        <td><select style="width:100%; ">
-                            <option></option>
-                            <option>preference1</option>
-                            <option>preference2</option>
+                        <td><%out.print(p.getLibellePost());  %></td>
+                        <%
+                        ArrayList<Produit> listOption=listO.get(p);
+                        %>
+                        <td><select name="<%out.print(p.getIdPost());%>" style="width:100%; ">
+                            <option value="0"></option>
+                            <%
+                                for (Produit produit:listOption
+                                     ) {%>
+
+                            <option value="<%out.print(produit.getCodeProduit()) ;%>" <%
+                                if (produit.getCodeProduit()==p.getIdProduit()){
+                                    out.print("selected='selected'");
+                                }//slecte
+
+                            %> ><%out.print(produit.getLibelleProduit());%></option>
+
+                             <%   }//fin  for option
+
+
+                            %>
+
                         </select></td>
-                        <td>1</td>
+                        <td><input type="number" name="qte<%out.print(p.getIdPost());%>" min="1" max="50" value="<%out.print(p.getQuantite());%>"></td>
                     </tr>
-                    <tr>
-                        <td>N2 de liste</td>
-                        <td><select style="width:100%;">
-                            <option></option>
-                            <option>preference1</option>
-                            <option>preference2</option>
-                        </select></td>
-                        <td>3</td>
-                    </tr>
+                    <%
+                        }//fin for post
+                    %>
                     </tbody>
                 </table>
-                <input type="submit" class="btn btn-info float-right" style="margin: 20px" name="btnListeCourses" value="Valider">
+                <input type="submit" class="btn btn-info float-right" style="margin: 20px" name="btnListeCourses" value="Modifier">
 
             </form>
+
+            <%
+            if(listP.size()<5){
+                %>
+            <br/>
+            <form method="post" action="ServletAjouterPost">
+                <table class="table" style="text-align: center;margin: 20px;">
+                    <tbody>
+                        <tr>
+                            <td style="text-align: center">Post-It:</td>
+                            <td><input name="post" required type="text" style="width: 100%"></td>
+                            <td><input type="hidden" name="listC" value="<%out.print(listecourse.getIdListe());%>"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <td><input class="btn btn-info float-right" type="submit" value="Ajouter" style="margin: 20px"></td>
+            </form>
+
+
+
+            <%
+            }//fin if
+            %>
+            <table class="table" style="text-align: center">
+                <tbody>
+                <tr><td>Ajouter la liste au panier,une fois le boutton clique,la liste va etre supprime et le post-it pour lequel vous n'avez pas choisi de produit ne va pas etre ajoute</td></tr>
+                <tr><td> <a href="ServletAjouterPanier?id=<%out.print(listecourse.getIdListe());%>" class="btn btn-info">Ajouter au panier</a></td></tr>
+                </tbody>
+            </table>
         </div>
+
+
+
+
     </div>
 
 </section>

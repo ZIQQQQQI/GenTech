@@ -168,17 +168,19 @@
                         Commandes</a >
                     </li>
                     <li class="nav-item">
-                        <a href="">
-                            <i class="nav-icon far fa-circle text-warning"></i>
-                            Budget</a>
+                        <a href="#listeC"><i class="nav-icon far fa-circle text-info"></i>
+                            liste des courses</a>
                     </li>
+
                     <li class="nav-item">
                         <a href="#pref"><i class="nav-icon far fa-circle text-info"></i>
                         habitude</a>
                     </li>
+
                     <li class="nav-item">
-                        <a href="ServletClickAjouterList"><i class="nav-icon far fa-circle text-info"></i>
-                            liste des courses</a>
+                        <a href="#profile">
+                            <i class="nav-icon far fa-circle text-warning"></i>
+                            profile</a>
                     </li>
                 </ul>
             </nav>
