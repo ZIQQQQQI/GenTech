@@ -70,15 +70,26 @@ public class ServletConfirmerCommande extends HttpServlet {
             }
         }
 
+
         //verifier si le client utilise la reduction
+
         int updateScore=client.getScore();
 
         if(avoirReduction.equals("1")){
             sumEco=sumEco+5.00;
-            updateScore= (int) (updateScore-10+sum/10);
+
+            updateScore= updateScore-10+(int) ((sum-sumEco)/10)+1;
+        }else{
+            updateScore=  updateScore+(int) ((sum-sumEco)/10)+1;
         }
 
+
+
+          
+        
+
         //Si tous les produit a des stocks
+
         if(note.size()==0){
             //Creer une nouvelle commande
             String idCdeCli=new RandomString().getRandomString(8);
