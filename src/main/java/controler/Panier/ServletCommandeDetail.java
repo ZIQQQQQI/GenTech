@@ -25,22 +25,29 @@ public class ServletCommandeDetail extends HttpServlet {
     private ServiceCommandeDetail scd=new ServiceCommandeDetail();
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Recuperer des session
         HttpSession session=req.getSession();
         String emailClient = (String) session.getAttribute("email");
+        //Recuperer la Id de la commande qu'il veut consulter
         String idCde=req.getParameter("idCde");
 
+        //Rechercher les infos de client
         Client client=new ServiceClient().unClient(emailClient);
         req.setAttribute("client",client);
 
+        //Rechercher le magasin de retrait de la commande
         Magasin magasin =scd.magasinCommande(idCde);
         req.setAttribute("magasin",magasin);
 
+        //Rechercher les infos de ce commande
         Commande commande=scd.unCommande(idCde);
         req.setAttribute("commande",commande);
 
+        //Rechercher les details de ligne de commande
         HashMap<Produit,Integer> ligneCommande =scd.ligneCommandeDetail(idCde);
         req.setAttribute("ligneCommande",ligneCommande);
 
+        //Recuperer tous les cerneau disponible
         ArrayList<Creneau> listcre=new ServiceCreneau().allCreneau();
         req.setAttribute("listcreneau",listcre);
 

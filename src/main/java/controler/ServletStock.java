@@ -32,6 +32,7 @@ public class ServletStock extends HttpServlet {
  *@author LIU
  *@date 28-03-21 23:24
 */
+  //calcluer les stock de prochane 15 jour
    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
        HttpSession session = req.getSession();
@@ -47,16 +48,10 @@ public class ServletStock extends HttpServlet {
 
 
            ServiceStock st = new ServiceStock();
-           //ArrayList<Ligneachat> lignqq = st.listdeja(idP);
-           //ArrayList<HashMap<Ligneachat, Entrepot>> h = st.listCommLigne(lignqq);
 
            ArrayList<Ligneachat> lignff = st.ligneachatsfuture(idP);
            ArrayList<HashMap<Ligneachat, Entrepot>> f = st.listCommLigne(lignff);
 
-           //req.setAttribute("listcommande",lignqq);
-           // req.setAttribute("listmap",h);
-           //req.setAttribute("listfuture",lignff);
-           //req.setAttribute("listmapfuture",f);
            Integer count=0;
            for (HashMap<Ligneachat, Entrepot> r1 : f) {
                for (Ligneachat key1 : r1.keySet()) {
@@ -67,12 +62,6 @@ public class ServletStock extends HttpServlet {
                            "<date>"+r1.get(key1).getDateCdeArrive()+"</date>" +
                            "<reste>"+key1.getQteReste()+"</reste>" +
                            "<restetotal>"+count+"</restetotal>");
-//                   System.out.println("-----------------------");
-//                   System.out.println(key1.getIdProduit());
-//                   System.out.println(key1.getQteAchat());
-//                   System.out.println(r1.get(key1).getDateCdeArrive());
-//                   System.out.println(key1.getQteReste());
-//                   System.out.println(count);
                }
 
 

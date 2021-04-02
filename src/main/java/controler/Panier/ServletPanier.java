@@ -19,7 +19,7 @@ public class ServletPanier extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         this.doPost(req,resp);
     }
-
+    //Afficher les produit dans la panier dan page d'accueil
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer idp=Integer.valueOf((String) req.getParameter("idp")) ;
@@ -35,12 +35,6 @@ public class ServletPanier extends HttpServlet {
             resp.getWriter().print(spr.unProduit(idp).getLibelleProduit());
 
         }
-
-
-
-
-
-
 
     }
 }

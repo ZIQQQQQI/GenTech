@@ -55,7 +55,7 @@ public class ServletConfirmerCommande extends HttpServlet {
 
         HashMap<Produit,Integer> listProduitPanier = servicePanier.listPanierUnClient(emailClient);
         HashMap<Produit, Promotion> listpromo = servicePanier.produitPrixPromo();
-
+        //Calculer les prix
         double eco=0.00;
         double sum=0.00;
         double sumEco=0.00;
@@ -69,15 +69,18 @@ public class ServletConfirmerCommande extends HttpServlet {
                 sumEco=sumEco+eco;
             }
         }
+
+        //verifier si le client utilise la reduction
         int updateScore=client.getScore();
+
         if(avoirReduction.equals("1")){
             sumEco=sumEco+5.00;
             updateScore= (int) (updateScore-10+sum/10);
-        }else{
-
         }
 
+        //Si tous les produit a des stocks
         if(note.size()==0){
+            //Creer une nouvelle commande
             String idCdeCli=new RandomString().getRandomString(8);
 
             servicePanier.ajouterCommande(idCdeCli,dateCommande,dateRetrait,creneau,emailClient,sum,sumEco,idMagasin);
@@ -86,10 +89,13 @@ public class ServletConfirmerCommande extends HttpServlet {
                 servicePanier.ajouterLigneCommande(idCdeCli,p.getCodeProduit(),listProduitPanier.get(p));
             }
 
+            //Modifier le stock
             servicePanier.modifierQteLigneAchat(emailClient,dateRetrait);
 
+            //Supprimer les produits dans le panier
             servicePanier.supprimer(emailClient);
 
+            //mise a jour le point fedalite
             servicePanier.updateScoreClient(emailClient,updateScore);
         }
 

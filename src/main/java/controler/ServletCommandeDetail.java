@@ -23,6 +23,7 @@ import java.util.HashMap;
 @WebServlet("/ServletCommandeDetail")
 public class ServletCommandeDetail extends HttpServlet {
     private ServiceCommandeDetail scd=new ServiceCommandeDetail();
+   //afficher tous les ligne commande d'une commande
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session=req.getSession();

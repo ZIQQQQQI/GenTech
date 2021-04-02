@@ -23,6 +23,7 @@ import java.util.HashMap;
 @WebServlet("/ServletPanierDetail")
 public class ServletPanierDetail extends HttpServlet {
     private ServicePanier servicePanier=new ServicePanier();
+    //afficher tous les produit de panier
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session=req.getSession();

@@ -20,6 +20,7 @@ import java.io.IOException;
 
 @WebServlet("/ServletLigneAchat")
 public class ServletLigneAchat extends HttpServlet {
+    //Ajouter une ligne achat
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();
