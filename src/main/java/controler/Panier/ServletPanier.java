@@ -24,7 +24,6 @@ public class ServletPanier extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer idp=Integer.valueOf((String) req.getParameter("idp")) ;
         String email=(String)req.getParameter("email");
-        new ServicePanier().supPanier(email,idp);
         if(new ServiceProduit().unProduitDansPanier(idp,new ServiceProduit().listProduitPanier(email) )){
             resp.getWriter().print("success");
         }else {
