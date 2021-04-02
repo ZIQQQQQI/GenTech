@@ -77,7 +77,7 @@ public class ServletConfirmerCommande extends HttpServlet {
         }else{
             updateScore=  updateScore+(int) ((sum-sumEco)/10)+1;
         }
- 
+
 
         if(note.size()==0){
             String idCdeCli=new RandomString().getRandomString(8);
