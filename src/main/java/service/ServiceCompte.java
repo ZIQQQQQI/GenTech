@@ -19,6 +19,15 @@ public class ServiceCompte {
     private DaoRayon dr=new DaoRayon();
     private DaoProduit daoProduit=new DaoProduit();
 
+    /*
+     *@param emailClient
+    	 * @param etat
+     *@return java.util.HashMap<metier.Commande,java.lang.String>
+     *@author Yufei
+     *@date 2021/4/2 5:25
+     *@exception
+     *@description liste de commandes
+    */
     public HashMap<Commande,String> listCommandeEnCoursOuTermine (String emailClient, String etat){
         ArrayList<Commande> tousLesCommandes =daoClientCommande.listCommandeEnCoursOuTermine(emailClient,etat);
         HashMap<Commande,String> res=new HashMap<>();

@@ -24,9 +24,25 @@ public class ServiceClient {
         return daoClient.unClient(email);
     }
 
+    /*
+     *@param 
+     *@return java.util.ArrayList<metier.Client>
+     *@author Yufei
+     *@date 2021/4/2 5:21
+     *@exception 
+    */
     public ArrayList<Client> allClient(){
         return daoClient.listClient();
     }
+    
+    /*
+     *@param email
+    	 * @param idM
+     *@return void
+     *@author Yufei
+     *@date 2021/4/2 5:20
+     *@exception 
+    */
     public void updateCli(String email, String idM){
         daoClient.updateClient(email, idM);
     }
