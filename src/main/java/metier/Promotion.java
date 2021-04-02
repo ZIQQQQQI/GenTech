@@ -83,6 +83,17 @@ public class Promotion implements Serializable {
     }
 
     @Override
+    public String toString() {
+        return "Promotion{" +
+                "idPromo=" + idPromo +
+                ", nomDiscount='" + nomDiscount + '\'' +
+                ", dateDebut='" + dateDebut + '\'' +
+                ", dateFin='" + dateFin + '\'' +
+                ", reduction=" + reduction +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(idPromo, nomDiscount, dateDebut, dateFin, reduction);
     }

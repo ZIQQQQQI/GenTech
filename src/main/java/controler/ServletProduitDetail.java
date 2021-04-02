@@ -23,14 +23,7 @@ import java.util.HashMap;
 
 @WebServlet("/ServletProduitDetail")
 public class ServletProduitDetail extends HttpServlet {
-    /*
-     * @param req
-	 * @param resp
-     * @return void
-     * @author TANG
-     * @date 2021/3/25 11:18
-     * @description
-     */
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //produits promo

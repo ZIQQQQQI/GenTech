@@ -1,4 +1,4 @@
-package controler.Panier;/*
+package controler;/*
  *@program GenTech
  *@author SI Lu
  *@date 28/03/2021
@@ -23,12 +23,13 @@ import java.util.HashMap;
 @WebServlet("/ServletPanierDetail")
 public class ServletPanierDetail extends HttpServlet {
     private ServicePanier servicePanier=new ServicePanier();
-    //afficher tous les produit de panier
+
+    //afficher tous les produit dans la panier
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session=req.getSession();
-        String emailClient = (String) session.getAttribute("email");
-       // String emailClient="bugubugu@gamil.com";
+        //String emailClient = (String) session.getAttribute("email");
+        String emailClient="bugubugu@gamil.com";
 
         Client client=new ServiceClient().unClient(emailClient);
         req.setAttribute("client",client);
@@ -44,6 +45,8 @@ public class ServletPanierDetail extends HttpServlet {
 
         HashMap<Produit, Promotion> listProduitPromo = servicePanier.produitPrixPromo();
         req.setAttribute("listProduitPromo",listProduitPromo);
+
+
 
 
         req.getRequestDispatcher("pagePainier.jsp").forward(req, resp);

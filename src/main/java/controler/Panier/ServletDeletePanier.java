@@ -16,6 +16,7 @@ import java.io.IOException;
 @WebServlet("/ServletDeletePanier")
 public class ServletDeletePanier extends HttpServlet {
     @Override
+    //Supprimer un produit dans la panier
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session=req.getSession();
         String email=(String)session.getAttribute("email");

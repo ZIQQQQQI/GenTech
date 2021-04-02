@@ -26,15 +26,14 @@ public class ServletChangeQte extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        //Recuperer des session
         HttpSession session=req.getSession();
         String email=(String) session.getAttribute("email");
+        //Recuperer le quantite de produit et le code de produit
         Long qte=Long.valueOf(req.getParameter("qte")) ;
         Integer idp=Integer.valueOf(req.getParameter("idp")) ;
-        ServicePanier servicePanier=new ServicePanier();
-        servicePanier.changeQte(email,qte,idp);
-
-
-
+        //mise a jour la base de donnees
+        new ServicePanier().changeQte(email,qte,idp);
     }
 
     @Override

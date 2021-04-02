@@ -23,6 +23,7 @@ public class ServletPreAjouterDetail extends HttpServlet {
         this.doPost(req,resp);
     }
 
+    //Ajouter un produit dans la liste de preference
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer idp=Integer.valueOf((String) req.getParameter("idp")) ;
