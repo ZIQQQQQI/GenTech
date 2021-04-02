@@ -7,7 +7,7 @@ function changeQte(){
     xhr.open("GET",url,true);
     xhr.onload = function(){
         if (xhr.status === 200) {
-            window.location.href="/ServletPanierDetail"
+            window.location.href="ServletPanierDetail"
 
         }}
     xhr.send();

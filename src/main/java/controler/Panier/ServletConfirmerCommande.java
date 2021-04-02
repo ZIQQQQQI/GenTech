@@ -69,13 +69,15 @@ public class ServletConfirmerCommande extends HttpServlet {
                 sumEco=sumEco+eco;
             }
         }
+
         int updateScore=client.getScore();
         if(avoirReduction.equals("1")){
             sumEco=sumEco+5.00;
-            updateScore= (int) (updateScore-10+sum/10);
+            updateScore= updateScore-10+(int) ((sum-sumEco)/10)+1;
         }else{
-
+            updateScore=  updateScore+(int) ((sum-sumEco)/10)+1;
         }
+ 
 
         if(note.size()==0){
             String idCdeCli=new RandomString().getRandomString(8);

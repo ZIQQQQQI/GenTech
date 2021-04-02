@@ -44,6 +44,7 @@ public class UnitTest {
 //        daoPostIt.updatePost(1,1,20);
         DaoProduit daoProduit=new DaoProduit();
         ArrayList<Produit> list=daoProduit.listProduitEnPromo();
+        System.out.println(list);
 
 
 //        //test
