@@ -137,6 +137,7 @@ public class Commande implements Serializable {
                 ", heureRetrait='" + heureRetrait + '\'' +
                 ", etat='" + etat + '\'' +
                 ", emailClient='" + emailClient + '\'' +
+                ",economies='"+Economie+ '\'' +
                 '}';
     }
 

@@ -19,6 +19,7 @@ import java.util.Date;
 
 @WebServlet("/ServletNewCommande")
 public class ServletNewCommande extends HttpServlet {
+    //Creer une commande achat pour preparateur
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession();

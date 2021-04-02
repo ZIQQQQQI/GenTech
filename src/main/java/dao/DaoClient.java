@@ -50,7 +50,7 @@ public class DaoClient {
         }catch(Exception e){
             e.printStackTrace();
             System.out.println("----------------------");
-            System.out.println("DaoRayon listeClient");
+            System.out.println("DaoClient listeClient");
             System.out.println("----------------------");
         }
         t.commit();

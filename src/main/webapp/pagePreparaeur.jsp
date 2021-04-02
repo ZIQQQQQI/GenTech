@@ -121,12 +121,12 @@
                     </li>
                     <li class="nav-item">
                         <a href="#Stockage"><i class="nav-icon far fa-circle text-info"></i>
-                            Stockage</a>
+                            choisir les produits</a>
                     </li>
                     <li class="nav-item">
                         <a href="#Creneau">
                             <i class="nav-icon far fa-circle text-warning"></i>
-                            Créneau </a>
+                            Stockage </a>
                     </li>
 
                 </ul>

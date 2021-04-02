@@ -72,7 +72,7 @@
                <div class="col-md-4">
                  <!--prod1-->
                  <div class="card">
-                   <div class="card-header">
+                   <div class="card-header" style="height:4.5rem;">
                      <a href="ServletProduitDetail?idProduit=<%out.print( p.getCodeProduit());%>">
                        <h3 class="card-title"><%out.println( p.getLibelleProduit());%></h3>
                      </a>
@@ -280,7 +280,7 @@
     <div class="col-md-4">
       <!--prod1-->
       <div class="card">
-        <div class="card-header">
+        <div class="card-header" style="height:4.5rem;">
           <a href="ServletProduitDetail?idProduit=<%out.print( p.getCodeProduit());%>">
             <h3 class="card-title"><%out.println( p.getLibelleProduit());%></h3>
           </a>

@@ -24,9 +24,7 @@ import java.util.UUID;
 
 @WebServlet("/ServletUploadFile")
 public class ServletUploadFile extends HttpServlet {
-
-
-
+            //Telechager un file
             @Override
             protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
                 request.setCharacterEncoding("utf-8");//

@@ -22,6 +22,7 @@ public class ServletPanierAjouterDetail extends HttpServlet {
         this.doPost(req,resp);
     }
 
+    //verifier si le produit existe deja dans la panier
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         Integer idp=Integer.valueOf((String) req.getParameter("idp")) ;
